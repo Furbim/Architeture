@@ -75,7 +75,7 @@ for($i=0; $i < $total_reg; $i++){
                 </span>
                
               </h6>
-              <a href="agendamentos">
+              <a href="agendamentos.php">
                   Agendar
                 </a>
             </div>
