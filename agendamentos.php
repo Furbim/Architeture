@@ -24,31 +24,35 @@ $nome = '';
 
 <?php
 
-// if (isset($_SESSION['id'])) {
-// 	$nome = $_SESSION['nome'];
-// 	$telefone = $_SESSION['telefone'];
-// } else {
+if (isset($_SESSION['id_cliente'])) {
+	$nome = $_SESSION['nome_cliente'];
+	$telefone = $_SESSION['telefone_cliente'];
+} else {
+
+	header("Location: login.php");
 // 	echo '<!-- Modal Login -->
 // 	<div id="modal-auth" class="modal">
-// 		<div id="modal-conteudo" class="modal-content">
-// 			<span id="btn-fechar-modal" class="close">&times;</span>
-	
-// 			<div id="form-container">
-// 				<h2 id="modal-titulo">Login</h2>
-// 				<form id="form-auth" action="ajax/cadastrar.php" method="post">
-// 					<input type="text" id="input-nome" class="input-auth" placeholder="Nome" required>
-// 					<input type="tel" id="input-telefone" class="input-auth" placeholder="Telefone" required>
-// 					<button type="submit">Enviar</button>
-// 				</form>
-// 				<p id="toggle-text">Não tem uma conta? <a href="#" id="toggle-form">Cadastre-se</a></p>
-// 			</div>
-// 		</div>
-// 	</div>';
-// }
+//     <div id="modal-conteudo" class="modal-content">
+//         <span id="btn-fechar-modal" class="close">&times;</span>
+
+//         <div id="form-container">
+//             <h2 id="modal-titulo">Login</h2>
+//             <form id="form-auth" action="ajax/login.php" method="POST">
+//                 <input type="text" id="nome" name="nome" class="input-auth" placeholder="Nome" required>
+//                 <input type="tel"  name="telefone" class="input-auth" placeholder="Telefone" required>
+//                 <button type="submit">Enviar</button>
+//             </form>
+//             <p id="toggle-text">
+//                 Não tem uma conta? <a href="#" id="toggle-form">Cadastre-se</a>
+//             </p>
+//         </div>
+//     </div>
+// </div>';
+}
 
 ?>
 
-<div class="footer_section" style="background: #5a8e94; ">
+<div class="footer_section" style="background: #5a8e94;">
 	<div class="container">
 		<div class="footer_content ">
 			<form id="form-agenda" method="post" style="margin-top: -25px !important">
@@ -278,45 +282,42 @@ $nome = '';
 
 <script>
 	document.addEventListener("DOMContentLoaded", function () {
-		const modal = document.getElementById("modal-auth");
-		const closeModal = document.getElementById("btn-fechar-modal");
-		const toggleForm = document.getElementById("toggle-form");
-		const modalTitle = document.getElementById("modal-titulo");
-		const authForm = document.getElementById("form-auth");
-		const nomeInput = document.getElementById("input-nome");
-		const telefoneInput = document.getElementById("input-telefone");
-		const toggleText = document.getElementById("toggle-text");
+    const modal = document.getElementById("modal-auth");
+    const closeModal = document.getElementById("btn-fechar-modal");
+    const toggleForm = document.getElementById("toggle-form");
+    const modalTitle = document.getElementById("modal-titulo");
+    const authForm = document.getElementById("form-auth");
+    const toggleText = document.getElementById("toggle-text");
 
-		let isLogin = true;
+    let isLogin = true;
 
-		function openModal() {
-			modal.style.display = "flex";
-		};
+    // Fechar modal ao clicar no botão de fechar
+    closeModal.addEventListener("click", () => {
+        modal.style.display = "none";
+    });
 
-		closeModal.addEventListener("click", () => {
-			modal.style.display = "none";
-		});
+    // Alternar entre Login e Cadastro
+    toggleForm.addEventListener("click", (e) => {
+        e.preventDefault();
+        isLogin = !isLogin;
 
-		toggleForm.addEventListener("click", (e) => {
-			e.preventDefault();
-			isLogin = !isLogin;
+        if (isLogin) {
+            modalTitle.textContent = "Login";
+            toggleForm.textContent = "Cadastre-se";
+            authForm.action = "ajax/login.php";
+        } else {
+            modalTitle.textContent = "Cadastro";
+            toggleForm.textContent = "Faça login";
+            authForm.action = "ajax/cadastrar.php";
+        }
+    });
 
-			if (isLogin) {
-				modalTitle.textContent = "Login";
-				toggleText.innerHTML = "Não tem uma conta? <a href='#' id='toggle-form'>Cadastre-se</a>";
-			} else {
-				modalTitle.textContent = "Cadastro";
-				toggleText.innerHTML = "Já tem uma conta? <a href='#' id='toggle-form'>Faça login</a>";
-			}
-		});
-
-		authForm.addEventListener("submit", (e) => {
-			e.preventDefault();
-			alert(`${isLogin ? "Login" : "Cadastro"} realizado!\nNome: ${nomeInput.value}\nTelefone: ${telefoneInput.value}`);
-			modal.style.display = "none";
-			authForm.reset();
-		});
-	});
+    // Resetar o formulário ao fechar o modal
+    authForm.addEventListener("submit", () => {
+        modal.style.display = "none";
+        authForm.reset();
+    });
+});
 </script>
 
 
