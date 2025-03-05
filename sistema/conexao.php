@@ -1,6 +1,6 @@
 <?php 
 
-$banco = 'barbeariaTeste';
+$banco = 'barbearia';
 $usuario = 'root';
 $senha = '';
 $servidor = 'localhost';
