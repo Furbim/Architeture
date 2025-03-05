@@ -29,7 +29,7 @@ if (isset($_SESSION['id_cliente'])) {
 	$telefone = $_SESSION['telefone_cliente'];
 } else {
 
-	header("Location: login.php");
+	header("Location: entrar.php");
 // 	echo '<!-- Modal Login -->
 // 	<div id="modal-auth" class="modal">
 //     <div id="modal-conteudo" class="modal-content">

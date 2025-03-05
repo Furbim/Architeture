@@ -4,6 +4,9 @@ body {
   background-color: #ffffff;
   overflow-x: hidden;
   height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
 }
 
 .layout_padding {
@@ -687,6 +690,7 @@ a:focus {
   background-color: #0e3746;
   position: relative;
   color: #ffffff;
+  height: 100%;
 }
 
 .footer_section .footer_content {
