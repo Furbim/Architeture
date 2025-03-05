@@ -1,0 +1,14 @@
+Enviar arquivos para o GitHub
+git init
+git add .
+git commit -m "mensagem do commit: o que você mudou"
+git remote add origin https://github.com/Furbim/OnBarber.git
+git push origin main
+
+
+Puxar arquivos do GitHub:
+
+git init 
+git pull https://github.com/Furbim/OnBarber.git main
+
+
