@@ -4,6 +4,10 @@ require_once("cabecalho.php");
 if (!isset($_SESSION)) {
     session_start();
 }
+
+if (isset($_SESSION["id_cliente"])) {
+    header("Location: agendamentos.php");
+}
 ?>
 
 <style>
@@ -26,7 +30,7 @@ if (!isset($_SESSION)) {
 <div class="container mt-5">
     <div class="form-container">
         <h3 class="text-center" id="form-title">Login</h3>
-        <form id="login-form" method="post" action="processa_login.php">
+        <form id="login-form" method="post" action="ajax/login.php">
             <div class="form-group">
                 <input type="email" class="form-control" name="email" placeholder="Seu Email" required>
             </div>

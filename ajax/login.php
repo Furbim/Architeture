@@ -6,34 +6,32 @@ if (!isset($_SESSION)) {
 	session_start();
 }
 
-$nome = $_POST['nome'];
-$telefone = $_POST['telefone'];
+$email = $_POST['email'];
+$senha = $_POST['senha'];
 
-//validar tel
-$query = $pdo->query("SELECT * from $tabela where telefone = '$telefone'");
-$res = $query->fetchAll(PDO::FETCH_ASSOC);
-if(@count($res) > 0){
-	echo 'Telefone já Cadastrado, você já está cadastrado!!';
-	exit();
-}
-
-$query = $pdo->prepare("INSERT INTO $tabela SET nome = :nome, telefone = :telefone, data_cad = curDate(), cartoes = '0', alertado = 'Não'");
-
-$query->bindValue(":nome", "$nome");
-$query->bindValue(":telefone", "$telefone");
+// Buscar usuário pelo e-mail
+$query = $pdo->prepare("SELECT * FROM $tabela WHERE email = :email");
+$query->bindValue(":email", $email);
 $query->execute();
-
-$query = $pdo->query("SELECT * from $tabela where telefone = '$telefone'");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
-if(@count($res) > 0){
-	$_SESSION["id_cliente"] = $res["id"];
-	$_SESSION["nome_cliente"] = $res["nome"];
-	$_SESSION["telefone_cliente"] = $res["telefone"];
+
+if (count($res) > 0) {
+    // Verifica a senha
+    if (password_verify($senha, $res[0]["senha"])) { 
+        $_SESSION["id_cliente"] = $res[0]["id"];
+        $_SESSION["nome_cliente"] = $res[0]["nome"];
+        $_SESSION["telefone_cliente"] = $res[0]["telefone"];
+        $_SESSION["email"] = $res[0]["email"];
+
+        // Redireciona para a área do cliente
+        header("Location: ../agendamentos.php");
+        exit();
+    } else {
+        echo '<script>alert("Email ou senha incorretos!"); window.location.href="login.php";</script>';
+        exit();
+    }
+} else {
+    echo '<script>alert("Não existe nenhum usuário com esse email cadastrado!"); window.location.href="login.php";</script>';
+    exit();
 }
-
-
-
-
-echo 'Salvo com Sucesso';
-
- ?>
+?>
