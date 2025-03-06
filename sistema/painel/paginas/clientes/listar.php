@@ -14,7 +14,8 @@ echo <<<HTML
 	<thead> 
 	<tr> 
 	<th>Nome</th>	
-	<th class="esc">Telefone</th> 	
+	<th class="esc">Telefone</th> 
+	<th class="esc">Email</th> 	
 	<th class="esc">Cadastro</th> 	
 	<th class="esc">Nascimento</th> 
 	<th class="esc">Retorno</th> 
@@ -36,6 +37,7 @@ for($i=0; $i < $total_reg; $i++){
 	$cartoes = $res[$i]['cartoes'];
 	$data_retorno = $res[$i]['data_retorno'];
 	$ultimo_servico = $res[$i]['ultimo_servico'];
+	$email = $res[$i]['email'];
 
 	$data_cadF = implode('/', array_reverse(explode('-', $data_cad)));
 	$data_nascF = implode('/', array_reverse(explode('-', $data_nasc)));
@@ -69,6 +71,7 @@ echo <<<HTML
 <tr class="">
 <td>{$nome}</td>
 <td class="esc">{$telefone}</td>
+<td class="esc">{$email}</td>
 <td class="esc">{$data_cadF}</td>
 <td class="esc">{$data_nascF}</td>
 <td class="esc {$classe_retorno}">{$data_retornoF}</td>

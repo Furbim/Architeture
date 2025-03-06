@@ -51,6 +51,18 @@ if(@$clientes == 'ocultar'){
 								<input type="text" class="form-control" id="telefone" name="telefone" placeholder="Telefone" >    
 							</div> 	
 						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="exampleInputEmail1">Email</label>
+								<input type="mail" class="form-control" id="email" name="email" placeholder="Email" >    
+							</div> 	
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="exampleInputEmail1">Senha</label>
+								<input type="password" class="form-control" id="senha" name="senha" placeholder="Email" >    
+							</div> 	
+						</div>
 						<div class="col-md-3">
 							<div class="form-group">
 								<label for="exampleInputEmail1">Cartões</label>

@@ -183,7 +183,7 @@ $dados_meses_vendas =  '';
 
         //DESPESAS
         $total_mes_despesa = 0;
-        $query = $pdo->query("SELECT * FROM pagar where pago = 'Sim' and tipo = 'Conta' and data_pgto >= '$data_mes_inicio_grafico' and data_pgto <= '$data_mes_final_grafico' ORDER BY id asc");
+        $query = $pdo->query("SELECT * FROM pagar where pago = 'Sim' and tipo != 'Comissão' and data_pgto >= '$data_mes_inicio_grafico' and data_pgto <= '$data_mes_final_grafico' ORDER BY id asc");
         $res = $query->fetchAll(PDO::FETCH_ASSOC);
         $total_reg = @count($res);
         if($total_reg > 0){
