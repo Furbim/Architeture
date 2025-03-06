@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Tempo de geração: 19/07/2024 às 14:27
--- Versão do servidor: 10.4.32-MariaDB
--- Versão do PHP: 8.0.30
+-- Host: 127.0.0.1:3306
+-- Tempo de geração: 06/03/2025 às 11:13
+-- Versão do servidor: 8.2.0
+-- Versão do PHP: 8.2.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -27,12 +27,14 @@ SET time_zone = "+00:00";
 -- Estrutura para tabela `acessos`
 --
 
-CREATE TABLE `acessos` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `acessos`;
+CREATE TABLE IF NOT EXISTS `acessos` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(50) NOT NULL,
   `chave` varchar(50) NOT NULL,
-  `grupo` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `grupo` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `acessos`
@@ -78,18 +80,20 @@ INSERT INTO `acessos` (`id`, `nome`, `chave`, `grupo`) VALUES
 -- Estrutura para tabela `agendamentos`
 --
 
-CREATE TABLE `agendamentos` (
-  `id` int(11) NOT NULL,
-  `funcionario` int(11) NOT NULL,
-  `cliente` int(11) NOT NULL,
+DROP TABLE IF EXISTS `agendamentos`;
+CREATE TABLE IF NOT EXISTS `agendamentos` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `funcionario` int NOT NULL,
+  `cliente` int NOT NULL,
   `data` date NOT NULL,
   `hora` time NOT NULL,
   `obs` varchar(100) DEFAULT NULL,
   `data_lanc` date NOT NULL,
-  `usuario` int(11) NOT NULL,
+  `usuario` int NOT NULL,
   `status` varchar(20) NOT NULL,
-  `servico` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `servico` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=113 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `agendamentos`
@@ -172,10 +176,12 @@ INSERT INTO `agendamentos` (`id`, `funcionario`, `cliente`, `data`, `hora`, `obs
 -- Estrutura para tabela `cargos`
 --
 
-CREATE TABLE `cargos` (
-  `id` int(11) NOT NULL,
-  `nome` varchar(35) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+DROP TABLE IF EXISTS `cargos`;
+CREATE TABLE IF NOT EXISTS `cargos` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(35) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `cargos`
@@ -195,10 +201,12 @@ INSERT INTO `cargos` (`id`, `nome`) VALUES
 -- Estrutura para tabela `cat_produtos`
 --
 
-CREATE TABLE `cat_produtos` (
-  `id` int(11) NOT NULL,
-  `nome` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+DROP TABLE IF EXISTS `cat_produtos`;
+CREATE TABLE IF NOT EXISTS `cat_produtos` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `cat_produtos`
@@ -218,10 +226,12 @@ INSERT INTO `cat_produtos` (`id`, `nome`) VALUES
 -- Estrutura para tabela `cat_servicos`
 --
 
-CREATE TABLE `cat_servicos` (
-  `id` int(11) NOT NULL,
-  `nome` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+DROP TABLE IF EXISTS `cat_servicos`;
+CREATE TABLE IF NOT EXISTS `cat_servicos` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `cat_servicos`
@@ -239,35 +249,23 @@ INSERT INTO `cat_servicos` (`id`, `nome`) VALUES
 -- Estrutura para tabela `clientes`
 --
 
-CREATE TABLE `clientes` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `clientes`;
+CREATE TABLE IF NOT EXISTS `clientes` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(50) NOT NULL,
   `telefone` varchar(20) DEFAULT NULL,
   `endereco` varchar(100) DEFAULT NULL,
   `data_nasc` date NOT NULL,
   `data_cad` date NOT NULL,
-  `cartoes` int(11) NOT NULL,
+  `cartoes` int NOT NULL,
   `data_retorno` date DEFAULT NULL,
-  `ultimo_servico` int(11) NOT NULL,
-  `alertado` varchar(5) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Despejando dados para a tabela `clientes`
---
-
-INSERT INTO `clientes` (`id`, `nome`, `telefone`, `endereco`, `data_nasc`, `data_cad`, `cartoes`, `data_retorno`, `ultimo_servico`, `alertado`) VALUES
-(1, 'Cliente 4', '(45) 44584-55', '', '0000-00-00', '2022-05-30', 5, '2022-06-10', 5, 'Não'),
-(2, 'Cliente 1', '(54) 54841-1121', 'Rua C', '2022-05-02', '2022-05-30', 4, '2022-07-04', 2, 'Não'),
-(3, 'Cliente 2', '(74) 45454-5454', 'Rua 5', '0000-00-00', '2022-05-30', 10, '2022-06-22', 2, 'Não'),
-(4, 'Cliente 3', '(58) 44554', '', '0000-00-00', '2022-05-30', 4, '2022-06-29', 4, 'Não'),
-(6, 'Cliente 5', '(45) 55655-5555', 'Rua C', '2022-06-13', '2022-06-13', 0, NULL, 0, 'Não'),
-(7, 'Cliente 6', '(40) 00000-0000', 'Rua C', '1990-06-01', '2022-06-13', 0, NULL, 0, 'Não'),
-(8, 'Cliente 7', '(11) 11111-1000', '', '2000-06-13', '2022-06-13', 0, NULL, 0, 'Não'),
-(10, 'Cliente Teste', '(55) 56664-5454', '', '0000-00-00', '2022-06-14', 6, NULL, 0, 'Não'),
-(11, 'Hugo Freitas', '(31) 97527-5084', '', '0000-00-00', '2022-06-27', 2, NULL, 0, 'Não'),
-(12, 'Teste Cliente', '(11) 11111-2221', NULL, '0000-00-00', '2022-06-27', 0, NULL, 0, 'Não'),
-(13, 'Cliente para Testes', '(55) 55555-5555', NULL, '0000-00-00', '2022-06-27', 0, NULL, 0, 'Não');
+  `ultimo_servico` int NOT NULL,
+  `alertado` varchar(5) DEFAULT NULL,
+  `email` varchar(255) NOT NULL,
+  `senha` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -275,13 +273,15 @@ INSERT INTO `clientes` (`id`, `nome`, `telefone`, `endereco`, `data_nasc`, `data
 -- Estrutura para tabela `comentarios`
 --
 
-CREATE TABLE `comentarios` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `comentarios`;
+CREATE TABLE IF NOT EXISTS `comentarios` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(50) NOT NULL,
   `texto` varchar(500) NOT NULL,
   `foto` varchar(100) DEFAULT NULL,
-  `ativo` varchar(5) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `ativo` varchar(5) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `comentarios`
@@ -301,8 +301,9 @@ INSERT INTO `comentarios` (`id`, `nome`, `texto`, `foto`, `ativo`) VALUES
 -- Estrutura para tabela `config`
 --
 
-CREATE TABLE `config` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `config`;
+CREATE TABLE IF NOT EXISTS `config` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `telefone_fixo` varchar(20) DEFAULT NULL,
@@ -321,10 +322,11 @@ CREATE TABLE `config` (
   `icone_site` varchar(100) NOT NULL,
   `mapa` varchar(1000) DEFAULT NULL,
   `texto_fidelidade` varchar(255) DEFAULT NULL,
-  `quantidade_cartoes` int(11) NOT NULL,
+  `quantidade_cartoes` int NOT NULL,
   `texto_agendamento` varchar(30) DEFAULT NULL,
-  `msg_agendamento` varchar(5) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `msg_agendamento` varchar(5) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `config`
@@ -339,11 +341,13 @@ INSERT INTO `config` (`id`, `nome`, `email`, `telefone_fixo`, `telefone_whatsapp
 -- Estrutura para tabela `dias`
 --
 
-CREATE TABLE `dias` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `dias`;
+CREATE TABLE IF NOT EXISTS `dias` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `dia` varchar(25) NOT NULL,
-  `funcionario` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `funcionario` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `dias`
@@ -374,14 +378,16 @@ INSERT INTO `dias` (`id`, `dia`, `funcionario`) VALUES
 -- Estrutura para tabela `entradas`
 --
 
-CREATE TABLE `entradas` (
-  `id` int(11) NOT NULL,
-  `produto` int(11) NOT NULL,
-  `quantidade` int(11) NOT NULL,
+DROP TABLE IF EXISTS `entradas`;
+CREATE TABLE IF NOT EXISTS `entradas` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `produto` int NOT NULL,
+  `quantidade` int NOT NULL,
   `motivo` varchar(50) NOT NULL,
-  `usuario` int(11) NOT NULL,
-  `data` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `usuario` int NOT NULL,
+  `data` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `entradas`
@@ -398,15 +404,17 @@ INSERT INTO `entradas` (`id`, `produto`, `quantidade`, `motivo`, `usuario`, `dat
 -- Estrutura para tabela `fornecedores`
 --
 
-CREATE TABLE `fornecedores` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `fornecedores`;
+CREATE TABLE IF NOT EXISTS `fornecedores` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(50) NOT NULL,
   `telefone` varchar(20) DEFAULT NULL,
   `endereco` varchar(100) DEFAULT NULL,
   `data_cad` date NOT NULL,
   `tipo_chave` varchar(25) DEFAULT NULL,
-  `chave_pix` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `chave_pix` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `fornecedores`
@@ -423,10 +431,12 @@ INSERT INTO `fornecedores` (`id`, `nome`, `telefone`, `endereco`, `data_cad`, `t
 -- Estrutura para tabela `grupo_acessos`
 --
 
-CREATE TABLE `grupo_acessos` (
-  `id` int(11) NOT NULL,
-  `nome` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+DROP TABLE IF EXISTS `grupo_acessos`;
+CREATE TABLE IF NOT EXISTS `grupo_acessos` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `grupo_acessos`
@@ -447,11 +457,13 @@ INSERT INTO `grupo_acessos` (`id`, `nome`) VALUES
 -- Estrutura para tabela `horarios`
 --
 
-CREATE TABLE `horarios` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `horarios`;
+CREATE TABLE IF NOT EXISTS `horarios` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `horario` time NOT NULL,
-  `funcionario` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `funcionario` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `horarios`
@@ -491,25 +503,27 @@ INSERT INTO `horarios` (`id`, `horario`, `funcionario`) VALUES
 -- Estrutura para tabela `pagar`
 --
 
-CREATE TABLE `pagar` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `pagar`;
+CREATE TABLE IF NOT EXISTS `pagar` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `descricao` varchar(50) DEFAULT NULL,
   `tipo` varchar(35) DEFAULT NULL,
   `valor` decimal(8,2) NOT NULL,
   `data_lanc` date NOT NULL,
   `data_venc` date NOT NULL,
   `data_pgto` date NOT NULL,
-  `usuario_lanc` int(11) NOT NULL,
-  `usuario_baixa` int(11) NOT NULL,
+  `usuario_lanc` int NOT NULL,
+  `usuario_baixa` int NOT NULL,
   `foto` varchar(100) DEFAULT NULL,
-  `pessoa` int(11) NOT NULL,
+  `pessoa` int NOT NULL,
   `pago` varchar(5) NOT NULL,
-  `produto` int(11) NOT NULL,
-  `quantidade` int(11) NOT NULL,
-  `funcionario` int(11) NOT NULL,
-  `servico` int(11) NOT NULL,
-  `cliente` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `produto` int NOT NULL,
+  `quantidade` int NOT NULL,
+  `funcionario` int NOT NULL,
+  `servico` int NOT NULL,
+  `cliente` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `pagar`
@@ -590,17 +604,19 @@ INSERT INTO `pagar` (`id`, `descricao`, `tipo`, `valor`, `data_lanc`, `data_venc
 -- Estrutura para tabela `produtos`
 --
 
-CREATE TABLE `produtos` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `produtos`;
+CREATE TABLE IF NOT EXISTS `produtos` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(50) NOT NULL,
   `descricao` varchar(255) DEFAULT NULL,
-  `categoria` int(11) NOT NULL,
+  `categoria` int NOT NULL,
   `valor_compra` decimal(8,2) NOT NULL,
   `valor_venda` decimal(8,2) NOT NULL,
-  `estoque` int(11) NOT NULL,
+  `estoque` int NOT NULL,
   `foto` varchar(100) DEFAULT NULL,
-  `nivel_estoque` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `nivel_estoque` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `produtos`
@@ -621,24 +637,26 @@ INSERT INTO `produtos` (`id`, `nome`, `descricao`, `categoria`, `valor_compra`, 
 -- Estrutura para tabela `receber`
 --
 
-CREATE TABLE `receber` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `receber`;
+CREATE TABLE IF NOT EXISTS `receber` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `descricao` varchar(50) DEFAULT NULL,
   `tipo` varchar(35) DEFAULT NULL,
   `valor` decimal(8,2) NOT NULL,
   `data_lanc` date NOT NULL,
   `data_venc` date NOT NULL,
   `data_pgto` date NOT NULL,
-  `usuario_lanc` int(11) NOT NULL,
-  `usuario_baixa` int(11) NOT NULL,
+  `usuario_lanc` int NOT NULL,
+  `usuario_baixa` int NOT NULL,
   `foto` varchar(100) DEFAULT NULL,
-  `pessoa` int(11) NOT NULL,
+  `pessoa` int NOT NULL,
   `pago` varchar(5) NOT NULL,
-  `produto` int(11) NOT NULL,
-  `quantidade` int(11) NOT NULL,
-  `servico` int(11) NOT NULL,
-  `funcionario` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `produto` int NOT NULL,
+  `quantidade` int NOT NULL,
+  `servico` int NOT NULL,
+  `funcionario` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=110 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `receber`
@@ -727,14 +745,16 @@ INSERT INTO `receber` (`id`, `descricao`, `tipo`, `valor`, `data_lanc`, `data_ve
 -- Estrutura para tabela `saidas`
 --
 
-CREATE TABLE `saidas` (
-  `id` int(11) NOT NULL,
-  `produto` int(11) NOT NULL,
-  `quantidade` int(11) NOT NULL,
+DROP TABLE IF EXISTS `saidas`;
+CREATE TABLE IF NOT EXISTS `saidas` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `produto` int NOT NULL,
+  `quantidade` int NOT NULL,
   `motivo` varchar(50) NOT NULL,
-  `usuario` int(11) NOT NULL,
-  `data` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `usuario` int NOT NULL,
+  `data` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `saidas`
@@ -751,16 +771,18 @@ INSERT INTO `saidas` (`id`, `produto`, `quantidade`, `motivo`, `usuario`, `data`
 -- Estrutura para tabela `servicos`
 --
 
-CREATE TABLE `servicos` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `servicos`;
+CREATE TABLE IF NOT EXISTS `servicos` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(50) NOT NULL,
-  `categoria` int(11) NOT NULL,
+  `categoria` int NOT NULL,
   `valor` decimal(8,2) NOT NULL,
   `foto` varchar(100) DEFAULT NULL,
-  `dias_retorno` int(11) NOT NULL,
+  `dias_retorno` int NOT NULL,
   `ativo` varchar(5) NOT NULL,
-  `comissao` decimal(8,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `comissao` decimal(8,2) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `servicos`
@@ -781,11 +803,13 @@ INSERT INTO `servicos` (`id`, `nome`, `categoria`, `valor`, `foto`, `dias_retorn
 -- Estrutura para tabela `textos_index`
 --
 
-CREATE TABLE `textos_index` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `textos_index`;
+CREATE TABLE IF NOT EXISTS `textos_index` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `titulo` varchar(25) NOT NULL,
-  `descricao` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `descricao` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `textos_index`
@@ -803,8 +827,9 @@ INSERT INTO `textos_index` (`id`, `titulo`, `descricao`) VALUES
 -- Estrutura para tabela `usuarios`
 --
 
-CREATE TABLE `usuarios` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `usuarios`;
+CREATE TABLE IF NOT EXISTS `usuarios` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `cpf` varchar(20) DEFAULT NULL,
@@ -818,8 +843,9 @@ CREATE TABLE `usuarios` (
   `foto` varchar(100) DEFAULT NULL,
   `atendimento` varchar(5) NOT NULL,
   `tipo_chave` varchar(25) DEFAULT NULL,
-  `chave_pix` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `chave_pix` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `usuarios`
@@ -832,8 +858,7 @@ INSERT INTO `usuarios` (`id`, `nome`, `email`, `cpf`, `senha`, `senha_crip`, `ni
 (10, 'Barbeiro', 'barbeiro@hotmail.com', '555.555.555-58', '123', '202cb962ac59075b964b07152d234b70', 'Barbeiro', '2022-05-30', 'Sim', '(48) 54545-5555', 'Rua X', 'sem-foto.jpg', 'Sim', NULL, NULL),
 (11, 'Barbeiro 2', 'barbeiro2@hotmail.com', '545.454.545-45', '123', '202cb962ac59075b964b07152d234b70', 'Barbeiro', '2022-05-30', 'Sim', '(85) 54545-454', 'Rua C', 'sem-foto.jpg', 'Sim', 'CPF', '545.454.545-45'),
 (12, 'Cabelereira Teste', 'cabelereira@hotmail.com', '000.000.000-11', '123', '202cb962ac59075b964b07152d234b70', 'Cabelereira', '2022-06-06', 'Sim', '(25) 88888-8888', 'Rua X', 'sem-foto.jpg', 'Sim', 'CPF', '111.111.111-17'),
-(13, 'Manicure', 'manicure@hotmail.com', '111.111.111-01', '123', '202cb962ac59075b964b07152d234b70', 'Manicure e Pedicure', '2022-06-06', 'Sim', '(11) 11111-1111', 'Rua C', 'sem-foto.jpg', 'Sim', 'Telefone', '3198888-8888'),
-(14, 'Barbeiro 3', 'barbeiro3@hotmail.com', '888.888.888-81', '123', '202cb962ac59075b964b07152d234b70', 'Barbeiro', '2022-06-13', 'Sim', '(47) 77777-7777', 'Rua C', 'sem-foto.jpg', 'Sim', 'CPF', '111.111.111-12');
+(13, 'Manicure', 'manicure@hotmail.com', '111.111.111-01', '123', '202cb962ac59075b964b07152d234b70', 'Manicure e Pedicure', '2022-06-06', 'Sim', '(11) 11111-1111', 'Rua C', 'sem-foto.jpg', 'Sim', 'Telefone', '3198888-8888');
 
 -- --------------------------------------------------------
 
@@ -841,11 +866,13 @@ INSERT INTO `usuarios` (`id`, `nome`, `email`, `cpf`, `senha`, `senha_crip`, `ni
 -- Estrutura para tabela `usuarios_permissoes`
 --
 
-CREATE TABLE `usuarios_permissoes` (
-  `id` int(11) NOT NULL,
-  `usuario` int(11) NOT NULL,
-  `permissao` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+DROP TABLE IF EXISTS `usuarios_permissoes`;
+CREATE TABLE IF NOT EXISTS `usuarios_permissoes` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `usuario` int NOT NULL,
+  `permissao` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=287 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `usuarios_permissoes`
@@ -888,266 +915,6 @@ INSERT INTO `usuarios_permissoes` (`id`, `usuario`, `permissao`) VALUES
 (284, 8, 30),
 (285, 8, 34),
 (286, 8, 32);
-
---
--- Índices para tabelas despejadas
---
-
---
--- Índices de tabela `acessos`
---
-ALTER TABLE `acessos`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `agendamentos`
---
-ALTER TABLE `agendamentos`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `cargos`
---
-ALTER TABLE `cargos`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `cat_produtos`
---
-ALTER TABLE `cat_produtos`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `cat_servicos`
---
-ALTER TABLE `cat_servicos`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `clientes`
---
-ALTER TABLE `clientes`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `comentarios`
---
-ALTER TABLE `comentarios`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `config`
---
-ALTER TABLE `config`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `dias`
---
-ALTER TABLE `dias`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `entradas`
---
-ALTER TABLE `entradas`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `fornecedores`
---
-ALTER TABLE `fornecedores`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `grupo_acessos`
---
-ALTER TABLE `grupo_acessos`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `horarios`
---
-ALTER TABLE `horarios`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `pagar`
---
-ALTER TABLE `pagar`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `produtos`
---
-ALTER TABLE `produtos`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `receber`
---
-ALTER TABLE `receber`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `saidas`
---
-ALTER TABLE `saidas`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `servicos`
---
-ALTER TABLE `servicos`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `textos_index`
---
-ALTER TABLE `textos_index`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `usuarios`
---
-ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `usuarios_permissoes`
---
-ALTER TABLE `usuarios_permissoes`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT para tabelas despejadas
---
-
---
--- AUTO_INCREMENT de tabela `acessos`
---
-ALTER TABLE `acessos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
-
---
--- AUTO_INCREMENT de tabela `agendamentos`
---
-ALTER TABLE `agendamentos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
-
---
--- AUTO_INCREMENT de tabela `cargos`
---
-ALTER TABLE `cargos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
---
--- AUTO_INCREMENT de tabela `cat_produtos`
---
-ALTER TABLE `cat_produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT de tabela `cat_servicos`
---
-ALTER TABLE `cat_servicos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT de tabela `clientes`
---
-ALTER TABLE `clientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
---
--- AUTO_INCREMENT de tabela `comentarios`
---
-ALTER TABLE `comentarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
-
---
--- AUTO_INCREMENT de tabela `config`
---
-ALTER TABLE `config`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de tabela `dias`
---
-ALTER TABLE `dias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
-
---
--- AUTO_INCREMENT de tabela `entradas`
---
-ALTER TABLE `entradas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT de tabela `fornecedores`
---
-ALTER TABLE `fornecedores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT de tabela `grupo_acessos`
---
-ALTER TABLE `grupo_acessos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT de tabela `horarios`
---
-ALTER TABLE `horarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
-
---
--- AUTO_INCREMENT de tabela `pagar`
---
-ALTER TABLE `pagar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
-
---
--- AUTO_INCREMENT de tabela `produtos`
---
-ALTER TABLE `produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT de tabela `receber`
---
-ALTER TABLE `receber`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
-
---
--- AUTO_INCREMENT de tabela `saidas`
---
-ALTER TABLE `saidas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT de tabela `servicos`
---
-ALTER TABLE `servicos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT de tabela `textos_index`
---
-ALTER TABLE `textos_index`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT de tabela `usuarios`
---
-ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
---
--- AUTO_INCREMENT de tabela `usuarios_permissoes`
---
-ALTER TABLE `usuarios_permissoes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=287;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
