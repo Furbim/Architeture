@@ -279,49 +279,6 @@ if (isset($_SESSION['id_cliente'])) {
 	}
 </script>
 
-
-<script>
-	document.addEventListener("DOMContentLoaded", function () {
-    const modal = document.getElementById("modal-auth");
-    const closeModal = document.getElementById("btn-fechar-modal");
-    const toggleForm = document.getElementById("toggle-form");
-    const modalTitle = document.getElementById("modal-titulo");
-    const authForm = document.getElementById("form-auth");
-    const toggleText = document.getElementById("toggle-text");
-
-    let isLogin = true;
-
-    // Fechar modal ao clicar no botão de fechar
-    closeModal.addEventListener("click", () => {
-        modal.style.display = "none";
-    });
-
-    // Alternar entre Login e Cadastro
-    toggleForm.addEventListener("click", (e) => {
-        e.preventDefault();
-        isLogin = !isLogin;
-
-        if (isLogin) {
-            modalTitle.textContent = "Login";
-            toggleForm.textContent = "Cadastre-se";
-            authForm.action = "ajax/login.php";
-        } else {
-            modalTitle.textContent = "Cadastro";
-            toggleForm.textContent = "Faça login";
-            authForm.action = "ajax/cadastrar.php";
-        }
-    });
-
-    // Resetar o formulário ao fechar o modal
-    authForm.addEventListener("submit", () => {
-        modal.style.display = "none";
-        authForm.reset();
-    });
-});
-</script>
-
-
-
 <script type="text/javascript">
 	function listarHorarios(funcionario, data, hora) {
 

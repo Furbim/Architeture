@@ -46,7 +46,7 @@
               <h4>
                 CADASTRE-SE
               </h4>
-              <form id="form_cadastro">
+              <form id="form_cadastro" method="post" action="entrar.php">
                 <input type="text" name="telefone" id="telefone_rodape" placeholder="Seu Telefone DDD + número" />
                 <input type="text" name="nome" placeholder="Seu Nome" />
                 <button type="submit">
@@ -89,41 +89,3 @@
 </html>
 
 
-<script type="text/javascript">
-  
-$("#form_cadastro").submit(function () {
-
-    event.preventDefault();
-    var formData = new FormData(this);
-
-    $.ajax({
-        url: 'ajax/cadastrar.php',
-        type: 'POST',
-        data: formData,
-
-        success: function (mensagem) {
-            $('#mensagem-rodape').text('');
-            $('#mensagem-rodape').removeClass()
-            if (mensagem.trim() == "Salvo com Sucesso") {
-               //$('#mensagem-rodape').addClass('text-success')
-                $('#mensagem-rodape').text(mensagem)
-
-            } else {
-
-                //$('#mensagem-rodape').addClass('text-danger')
-                $('#mensagem-rodape').text(mensagem)
-            }
-
-
-        },
-
-        cache: false,
-        contentType: false,
-        processData: false,
-
-    });
-
-});
-
-
-</script>

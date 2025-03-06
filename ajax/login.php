@@ -27,11 +27,11 @@ if (count($res) > 0) {
         header("Location: ../agendamentos.php");
         exit();
     } else {
-        echo '<script>alert("Email ou senha incorretos!"); window.location.href="login.php";</script>';
+        echo '<script>alert("Email ou senha incorretos!"); window.location.href="../entrar.php";</script>';
         exit();
     }
 } else {
-    echo '<script>alert("Não existe nenhum usuário com esse email cadastrado!"); window.location.href="login.php";</script>';
+    echo '<script>alert("Não existe nenhum usuário com esse email cadastrado!"); window.location.href="../entrar.php";</script>';
     exit();
 }
 ?>

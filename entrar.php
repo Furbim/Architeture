@@ -1,13 +1,9 @@
 <?php
 require_once("cabecalho.php");
 
-if (!isset($_SESSION)) {
-    session_start();
-}
+if (!isset($_SESSION)) session_start();
 
-if (isset($_SESSION["id_cliente"])) {
-    header("Location: agendamentos.php");
-}
+if (isset($_SESSION["id_cliente"])) header("Location: agendamentos.php");
 ?>
 
 <style>
@@ -24,7 +20,6 @@ if (isset($_SESSION["id_cliente"])) {
         text-align: center;
         margin-top: 10px;
     }
-
 </style>
 
 <div class="container mt-5">
@@ -42,10 +37,10 @@ if (isset($_SESSION["id_cliente"])) {
 
         <form id="cadastro-form" method="post" action="ajax/cadastrar.php" style="display: none;">
             <div class="form-group">
-                <input type="text" class="form-control" name="nome" placeholder="Seu Nome" required>
+                <input type="text" class="form-control" name="nome" placeholder="Seu Nome" value="<?= $_POST['nome'] ?? '' ?>" required>
             </div>
             <div class="form-group">
-                <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="Seu Telefone" required>
+                <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="Seu Telefone" value="<?= $_POST['telefone'] ?? '' ?>" required>
             </div>
             <div class="form-group">
                 <input type="email" class="form-control" name="email" placeholder="Seu Email" required>
@@ -63,24 +58,28 @@ if (isset($_SESSION["id_cliente"])) {
 </div>
 
 <script>
-    document.getElementById("toggle-link").addEventListener("click", function(event) {
-        event.preventDefault();
+    document.addEventListener("DOMContentLoaded", function () {
         var loginForm = document.getElementById("login-form");
         var cadastroForm = document.getElementById("cadastro-form");
         var title = document.getElementById("form-title");
-        if (loginForm.style.display === "none") {
-            loginForm.style.display = "block";
-            cadastroForm.style.display = "none";
-            title.innerText = "Login";
-            this.innerText = "Não tem conta? Cadastre-se";
-        } else {
+        var toggleLink = document.getElementById("toggle-link");
+
+        <?php if (!empty($_POST['nome']) && !empty($_POST['telefone'])): ?>
             loginForm.style.display = "none";
             cadastroForm.style.display = "block";
             title.innerText = "Cadastro";
-            this.innerText = "Já tem conta? Faça login";
-        }
+            toggleLink.innerText = "Já tem conta? Faça login";
+        <?php endif; ?>
+
+        toggleLink.addEventListener("click", function (event) {
+            event.preventDefault();
+            var isLoginVisible = loginForm.style.display !== "none";
+            loginForm.style.display = isLoginVisible ? "none" : "block";
+            cadastroForm.style.display = isLoginVisible ? "block" : "none";
+            title.innerText = isLoginVisible ? "Cadastro" : "Login";
+            toggleLink.innerText = isLoginVisible ? "Já tem conta? Faça login" : "Não tem conta? Cadastre-se";
+        });
     });
 </script>
-
 
 <?php require_once("rodape.php"); ?>
