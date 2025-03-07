@@ -18,7 +18,7 @@ if($hora == ""){
 $query = $pdo->query("SELECT * FROM agendamentos where data = '$data' and hora = '$hora' and funcionario = '$funcionario'");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $total_reg = @count($res);
-if($total_reg > 0 and $res[0]['id'] != $id){
+if($total_reg > 0 && $res[0]['id'] != $id){
 	echo 'Este horário não está disponível!';
 	exit();
 }
@@ -26,20 +26,13 @@ if($total_reg > 0 and $res[0]['id'] != $id){
 //Cadastrar o cliente caso não tenha cadastro
 $query = $pdo->query("SELECT * FROM clientes where telefone LIKE '$telefone' ");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
-if(@count($res) == 0){
-	$query = $pdo->prepare("INSERT INTO clientes SET nome = :nome, telefone = :telefone, data_cad = curDate(), cartoes = '0', alertado = 'Não'");
-
-	$query->bindValue(":nome", "$nome");
-	$query->bindValue(":telefone", "$telefone");	
-	$query->execute();
-	$id_cliente = $pdo->lastInsertId();
-
-}else{
+if(@count($res) > 0){
 	$id_cliente = $res[0]['id'];
+
 }
 
 
-if($id == ""){
+if(empty($id)){
 	//marcar o agendamento
 	$query = $pdo->prepare("INSERT INTO agendamentos SET funcionario = '$funcionario', cliente = '$id_cliente', hora = '$hora', data = '$data', usuario = '0', status = 'Agendado', obs = :obs, data_lanc = curDate(), servico = '$servico'");
 
