@@ -3,7 +3,9 @@ require_once("cabecalho.php");
 
 if (!isset($_SESSION)) session_start();
 
+
 if (isset($_SESSION["id_cliente"])) header("Location: agendamentos.php");
+
 ?>
 
 <style>
@@ -26,6 +28,7 @@ if (isset($_SESSION["id_cliente"])) header("Location: agendamentos.php");
     <div class="form-container">
         <h3 class="text-center" id="form-title">Login</h3>
         <form id="login-form" method="post" action="ajax/login.php">
+            <input type="hidden" name="barbearia_id" value="<?= $_SESSION['barbearia_id'] ?? 0 ?>">
             <div class="form-group">
                 <input type="email" class="form-control" name="email" placeholder="Seu Email" required>
             </div>
@@ -35,7 +38,10 @@ if (isset($_SESSION["id_cliente"])) header("Location: agendamentos.php");
             <button type="submit" class="btn btn-primary btn-block">Entrar</button>
         </form>
 
+
+
         <form id="cadastro-form" method="post" action="ajax/cadastrar.php" style="display: none;">
+            <input type="hidden" name="barbearia_id" value="<?= $_SESSION['barbearia_id'] ?? 0 ?>">
             <div class="form-group">
                 <input type="text" class="form-control" name="nome" placeholder="Seu Nome" value="<?= $_POST['nome'] ?? '' ?>" required>
             </div>
@@ -50,6 +56,7 @@ if (isset($_SESSION["id_cliente"])) header("Location: agendamentos.php");
             </div>
             <button type="submit" class="btn btn-success btn-block">Cadastrar</button>
         </form>
+
 
         <div class="toggle-form">
             <a href="#" id="toggle-link">Não tem conta? Cadastre-se</a>

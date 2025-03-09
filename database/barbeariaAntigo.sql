@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Tempo de geração: 09/03/2025 às 22:21
--- Versão do servidor: 10.4.32-MariaDB
--- Versão do PHP: 8.2.12
+-- Host: 127.0.0.1:3306
+-- Tempo de geração: 06/03/2025 às 11:13
+-- Versão do servidor: 8.2.0
+-- Versão do PHP: 8.2.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `barbeariateste`
+-- Banco de dados: `barbearia`
 --
 
 -- --------------------------------------------------------
@@ -27,12 +27,14 @@ SET time_zone = "+00:00";
 -- Estrutura para tabela `acessos`
 --
 
-CREATE TABLE `acessos` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `acessos`;
+CREATE TABLE IF NOT EXISTS `acessos` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(50) NOT NULL,
   `chave` varchar(50) NOT NULL,
-  `grupo` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `grupo` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `acessos`
@@ -78,18 +80,20 @@ INSERT INTO `acessos` (`id`, `nome`, `chave`, `grupo`) VALUES
 -- Estrutura para tabela `agendamentos`
 --
 
-CREATE TABLE `agendamentos` (
-  `id` int(11) NOT NULL,
-  `funcionario` int(11) NOT NULL,
-  `cliente` int(11) NOT NULL,
+DROP TABLE IF EXISTS `agendamentos`;
+CREATE TABLE IF NOT EXISTS `agendamentos` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `funcionario` int NOT NULL,
+  `cliente` int NOT NULL,
   `data` date NOT NULL,
   `hora` time NOT NULL,
   `obs` varchar(100) DEFAULT NULL,
   `data_lanc` date NOT NULL,
-  `usuario` int(11) NOT NULL,
+  `usuario` int NOT NULL,
   `status` varchar(20) NOT NULL,
-  `servico` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `servico` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=113 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `agendamentos`
@@ -99,6 +103,7 @@ INSERT INTO `agendamentos` (`id`, `funcionario`, `cliente`, `data`, `hora`, `obs
 (6, 0, 2, '2022-06-06', '00:00:00', '', '2022-06-06', 10, 'Agendado', 0),
 (10, 11, 2, '2022-06-06', '08:00:00', '', '2022-06-06', 6, 'Concluído', 2),
 (11, 11, 3, '2022-06-06', '08:30:00', '', '2022-06-06', 6, 'Concluído', 1),
+(12, 11, 1, '2022-06-06', '09:30:00', '', '2022-06-06', 6, 'Concluído', 8),
 (13, 10, 2, '2022-06-06', '08:00:00', '', '2022-06-06', 6, 'Concluído', 2),
 (14, 10, 3, '2022-06-06', '09:00:00', '', '2022-06-06', 6, 'Concluído', 4),
 (15, 11, 2, '2022-06-07', '08:00:00', '', '2022-06-06', 6, 'Agendado', 2),
@@ -107,6 +112,7 @@ INSERT INTO `agendamentos` (`id`, `funcionario`, `cliente`, `data`, `hora`, `obs
 (18, 6, 2, '2022-06-07', '08:00:00', '', '2022-06-06', 6, 'Concluído', 2),
 (19, 6, 3, '2022-06-07', '09:00:00', '', '2022-06-06', 6, 'Concluído', 1),
 (20, 10, 2, '2022-06-07', '10:00:00', '', '2022-06-06', 6, 'Agendado', 1),
+(21, 10, 1, '2022-06-06', '12:00:00', '', '2022-06-06', 10, 'Concluído', 1),
 (22, 11, 2, '2022-06-08', '08:00:00', '', '2022-06-08', 6, 'Agendado', 2),
 (24, 11, 4, '2022-06-08', '09:00:00', '', '2022-06-08', 6, 'Agendado', 2),
 (25, 10, 2, '2022-06-08', '11:00:00', '', '2022-06-08', 6, 'Agendado', 2),
@@ -116,6 +122,7 @@ INSERT INTO `agendamentos` (`id`, `funcionario`, `cliente`, `data`, `hora`, `obs
 (29, 6, 2, '2022-06-08', '12:00:00', '', '2022-06-08', 6, 'Concluído', 2),
 (30, 6, 3, '2022-06-09', '11:00:00', '', '2022-06-09', 6, 'Concluído', 1),
 (31, 6, 2, '2022-06-09', '12:00:00', '', '2022-06-09', 6, 'Concluído', 2),
+(32, 6, 1, '2022-06-09', '09:00:00', '', '2022-06-09', 6, 'Concluído', 5),
 (33, 6, 2, '2022-06-09', '08:00:00', '', '2022-06-09', 6, 'Concluído', 5),
 (34, 11, 2, '2022-06-09', '08:00:00', '', '2022-06-09', 6, 'Concluído', 2),
 (35, 10, 2, '2022-06-09', '10:00:00', '', '2022-06-09', 6, 'Concluído', 2),
@@ -126,10 +133,12 @@ INSERT INTO `agendamentos` (`id`, `funcionario`, `cliente`, `data`, `hora`, `obs
 (40, 11, 3, '2022-06-09', '09:00:00', '', '2022-06-09', 6, 'Concluído', 1),
 (41, 10, 2, '2022-06-09', '09:00:00', '', '2022-06-09', 6, 'Concluído', 2),
 (42, 6, 4, '2022-06-10', '09:00:00', '', '2022-06-09', 6, 'Concluído', 4),
+(43, 6, 1, '2022-06-10', '10:00:00', '', '2022-06-09', 6, 'Concluído', 5),
 (44, 11, 4, '2022-06-09', '09:30:00', '', '2022-06-09', 6, 'Concluído', 4),
 (45, 11, 2, '2022-06-10', '08:00:00', '', '2022-06-09', 6, 'Concluído', 5),
 (46, 10, 2, '2022-06-09', '17:00:00', '', '2022-06-09', 6, 'Agendado', 2),
 (47, 6, 4, '2022-06-09', '15:00:00', '', '2022-06-09', 6, 'Agendado', 5),
+(48, 6, 1, '2022-06-09', '16:00:00', '', '2022-06-09', 6, 'Agendado', 2),
 (49, 11, 4, '2022-06-09', '10:00:00', '', '2022-06-09', 6, 'Agendado', 5),
 (50, 11, 3, '2022-06-13', '08:30:00', '', '2022-06-13', 6, 'Concluído', 5),
 (51, 6, 2, '2022-06-13', '08:00:00', '', '2022-06-13', 6, 'Concluído', 2),
@@ -146,6 +155,9 @@ INSERT INTO `agendamentos` (`id`, `funcionario`, `cliente`, `data`, `hora`, `obs
 (62, 10, 3, '2022-06-15', '14:00:00', '', '2022-06-15', 6, 'Concluído', 2),
 (63, 10, 3, '2022-06-15', '15:00:00', '', '2022-06-15', 6, 'Agendado', 5),
 (64, 6, 2, '2022-06-15', '15:00:00', '', '2022-06-15', 6, 'Concluído', 2),
+(65, 6, 2, '2022-06-15', '17:00:00', '', '2022-06-15', 6, 'Concluído', 4),
+(66, 6, 2, '2022-06-16', '09:00:00', '', '2022-06-16', 6, 'Agendado', 2),
+(67, 11, 2, '2022-06-27', '08:30:00', '', '2022-06-27', 6, 'Concluído', 2),
 (69, 6, 12, '2022-06-27', '08:00:00', '', '2022-06-27', 0, 'Agendado', 1),
 (71, 11, 10, '2022-06-27', '09:30:00', '', '2022-06-27', 0, 'Agendado', 10),
 (72, 6, 10, '2022-06-28', '15:00:00', 'sss', '2022-06-27', 0, 'Agendado', 10),
@@ -153,48 +165,10 @@ INSERT INTO `agendamentos` (`id`, `funcionario`, `cliente`, `data`, `hora`, `obs
 (80, 6, 10, '2022-06-28', '11:00:00', 'sss', '2022-06-27', 0, 'Agendado', 10),
 (81, 6, 10, '2022-06-28', '16:00:00', '', '2022-06-27', 0, 'Agendado', 5),
 (108, 10, 11, '2022-06-27', '14:00:00', '', '2022-06-27', 0, 'Agendado', 5),
-(114, 6, 15, '2025-03-04', '16:00:00', '', '2025-03-03', 0, 'Agendado', 10),
-(115, 6, 21, '2025-03-05', '15:00:00', '', '2025-03-04', 0, 'Agendado', 2),
-(116, 10, 22, '2025-03-04', '13:00:00', '', '2025-03-04', 0, 'Agendado', 2);
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `assinaturas`
---
-
-CREATE TABLE `assinaturas` (
-  `id` int(11) NOT NULL,
-  `barbearia_id` int(11) NOT NULL,
-  `plano_id` int(11) NOT NULL,
-  `data_inicio` date NOT NULL,
-  `data_fim` date NOT NULL,
-  `status` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `barbearias`
---
-
-CREATE TABLE `barbearias` (
-  `id` int(11) NOT NULL,
-  `nome` varchar(100) NOT NULL,
-  `endereco` varchar(255) DEFAULT NULL,
-  `telefone` varchar(20) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `data_cadastro` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Despejando dados para a tabela `barbearias`
---
-
-INSERT INTO `barbearias` (`id`, `nome`, `endereco`, `telefone`, `email`, `data_cadastro`) VALUES
-(1, 'Barbearia Elite', 'Rua das Acácias, 123', '31987654321', 'elite@email.com', '2025-03-09'),
-(2, 'Barbearia Estilo', 'Av. Principal, 456', '31999998888', 'contato@estilo.com', '2025-03-09'),
-(3, 'Barbearia Luxo', NULL, '31988887777', 'luxo@email.com', '2025-03-09');
+(109, 11, 2, '2022-06-27', '10:00:00', '', '2022-06-27', 6, 'Concluído', 2),
+(110, 11, 2, '2022-06-27', '12:00:00', '', '2022-06-27', 6, 'Concluído', 2),
+(111, 11, 2, '2022-06-27', '08:00:00', '', '2022-06-27', 6, 'Concluído', 2),
+(112, 6, 2, '2024-07-31', '09:00:00', '', '2024-07-18', 6, 'Agendado', 2);
 
 -- --------------------------------------------------------
 
@@ -202,10 +176,12 @@ INSERT INTO `barbearias` (`id`, `nome`, `endereco`, `telefone`, `email`, `data_c
 -- Estrutura para tabela `cargos`
 --
 
-CREATE TABLE `cargos` (
-  `id` int(11) NOT NULL,
-  `nome` varchar(35) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+DROP TABLE IF EXISTS `cargos`;
+CREATE TABLE IF NOT EXISTS `cargos` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(35) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `cargos`
@@ -216,7 +192,8 @@ INSERT INTO `cargos` (`id`, `nome`) VALUES
 (10, 'Gerente'),
 (11, 'Recepcionista'),
 (12, 'Barbeiro'),
-(13, 'Cabelereira');
+(13, 'Cabelereira'),
+(14, 'Manicure e Pedicure');
 
 -- --------------------------------------------------------
 
@@ -224,10 +201,12 @@ INSERT INTO `cargos` (`id`, `nome`) VALUES
 -- Estrutura para tabela `cat_produtos`
 --
 
-CREATE TABLE `cat_produtos` (
-  `id` int(11) NOT NULL,
-  `nome` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+DROP TABLE IF EXISTS `cat_produtos`;
+CREATE TABLE IF NOT EXISTS `cat_produtos` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `cat_produtos`
@@ -247,10 +226,12 @@ INSERT INTO `cat_produtos` (`id`, `nome`) VALUES
 -- Estrutura para tabela `cat_servicos`
 --
 
-CREATE TABLE `cat_servicos` (
-  `id` int(11) NOT NULL,
-  `nome` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+DROP TABLE IF EXISTS `cat_servicos`;
+CREATE TABLE IF NOT EXISTS `cat_servicos` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `cat_servicos`
@@ -268,28 +249,23 @@ INSERT INTO `cat_servicos` (`id`, `nome`) VALUES
 -- Estrutura para tabela `clientes`
 --
 
-CREATE TABLE `clientes` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `clientes`;
+CREATE TABLE IF NOT EXISTS `clientes` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(50) NOT NULL,
   `telefone` varchar(20) DEFAULT NULL,
   `endereco` varchar(100) DEFAULT NULL,
   `data_nasc` date NOT NULL,
   `data_cad` date NOT NULL,
-  `cartoes` int(11) NOT NULL,
+  `cartoes` int NOT NULL,
   `data_retorno` date DEFAULT NULL,
-  `ultimo_servico` int(11) NOT NULL,
+  `ultimo_servico` int NOT NULL,
   `alertado` varchar(5) DEFAULT NULL,
   `email` varchar(255) NOT NULL,
-  `senha` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Despejando dados para a tabela `clientes`
---
-
-INSERT INTO `clientes` (`id`, `nome`, `telefone`, `endereco`, `data_nasc`, `data_cad`, `cartoes`, `data_retorno`, `ultimo_servico`, `alertado`, `email`, `senha`) VALUES
-(1, 'Thiago Martins De Freitas', '(31) 98311-4021', NULL, '0000-00-00', '2025-03-05', 0, NULL, 0, 'Não', 'thiagofreitasofc202@gmail.com', '$2y$10$wuqcDI9qzCCUus99vulA9usng.OA6Jj3xTr9y8cn51lDbwbydBvWK'),
-(2, 'Thiago Martins De Freitas', '(31) 98311-4022', NULL, '0000-00-00', '2025-03-05', 0, NULL, 0, 'Não', 'thiagofreitasofc22@gmail.com', '$2y$10$Ygyz8gdCt9a3ECdGVrHmcuc2kGGpwki.okYQMPrreusJVxGwdOrkO');
+  `senha` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -297,13 +273,15 @@ INSERT INTO `clientes` (`id`, `nome`, `telefone`, `endereco`, `data_nasc`, `data
 -- Estrutura para tabela `comentarios`
 --
 
-CREATE TABLE `comentarios` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `comentarios`;
+CREATE TABLE IF NOT EXISTS `comentarios` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(50) NOT NULL,
   `texto` varchar(500) NOT NULL,
   `foto` varchar(100) DEFAULT NULL,
-  `ativo` varchar(5) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `ativo` varchar(5) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `comentarios`
@@ -323,8 +301,9 @@ INSERT INTO `comentarios` (`id`, `nome`, `texto`, `foto`, `ativo`) VALUES
 -- Estrutura para tabela `config`
 --
 
-CREATE TABLE `config` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `config`;
+CREATE TABLE IF NOT EXISTS `config` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `telefone_fixo` varchar(20) DEFAULT NULL,
@@ -343,18 +322,18 @@ CREATE TABLE `config` (
   `icone_site` varchar(100) NOT NULL,
   `mapa` varchar(1000) DEFAULT NULL,
   `texto_fidelidade` varchar(255) DEFAULT NULL,
-  `quantidade_cartoes` int(11) NOT NULL,
+  `quantidade_cartoes` int NOT NULL,
   `texto_agendamento` varchar(30) DEFAULT NULL,
   `msg_agendamento` varchar(5) DEFAULT NULL,
-  `barbearia_id` int(11) DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `config`
 --
 
-INSERT INTO `config` (`id`, `nome`, `email`, `telefone_fixo`, `telefone_whatsapp`, `endereco`, `logo`, `icone`, `logo_rel`, `tipo_rel`, `instagram`, `tipo_comissao`, `texto_rodape`, `img_banner_index`, `texto_sobre`, `imagem_sobre`, `icone_site`, `mapa`, `texto_fidelidade`, `quantidade_cartoes`, `texto_agendamento`, `msg_agendamento`, `barbearia_id`) VALUES
-(2, 'Barbearia Teste', 'teste@teste.com', '(31) 9831-1402', '(31) 99999-999', 'Rua Francisco Duarte Mendonça, 2239', 'logo.png', 'favicon.png', 'logo_rel.jpg', 'HTML', '', 'R$', 'Edite este texto nas configurações do painel administrador', 'hero-bg.jpg', 'Barbearia especializada em tudo', 'getlstd-property-photo.jpg', 'favicon.png', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d278.6662693600645!2d-44.00935398939279!3d-19.997117902149707!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xa6bd0017bcaf21%3A0x4837d8503fa8319b!2sThiago%20Freitas%20Barbearia!5e0!3m2!1spt-BR!2sbr!4v1741552894891!5m2!1spt-BR!2sbr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', '', 0, 'Selecionar Prestador de Serviç', 'Sim', 1);
+INSERT INTO `config` (`id`, `nome`, `email`, `telefone_fixo`, `telefone_whatsapp`, `endereco`, `logo`, `icone`, `logo_rel`, `tipo_rel`, `instagram`, `tipo_comissao`, `texto_rodape`, `img_banner_index`, `texto_sobre`, `imagem_sobre`, `icone_site`, `mapa`, `texto_fidelidade`, `quantidade_cartoes`, `texto_agendamento`, `msg_agendamento`) VALUES
+(2, 'Barbearia Studio', 'admin@admin', '(33) 3333-3333', '(31) 99999-9999', 'Rua X Número 150 - Bairro Centro', 'logo.png', 'favicon.png', 'logo_rel.jpg', 'PDF', 'https://www.instagram.com/', 'R$', 'Este texto pode ser modificado no painel do sistema, nas opções de configurações, é um texto com tamanho para até 255 caracteres e será apresentado no rodapé de todo o site!', 'hero-bg.jpg', 'Este texto pode ser alterado no painel administrativo nas configurações, aqui voce vai colocar um texto escrevendo sobre sua empresa. Este texto pode ser alterado no painel administrativo nas configurações, aqui voce vai colocar um texto escrevendo sobre.', 'getlstd-property-photo.jpg', 'favicon.png', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15111.737337923378!2d-44.43875433848488!3d-18.756469927096727!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xa862fa2d52b993%3A0xe3bd921aa58bc4a8!2sCentro%2C%20Curvelo%20-%20MG%2C%2035790-000!5e0!3m2!1spt-BR!2sbr!4v1655243351692!5m2!1spt-BR!2sbr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', 'Parabéns, você completou seus cartões Fidelidade, seu próximo corte será gratuito!!', 10, 'Selecionar Barbeiro', 'Não');
 
 -- --------------------------------------------------------
 
@@ -362,11 +341,13 @@ INSERT INTO `config` (`id`, `nome`, `email`, `telefone_fixo`, `telefone_whatsapp
 -- Estrutura para tabela `dias`
 --
 
-CREATE TABLE `dias` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `dias`;
+CREATE TABLE IF NOT EXISTS `dias` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `dia` varchar(25) NOT NULL,
-  `funcionario` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `funcionario` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `dias`
@@ -397,14 +378,16 @@ INSERT INTO `dias` (`id`, `dia`, `funcionario`) VALUES
 -- Estrutura para tabela `entradas`
 --
 
-CREATE TABLE `entradas` (
-  `id` int(11) NOT NULL,
-  `produto` int(11) NOT NULL,
-  `quantidade` int(11) NOT NULL,
+DROP TABLE IF EXISTS `entradas`;
+CREATE TABLE IF NOT EXISTS `entradas` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `produto` int NOT NULL,
+  `quantidade` int NOT NULL,
   `motivo` varchar(50) NOT NULL,
-  `usuario` int(11) NOT NULL,
-  `data` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `usuario` int NOT NULL,
+  `data` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `entradas`
@@ -421,15 +404,17 @@ INSERT INTO `entradas` (`id`, `produto`, `quantidade`, `motivo`, `usuario`, `dat
 -- Estrutura para tabela `fornecedores`
 --
 
-CREATE TABLE `fornecedores` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `fornecedores`;
+CREATE TABLE IF NOT EXISTS `fornecedores` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(50) NOT NULL,
   `telefone` varchar(20) DEFAULT NULL,
   `endereco` varchar(100) DEFAULT NULL,
   `data_cad` date NOT NULL,
   `tipo_chave` varchar(25) DEFAULT NULL,
-  `chave_pix` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `chave_pix` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `fornecedores`
@@ -446,10 +431,12 @@ INSERT INTO `fornecedores` (`id`, `nome`, `telefone`, `endereco`, `data_cad`, `t
 -- Estrutura para tabela `grupo_acessos`
 --
 
-CREATE TABLE `grupo_acessos` (
-  `id` int(11) NOT NULL,
-  `nome` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+DROP TABLE IF EXISTS `grupo_acessos`;
+CREATE TABLE IF NOT EXISTS `grupo_acessos` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `grupo_acessos`
@@ -470,11 +457,13 @@ INSERT INTO `grupo_acessos` (`id`, `nome`) VALUES
 -- Estrutura para tabela `horarios`
 --
 
-CREATE TABLE `horarios` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `horarios`;
+CREATE TABLE IF NOT EXISTS `horarios` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `horario` time NOT NULL,
-  `funcionario` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `funcionario` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `horarios`
@@ -514,25 +503,27 @@ INSERT INTO `horarios` (`id`, `horario`, `funcionario`) VALUES
 -- Estrutura para tabela `pagar`
 --
 
-CREATE TABLE `pagar` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `pagar`;
+CREATE TABLE IF NOT EXISTS `pagar` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `descricao` varchar(50) DEFAULT NULL,
   `tipo` varchar(35) DEFAULT NULL,
   `valor` decimal(8,2) NOT NULL,
   `data_lanc` date NOT NULL,
   `data_venc` date NOT NULL,
   `data_pgto` date NOT NULL,
-  `usuario_lanc` int(11) NOT NULL,
-  `usuario_baixa` int(11) NOT NULL,
+  `usuario_lanc` int NOT NULL,
+  `usuario_baixa` int NOT NULL,
   `foto` varchar(100) DEFAULT NULL,
-  `pessoa` int(11) NOT NULL,
+  `pessoa` int NOT NULL,
   `pago` varchar(5) NOT NULL,
-  `produto` int(11) NOT NULL,
-  `quantidade` int(11) NOT NULL,
-  `funcionario` int(11) NOT NULL,
-  `servico` int(11) NOT NULL,
-  `cliente` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `produto` int NOT NULL,
+  `quantidade` int NOT NULL,
+  `funcionario` int NOT NULL,
+  `servico` int NOT NULL,
+  `cliente` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `pagar`
@@ -610,41 +601,22 @@ INSERT INTO `pagar` (`id`, `descricao`, `tipo`, `valor`, `data_lanc`, `data_venc
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `planos_assinatura`
---
-
-CREATE TABLE `planos_assinatura` (
-  `id` int(11) NOT NULL,
-  `nome` varchar(50) NOT NULL,
-  `valor` decimal(8,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Despejando dados para a tabela `planos_assinatura`
---
-
-INSERT INTO `planos_assinatura` (`id`, `nome`, `valor`) VALUES
-(1, 'Basic', 39.99),
-(2, 'Pro', 59.99),
-(3, 'Enterprise', 79.99);
-
--- --------------------------------------------------------
-
---
 -- Estrutura para tabela `produtos`
 --
 
-CREATE TABLE `produtos` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `produtos`;
+CREATE TABLE IF NOT EXISTS `produtos` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(50) NOT NULL,
   `descricao` varchar(255) DEFAULT NULL,
-  `categoria` int(11) NOT NULL,
+  `categoria` int NOT NULL,
   `valor_compra` decimal(8,2) NOT NULL,
   `valor_venda` decimal(8,2) NOT NULL,
-  `estoque` int(11) NOT NULL,
+  `estoque` int NOT NULL,
   `foto` varchar(100) DEFAULT NULL,
-  `nivel_estoque` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `nivel_estoque` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `produtos`
@@ -665,24 +637,26 @@ INSERT INTO `produtos` (`id`, `nome`, `descricao`, `categoria`, `valor_compra`, 
 -- Estrutura para tabela `receber`
 --
 
-CREATE TABLE `receber` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `receber`;
+CREATE TABLE IF NOT EXISTS `receber` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `descricao` varchar(50) DEFAULT NULL,
   `tipo` varchar(35) DEFAULT NULL,
   `valor` decimal(8,2) NOT NULL,
   `data_lanc` date NOT NULL,
   `data_venc` date NOT NULL,
   `data_pgto` date NOT NULL,
-  `usuario_lanc` int(11) NOT NULL,
-  `usuario_baixa` int(11) NOT NULL,
+  `usuario_lanc` int NOT NULL,
+  `usuario_baixa` int NOT NULL,
   `foto` varchar(100) DEFAULT NULL,
-  `pessoa` int(11) NOT NULL,
+  `pessoa` int NOT NULL,
   `pago` varchar(5) NOT NULL,
-  `produto` int(11) NOT NULL,
-  `quantidade` int(11) NOT NULL,
-  `servico` int(11) NOT NULL,
-  `funcionario` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `produto` int NOT NULL,
+  `quantidade` int NOT NULL,
+  `servico` int NOT NULL,
+  `funcionario` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=110 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `receber`
@@ -771,14 +745,16 @@ INSERT INTO `receber` (`id`, `descricao`, `tipo`, `valor`, `data_lanc`, `data_ve
 -- Estrutura para tabela `saidas`
 --
 
-CREATE TABLE `saidas` (
-  `id` int(11) NOT NULL,
-  `produto` int(11) NOT NULL,
-  `quantidade` int(11) NOT NULL,
+DROP TABLE IF EXISTS `saidas`;
+CREATE TABLE IF NOT EXISTS `saidas` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `produto` int NOT NULL,
+  `quantidade` int NOT NULL,
   `motivo` varchar(50) NOT NULL,
-  `usuario` int(11) NOT NULL,
-  `data` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `usuario` int NOT NULL,
+  `data` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `saidas`
@@ -795,30 +771,31 @@ INSERT INTO `saidas` (`id`, `produto`, `quantidade`, `motivo`, `usuario`, `data`
 -- Estrutura para tabela `servicos`
 --
 
-CREATE TABLE `servicos` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `servicos`;
+CREATE TABLE IF NOT EXISTS `servicos` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(50) NOT NULL,
-  `categoria` int(11) NOT NULL,
+  `categoria` int NOT NULL,
   `valor` decimal(8,2) NOT NULL,
   `foto` varchar(100) DEFAULT NULL,
-  `dias_retorno` int(11) NOT NULL,
+  `dias_retorno` int NOT NULL,
   `ativo` varchar(5) NOT NULL,
   `comissao` decimal(8,2) NOT NULL,
-  `barbearia_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `servicos`
 --
 
-INSERT INTO `servicos` (`id`, `nome`, `categoria`, `valor`, `foto`, `dias_retorno`, `ativo`, `comissao`, `barbearia_id`) VALUES
-(1, 'Corte', 1, 25.00, '14-06-2022-15-40-01-CORTE-01.png', 15, 'Sim', 10.00, 1),
-(2, 'Barba', 1, 17.00, '14-06-2022-15-39-39-BARBA-01.png', 7, 'Sim', 8.50, 1),
-(4, 'Luzes', 2, 35.00, '14-06-2022-15-39-29-BARBA-02.png', 20, 'Sim', 8.00, 1),
-(5, 'Hidrataçao', 2, 40.00, '14-06-2022-15-39-20-hidratacao.png', 180, 'Sim', 5.00, 1),
-(8, 'Mão e Pé', 5, 50.00, '14-06-2022-15-39-09-unha.png', 15, 'Sim', 10.00, 1),
-(9, 'Unha de Gel', 5, 150.00, '14-06-2022-15-38-59-unha-de-gel.png', 30, 'Sim', 10.00, 1),
-(10, 'Corte + Barba', 1, 45.00, '14-06-2022-15-40-40-CORTE-E-BARBA.png', 15, 'Sim', 15.00, 1);
+INSERT INTO `servicos` (`id`, `nome`, `categoria`, `valor`, `foto`, `dias_retorno`, `ativo`, `comissao`) VALUES
+(1, 'Corte', 1, 25.00, '14-06-2022-15-40-01-CORTE-01.png', 15, 'Sim', 10.00),
+(2, 'Barba', 1, 17.00, '14-06-2022-15-39-39-BARBA-01.png', 7, 'Sim', 8.50),
+(4, 'Luzes', 2, 35.00, '14-06-2022-15-39-29-BARBA-02.png', 20, 'Sim', 8.00),
+(5, 'Hidrataçao', 2, 40.00, '14-06-2022-15-39-20-hidratacao.png', 180, 'Sim', 5.00),
+(8, 'Mão e Pé', 5, 50.00, '14-06-2022-15-39-09-unha.png', 15, 'Sim', 10.00),
+(9, 'Unha de Gel', 5, 150.00, '14-06-2022-15-38-59-unha-de-gel.png', 30, 'Sim', 10.00),
+(10, 'Corte + Barba', 1, 45.00, '14-06-2022-15-40-40-CORTE-E-BARBA.png', 15, 'Sim', 15.00);
 
 -- --------------------------------------------------------
 
@@ -826,11 +803,13 @@ INSERT INTO `servicos` (`id`, `nome`, `categoria`, `valor`, `foto`, `dias_retorn
 -- Estrutura para tabela `textos_index`
 --
 
-CREATE TABLE `textos_index` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `textos_index`;
+CREATE TABLE IF NOT EXISTS `textos_index` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `titulo` varchar(25) NOT NULL,
-  `descricao` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `descricao` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `textos_index`
@@ -848,8 +827,9 @@ INSERT INTO `textos_index` (`id`, `titulo`, `descricao`) VALUES
 -- Estrutura para tabela `usuarios`
 --
 
-CREATE TABLE `usuarios` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `usuarios`;
+CREATE TABLE IF NOT EXISTS `usuarios` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `cpf` varchar(20) DEFAULT NULL,
@@ -864,22 +844,21 @@ CREATE TABLE `usuarios` (
   `atendimento` varchar(5) NOT NULL,
   `tipo_chave` varchar(25) DEFAULT NULL,
   `chave_pix` varchar(50) DEFAULT NULL,
-  `barbearia_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `nome`, `email`, `cpf`, `senha`, `senha_crip`, `nivel`, `data`, `ativo`, `telefone`, `endereco`, `foto`, `atendimento`, `tipo_chave`, `chave_pix`, `barbearia_id`) VALUES
-(6, 'Admin', 'admin@admin', '000.000.000-00', '123', '202cb962ac59075b964b07152d234b70', 'Administrador', '2022-05-25', 'Sim', '(31) 99999-9999', 'Rua xxx, 8 ', '18-07-2024-17-31-03-Logo.png', 'Sim', NULL, NULL, 1),
-(8, 'Recepcionista Teste', 'recep@hotmail.com', '555.555.555-55', '123', '202cb962ac59075b964b07152d234b70', 'Recepcionista', '2022-05-30', 'Sim', '(44) 44444-4444', 'Rua C', '30-05-2022-13-19-34-08-03-2022-22-21-20-02-03-2022-09-59-04-Arthur.jpg', 'Não', NULL, NULL, NULL),
-(9, 'Gerente', 'gerente@hotmail.com', '444.444.444-46', '123', '202cb962ac59075b964b07152d234b70', 'Gerente', '2022-05-30', 'Sim', '(22) 12121-2121', 'Rua C', 'sem-foto.jpg', 'Não', NULL, NULL, NULL),
-(10, 'Barbeiro', 'barbeiro@hotmail.com', '555.555.555-58', '123', '202cb962ac59075b964b07152d234b70', 'Barbeiro', '2022-05-30', 'Sim', '(48) 54545-5555', 'Rua X', 'sem-foto.jpg', 'Sim', NULL, NULL, NULL),
-(11, 'Barbeiro 2', 'barbeiro2@hotmail.com', '545.454.545-45', '123', '202cb962ac59075b964b07152d234b70', 'Barbeiro', '2022-05-30', 'Sim', '(85) 54545-454', 'Rua C', 'sem-foto.jpg', 'Sim', 'CPF', '545.454.545-45', NULL),
-(12, 'Cabelereira Teste', 'cabelereira@hotmail.com', '000.000.000-11', '123', '202cb962ac59075b964b07152d234b70', 'Cabelereira', '2022-06-06', 'Sim', '(25) 88888-8888', 'Rua X', 'sem-foto.jpg', 'Sim', 'CPF', '111.111.111-17', NULL),
-(13, 'Manicure', 'manicure@hotmail.com', '111.111.111-01', '123', '202cb962ac59075b964b07152d234b70', 'Manicure e Pedicure', '2022-06-06', 'Sim', '(11) 11111-1111', 'Rua C', 'sem-foto.jpg', 'Sim', 'Telefone', '3198888-8888', 1),
-(14, 'Barbeiro 3', 'barbeiro3@hotmail.com', '888.888.888-81', '123', '202cb962ac59075b964b07152d234b70', 'Barbeiro', '2022-06-13', 'Sim', '(47) 77777-7777', 'Rua C', 'sem-foto.jpg', 'Sim', 'CPF', '111.111.111-12', 1);
+INSERT INTO `usuarios` (`id`, `nome`, `email`, `cpf`, `senha`, `senha_crip`, `nivel`, `data`, `ativo`, `telefone`, `endereco`, `foto`, `atendimento`, `tipo_chave`, `chave_pix`) VALUES
+(6, 'Admin', 'admin@admin', '000.000.000-00', '123', '202cb962ac59075b964b07152d234b70', 'Administrador', '2022-05-25', 'Sim', '(31) 99999-9999', 'Rua xxx, 8 ', '18-07-2024-17-31-03-Logo.png', 'Sim', NULL, NULL),
+(8, 'Recepcionista Teste', 'recep@hotmail.com', '555.555.555-55', '123', '202cb962ac59075b964b07152d234b70', 'Recepcionista', '2022-05-30', 'Sim', '(44) 44444-4444', 'Rua C', '30-05-2022-13-19-34-08-03-2022-22-21-20-02-03-2022-09-59-04-Arthur.jpg', 'Não', NULL, NULL),
+(9, 'Gerente', 'gerente@hotmail.com', '444.444.444-46', '123', '202cb962ac59075b964b07152d234b70', 'Gerente', '2022-05-30', 'Sim', '(22) 12121-2121', 'Rua C', 'sem-foto.jpg', 'Não', NULL, NULL),
+(10, 'Barbeiro', 'barbeiro@hotmail.com', '555.555.555-58', '123', '202cb962ac59075b964b07152d234b70', 'Barbeiro', '2022-05-30', 'Sim', '(48) 54545-5555', 'Rua X', 'sem-foto.jpg', 'Sim', NULL, NULL),
+(11, 'Barbeiro 2', 'barbeiro2@hotmail.com', '545.454.545-45', '123', '202cb962ac59075b964b07152d234b70', 'Barbeiro', '2022-05-30', 'Sim', '(85) 54545-454', 'Rua C', 'sem-foto.jpg', 'Sim', 'CPF', '545.454.545-45'),
+(12, 'Cabelereira Teste', 'cabelereira@hotmail.com', '000.000.000-11', '123', '202cb962ac59075b964b07152d234b70', 'Cabelereira', '2022-06-06', 'Sim', '(25) 88888-8888', 'Rua X', 'sem-foto.jpg', 'Sim', 'CPF', '111.111.111-17'),
+(13, 'Manicure', 'manicure@hotmail.com', '111.111.111-01', '123', '202cb962ac59075b964b07152d234b70', 'Manicure e Pedicure', '2022-06-06', 'Sim', '(11) 11111-1111', 'Rua C', 'sem-foto.jpg', 'Sim', 'Telefone', '3198888-8888');
 
 -- --------------------------------------------------------
 
@@ -887,11 +866,13 @@ INSERT INTO `usuarios` (`id`, `nome`, `email`, `cpf`, `senha`, `senha_crip`, `ni
 -- Estrutura para tabela `usuarios_permissoes`
 --
 
-CREATE TABLE `usuarios_permissoes` (
-  `id` int(11) NOT NULL,
-  `usuario` int(11) NOT NULL,
-  `permissao` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+DROP TABLE IF EXISTS `usuarios_permissoes`;
+CREATE TABLE IF NOT EXISTS `usuarios_permissoes` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `usuario` int NOT NULL,
+  `permissao` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=287 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `usuarios_permissoes`
@@ -934,330 +915,6 @@ INSERT INTO `usuarios_permissoes` (`id`, `usuario`, `permissao`) VALUES
 (284, 8, 30),
 (285, 8, 34),
 (286, 8, 32);
-
---
--- Índices para tabelas despejadas
---
-
---
--- Índices de tabela `acessos`
---
-ALTER TABLE `acessos`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `agendamentos`
---
-ALTER TABLE `agendamentos`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `assinaturas`
---
-ALTER TABLE `assinaturas`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `barbearia_id` (`barbearia_id`),
-  ADD KEY `plano_id` (`plano_id`);
-
---
--- Índices de tabela `barbearias`
---
-ALTER TABLE `barbearias`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `cargos`
---
-ALTER TABLE `cargos`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `cat_produtos`
---
-ALTER TABLE `cat_produtos`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `cat_servicos`
---
-ALTER TABLE `cat_servicos`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `clientes`
---
-ALTER TABLE `clientes`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`);
-
---
--- Índices de tabela `comentarios`
---
-ALTER TABLE `comentarios`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `config`
---
-ALTER TABLE `config`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `dias`
---
-ALTER TABLE `dias`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `entradas`
---
-ALTER TABLE `entradas`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `fornecedores`
---
-ALTER TABLE `fornecedores`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `grupo_acessos`
---
-ALTER TABLE `grupo_acessos`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `horarios`
---
-ALTER TABLE `horarios`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `pagar`
---
-ALTER TABLE `pagar`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `planos_assinatura`
---
-ALTER TABLE `planos_assinatura`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `produtos`
---
-ALTER TABLE `produtos`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `receber`
---
-ALTER TABLE `receber`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `saidas`
---
-ALTER TABLE `saidas`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `servicos`
---
-ALTER TABLE `servicos`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `barbearia_id` (`barbearia_id`);
-
---
--- Índices de tabela `textos_index`
---
-ALTER TABLE `textos_index`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `usuarios`
---
-ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `barbearia_id` (`barbearia_id`);
-
---
--- Índices de tabela `usuarios_permissoes`
---
-ALTER TABLE `usuarios_permissoes`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT para tabelas despejadas
---
-
---
--- AUTO_INCREMENT de tabela `acessos`
---
-ALTER TABLE `acessos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
-
---
--- AUTO_INCREMENT de tabela `agendamentos`
---
-ALTER TABLE `agendamentos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=120;
-
---
--- AUTO_INCREMENT de tabela `assinaturas`
---
-ALTER TABLE `assinaturas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `barbearias`
---
-ALTER TABLE `barbearias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT de tabela `cargos`
---
-ALTER TABLE `cargos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
---
--- AUTO_INCREMENT de tabela `cat_produtos`
---
-ALTER TABLE `cat_produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT de tabela `cat_servicos`
---
-ALTER TABLE `cat_servicos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT de tabela `clientes`
---
-ALTER TABLE `clientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de tabela `comentarios`
---
-ALTER TABLE `comentarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
-
---
--- AUTO_INCREMENT de tabela `config`
---
-ALTER TABLE `config`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT de tabela `dias`
---
-ALTER TABLE `dias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
-
---
--- AUTO_INCREMENT de tabela `entradas`
---
-ALTER TABLE `entradas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT de tabela `fornecedores`
---
-ALTER TABLE `fornecedores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT de tabela `grupo_acessos`
---
-ALTER TABLE `grupo_acessos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT de tabela `horarios`
---
-ALTER TABLE `horarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
-
---
--- AUTO_INCREMENT de tabela `pagar`
---
-ALTER TABLE `pagar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
-
---
--- AUTO_INCREMENT de tabela `planos_assinatura`
---
-ALTER TABLE `planos_assinatura`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT de tabela `produtos`
---
-ALTER TABLE `produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT de tabela `receber`
---
-ALTER TABLE `receber`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
-
---
--- AUTO_INCREMENT de tabela `saidas`
---
-ALTER TABLE `saidas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT de tabela `servicos`
---
-ALTER TABLE `servicos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
--- AUTO_INCREMENT de tabela `textos_index`
---
-ALTER TABLE `textos_index`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT de tabela `usuarios`
---
-ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
---
--- AUTO_INCREMENT de tabela `usuarios_permissoes`
---
-ALTER TABLE `usuarios_permissoes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=287;
-
---
--- Restrições para tabelas despejadas
---
-
---
--- Restrições para tabelas `assinaturas`
---
-ALTER TABLE `assinaturas`
-  ADD CONSTRAINT `assinaturas_ibfk_1` FOREIGN KEY (`barbearia_id`) REFERENCES `barbearias` (`id`),
-  ADD CONSTRAINT `assinaturas_ibfk_2` FOREIGN KEY (`plano_id`) REFERENCES `planos_assinatura` (`id`);
-
---
--- Restrições para tabelas `servicos`
---
-ALTER TABLE `servicos`
-  ADD CONSTRAINT `barbearia_id` FOREIGN KEY (`barbearia_id`) REFERENCES `barbearias` (`id`);
-
---
--- Restrições para tabelas `usuarios`
---
-ALTER TABLE `usuarios`
-  ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`barbearia_id`) REFERENCES `barbearias` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

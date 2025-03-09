@@ -11,8 +11,6 @@ $nome = '';
 
 
 
-
-
 ?>
 <style type="text/css">
 	.sub_page .hero_area {
@@ -33,12 +31,17 @@ if (isset($_SESSION['id_cliente'])) {
 
 }
 
+
+
 ?>
 
 <div class="footer_section" style="background: #5a8e94;">
 	<div class="container">
 		<div class="footer_content ">
 			<?php
+			$id_cliente = $_SESSION['id_cliente'];
+
+
 
 			// Verifica se já existe um agendamento
 			$query = $pdo->query("SELECT 
@@ -51,7 +54,7 @@ if (isset($_SESSION['id_cliente'])) {
 			FROM agendamentos
 			INNER JOIN usuarios ON usuarios.id = agendamentos.funcionario
 			INNER JOIN servicos ON servicos.id = agendamentos.servico
-			WHERE agendamentos.cliente = '{$_SESSION['id_cliente']}' 
+			WHERE agendamentos.cliente = '$id_cliente' 
 			ORDER BY agendamentos.data DESC");
 			$agendamentos = $query->fetchAll(PDO::FETCH_ASSOC);
 
@@ -111,7 +114,7 @@ if (isset($_SESSION['id_cliente'])) {
 							onchange="mudarFuncionario()" required>
 							<option value=""><?php echo $texto_agendamento ?></option>
 							<?php
-							$query = $pdo->query("SELECT * FROM usuarios where atendimento = 'Sim' ORDER BY id desc");
+							$query = $pdo->query("SELECT * FROM usuarios WHERE atendimento = 'Sim' AND barbearia_id = '$barbershop_id' ORDER BY id desc");
 							$res = $query->fetchAll(PDO::FETCH_ASSOC);
 							$total_reg = @count($res);
 							if ($total_reg > 0) {
@@ -141,7 +144,7 @@ if (isset($_SESSION['id_cliente'])) {
 							<option value="">Selecione um Serviço</option>
 
 							<?php
-							$query = $pdo->query("SELECT * FROM servicos ORDER BY nome asc");
+							$query = $pdo->query("SELECT * FROM servicos WHERE barbearia_id = $barbershop_id ORDER BY nome asc");
 							$res = $query->fetchAll(PDO::FETCH_ASSOC);
 							$total_reg = @count($res);
 							if ($total_reg > 0) {
