@@ -180,7 +180,12 @@ if (isset($_SESSION['id_cliente'])) {
 					</small>
 
 					<input type="hidden" id="id_agendamento" name="id">
-
+					<input type="text" id="data_oculta" style="display: none">
+ 					<input type="hidden" id="id" name="id">
+ 					<input type="hidden" id="hora_rec" nome="hora_rec">
+ 					<input type="hidden" id="nome_func" nome="nome_func">
+ 					<input type="hidden" id="data_rec" nome="data_rec">
+ 					<input type="hidden" id="nome_serv" nome="nome_serv">
 
 				</div>
 
