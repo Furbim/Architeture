@@ -22,9 +22,8 @@ $barbershop_id = $_GET['id'];
 $_SESSION['barbearia_id'] = $barbershop_id;
 }else{
 	$barbershop_id = 1;
-	header('buscas.php');
 }
-$barbershop_id = 1;
+
 
 date_default_timezone_set('America/Sao_Paulo');
 

@@ -2,7 +2,7 @@
 
 
 <?php
-$query = $pdo->query("SELECT * FROM textos_index ORDER BY id asc");
+$query = $pdo->query("SELECT * FROM textos_index WHERE barbearia_id = $barbershop_id ORDER BY id asc");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $total_reg = @count($res);
 if ($total_reg > 0) {
@@ -88,7 +88,7 @@ if ($total_reg > 0) {
       </h2>
       <p class="col-lg-8 px-0">
         <?php
-        $query = $pdo->query("SELECT * FROM cat_servicos ORDER BY id asc");
+        $query = $pdo->query("SELECT * FROM cat_servicos WHERE barbearia_id = $barbershop_id ORDER BY id asc");
         $res = $query->fetchAll(PDO::FETCH_ASSOC);
         $total_reg = @count($res);
         if ($total_reg > 0) {
@@ -108,7 +108,7 @@ if ($total_reg > 0) {
 
         }
 
-        $query = $pdo->query("SELECT * FROM servicos where ativo = 'Sim' ORDER BY id asc");
+        $query = $pdo->query("SELECT * FROM servicos where ativo = 'Sim' and barbearia_id = $barbershop_id ORDER BY id asc");
         $res = $query->fetchAll(PDO::FETCH_ASSOC);
         $total_reg = @count($res);
         if ($total_reg > 0) {
@@ -260,7 +260,7 @@ if ($total_reg > 0) {
 
       </div>
       <div class="btn-box">
-        <a href="produtos">
+        <a href="produtos.php">
           Ver mais Produtos
         </a>
       </div>
@@ -319,7 +319,7 @@ if ($total_reg > 0) {
 
 <!-- client section -->
 <?php
-$query = $pdo->query("SELECT * FROM comentarios where ativo = 'Sim' ORDER BY id asc");
+$query = $pdo->query("SELECT * FROM comentarios where ativo = 'Sim' and barbearia_id = $barbershop_id ORDER BY id asc");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $total_reg = @count($res);
 if ($total_reg > 0) {
