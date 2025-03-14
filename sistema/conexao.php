@@ -13,7 +13,7 @@ $url_sistema = "http://$_SERVER[HTTP_HOST]/barbearia/";
 }
 
 // Get barbershop_id from session or default to 1
-if (isset($_SESSION)) {
+if (!isset($_SESSION)) {
     session_start();
 }
 
