@@ -168,7 +168,7 @@ $dataMesInicial = $partesInicial[1];
 							</li>
 
 
-							<li class="treeview <?php echo $menu_pessoas ?>">
+							<li class="treeview <?php if(isset($menu_pessoas)){ echo 'oculto';} ?>">
 								<a href="#">
 									<i class="fa fa-users"></i>
 									<span>Pessoas</span>
@@ -188,7 +188,7 @@ $dataMesInicial = $partesInicial[1];
 
 
 
-							<li class="treeview <?php echo $menu_cadastros ?>" >
+							<li class="treeview <?php if(isset($menu_cadastros)){ echo 'oculto';}  ?>" >
 								<a href="#">
 									<i class="fa fa-plus"></i>
 									<span>Cadastros</span>
@@ -209,7 +209,7 @@ $dataMesInicial = $partesInicial[1];
 							</li>
 
 
-							<li class="treeview <?php echo $menu_produtos ?>">
+							<li class="treeview <?php if(isset($menu_produtos)){ echo 'oculto';}  ?>">
 								<a href="#">
 									<i class="fa fa-plus"></i>
 									<span>Produtos</span>
@@ -232,7 +232,7 @@ $dataMesInicial = $partesInicial[1];
 
 
 
-							<li class="treeview <?php echo $menu_financeiro ?>" >
+							<li class="treeview <?php if(isset($menu_financeiro)){ echo 'oculto';}  ?>" >
 								<a href="#">
 									<i class="fa fa-usd"></i>
 									<span>Financeiro</span>
@@ -255,7 +255,7 @@ $dataMesInicial = $partesInicial[1];
 
 
 
-							<li class="treeview <?php echo $menu_agendamentos ?>">
+							<li class="treeview <?php if(isset($menu_agendamentos)){ echo 'oculto';}  ?>">
 								<a href="#">
 									<i class="fa fa-calendar-o"></i>
 									<span>Agendamento / Serviço</span>
@@ -274,7 +274,7 @@ $dataMesInicial = $partesInicial[1];
 
 
 
-							<li class="treeview <?php echo $menu_relatorio ?>" >
+							<li class="treeview <?php if(isset($menu_relatorio)){ echo 'oculto';}   ?>" >
 								<a href="#">
 									<i class="fa fa-file-pdf-o"></i>
 									<span>Relatórios</span>
@@ -307,7 +307,8 @@ $dataMesInicial = $partesInicial[1];
 
 
 
-							<li class="treeview <?php echo $menu_site ?>" >
+							<li class="treeview <?php  
+							 ?>" >
 								<a href="#">
 									<i class="fa fa-globe"></i>
 									<span>Dados do Site</span>
