@@ -1,148 +1,105 @@
 <?php 
 require_once("conexao.php");
 
-//INSERIR UM USUÁRIO ADMINISTRADOR CASO NÃO EXISTA
+// INSERIR UM USUÁRIO ADMINISTRADOR CASO NÃO EXISTA
 $senha = '123';
 $senha_crip = md5($senha);
 
-$query = $pdo->query("SELECT * from usuarios where nivel = 'Administrador'");
+$query = $pdo->query("SELECT * FROM usuarios WHERE nivel = 'Administrador'");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $total_reg = @count($res);
-if($total_reg == 0){
-	$pdo->query("INSERT INTO usuarios SET nome = 'Admin', email = '$email_sistema', cpf = '000.000.000-00', senha = '$senha', senha_crip = '$senha_crip', nivel = 'Administrador', data = curDate(), ativo = 'Sim', foto = 'sem-foto.jpg'");
+
+if ($total_reg == 0) {
+    $pdo->query("INSERT INTO usuarios SET nome = 'Admin', email = '$email_sistema', cpf = '000.000.000-00', senha = '$senha', senha_crip = '$senha_crip', nivel = 'Administrador', data = CURDATE(), ativo = 'Sim', foto = 'sem-foto.jpg'");
 }
 
-
-$query = $pdo->query("SELECT * from cargos");
+// INSERIR O CARGO ADMINISTRADOR SE NÃO EXISTIR
+$query = $pdo->query("SELECT * FROM cargos");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $total_reg = @count($res);
-if($total_reg == 0){
-	$pdo->query("INSERT INTO cargos SET nome = 'Administrador'");
+
+if ($total_reg == 0) {
+    $pdo->query("INSERT INTO cargos SET nome = 'Administrador'");
 }
+?>
 
-
-
- ?>
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title><?php echo $nome_sistema ?></title>
-	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-	<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="css/estilo-login.css">
-	<link rel="icon" type="image/png" href="img/favicon.ico">
-
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?php echo $nome_sistema; ?></title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
 
-<div class="container ">
-    <div class="row vertical-offset-100">
-    	<div class="col-md-4 col-md-offset-4">
-    		<div class="panel panel-default form-login" style="opacity:0.9; border-radius: 20px">
-			  	<div class="panel-heading" align="center" style="border-top-right-radius: 20px; border-top-left-radius: 20px">
-			    	<img src="img/logo.png" width="250px">
-			 	</div>
-			  	<div class="panel-body">
-			    	<form accept-charset="UTF-8" role="form" action="autenticar.php" method="post">
-                    <fieldset>
-			    	  	<div class="form-group">
-			    		    <input class="form-control" placeholder="E-mail ou CPF" name="email" type="text">
-			    		</div>
-			    		<div class="form-group">
-			    			<input class="form-control" placeholder="Senha" name="senha" type="password" value="">
-			    		</div>
-			    		
-			    		<input class="btn btn-lg btn-primary btn-block" type="submit" value="Login">
-			    	</fieldset>
+    <div class="bg-white p-8 rounded-lg shadow-md w-96">
+        <div class="text-center mb-6">
+            <img src="img/logo.png" alt="Logo" class="mx-auto w-48">
+        </div>
 
-			    	<p class="recuperar"><a title="Clique para recupearar a senha" href="" data-toggle="modal" data-target="#exampleModal">Recuperar Senha</a></p>
-			      	</form>
-			    </div>
-			</div>
-		</div>
-	</div>
-</div>
+        <form action="autenticar.php" method="post" class="space-y-4">
+            <div>
+                <input type="text" name="email" placeholder="E-mail ou CPF" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+            <div>
+                <input type="password" name="senha" placeholder="Senha" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+            <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">Login</button>
+        </form>
 
-</body>
-</html>
-
-
-
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content" style="width:400px">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Recuperar Senha</h5>
-        <button id="btn-fechar-rec" type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: -20px">
-          <span aria-hidden="true" >&times;</span>
-        </button>
-      </div>
-      <form method="post" id="form-recuperar">
-      <div class="modal-body">
-        
-        	<input placeholder="Digite seu Email" class="form-control" type="email" name="email" id="email-recuperar" required>        	
-       
-       <br>
-       <small><div id="mensagem-recuperar" align="center"></div></small>
-      </div>
-      <div class="modal-footer">      
-        <button type="submit" class="btn btn-primary">Recuperar</button>
-      </div>
-  </form>
+        <p class="text-center text-sm mt-4">
+            <a href="#" data-modal-target="modalRecuperarSenha" class="text-blue-600 hover:underline">Esqueceu a senha?</a>
+        </p>
     </div>
-  </div>
-</div>
 
+    <!-- Modal -->
+    <div id="modalRecuperarSenha" class="hidden fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center">
+        <div class="bg-white p-6 rounded-lg w-80 shadow-lg">
+            <h2 class="text-lg font-semibold mb-4">Recuperar Senha</h2>
+            <form id="form-recuperar" method="post">
+                <input type="email" name="email" id="email-recuperar" placeholder="Digite seu Email" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <div id="mensagem-recuperar" class="text-center text-sm mt-2"></div>
+                <div class="flex justify-end space-x-2 mt-4">
+                    <button type="button" id="fechar-modal" class="px-4 py-2 bg-gray-400 text-white rounded-lg">Fechar</button>
+                    <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Recuperar</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
+    <script>
+        document.querySelector("[data-modal-target]").addEventListener("click", function () {
+            document.getElementById("modalRecuperarSenha").classList.remove("hidden");
+        });
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        document.getElementById("fechar-modal").addEventListener("click", function () {
+            document.getElementById("modalRecuperarSenha").classList.add("hidden");
+        });
 
+        document.getElementById("form-recuperar").addEventListener("submit", function (event) {
+            event.preventDefault();
+            var formData = new FormData(this);
 
- <script type="text/javascript">
-	$("#form-recuperar").submit(function () {
+            fetch("recuperar-senha.php", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.text())
+            .then(mensagem => {
+                var mensagemDiv = document.getElementById("mensagem-recuperar");
+                mensagemDiv.classList.remove("text-red-500", "text-green-500");
 
-		event.preventDefault();
-		var formData = new FormData(this);
-
-		$.ajax({
-			url: "recuperar-senha.php",
-			type: 'POST',
-			data: formData,
-
-			success: function (mensagem) {
-				$('#mensagem-recuperar').text('');
-				$('#mensagem-recuperar').removeClass()
-				if (mensagem.trim() == "Recuperado com Sucesso") {
-					//$('#btn-fechar-rec').click();					
-					$('#email-recuperar').val('');
-					$('#mensagem-recuperar').addClass('text-success')
-					$('#mensagem-recuperar').text('Sua Senha foi enviada para o Email')			
-
-				} else {
-
-					$('#mensagem-recuperar').addClass('text-danger')
-					$('#mensagem-recuperar').text(mensagem)
-				}
-
-
-			},
-
-			cache: false,
-			contentType: false,
-			processData: false,
-
-		});
-
-	});
-</script>
-
-
-
+                if (mensagem.trim() === "Recuperado com Sucesso") {
+                    mensagemDiv.classList.add("text-green-500");
+                    mensagemDiv.textContent = "Sua senha foi enviada para o email.";
+                    document.getElementById("email-recuperar").value = "";
+                } else {
+                    mensagemDiv.classList.add("text-red-500");
+                    mensagemDiv.textContent = mensagem;
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
