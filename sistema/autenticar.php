@@ -23,6 +23,7 @@ if($total_reg > 0){
 		$_SESSION['id'] = $res[0]['id'];
 		$_SESSION['nivel'] = $res[0]['nivel'];
 		$_SESSION['nome'] = $res[0]['nome'];
+		$_SESSION['barbearia_id'] = $res[0]['barbearia_id'];
 	
 		//ir para o painel
 		echo "<script>window.location='painel/index.php'</script>";

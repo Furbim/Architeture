@@ -69,7 +69,7 @@ if($total_reg > 0){
 		foreach ($res[$i] as $key => $value){}
 		$permissao = $res[$i]['permissao'];
 		
-		$query2 = $pdo->query("SELECT * FROM acessos where id = '$permissao'");
+		$query2 = $pdo->query("SELECT * FROM acessos where id = '$permissao' and barbearia_id = $barbershop_id");
 		$res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
 		$nome = $res2[0]['nome'];
 		$chave = $res2[0]['chave'];
