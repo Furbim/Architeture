@@ -1,4 +1,7 @@
 <?php
+if(!isset($_SESSION)){
+    @session_start();
+}
 require_once("../sistema/conexao.php");
 
 date_default_timezone_set('America/Sao_Paulo'); // Garante que o fuso horário está correto
@@ -8,14 +11,18 @@ if (!$pdo) {
     die("Erro na conexão com o banco de dados!");
 }
 
-$telefone = $_POST['telefone'] ?? '';
-$nome = $_POST['nome'] ?? '';
-$funcionario = $_POST['funcionario'] ?? '';
-$hora = $_POST['hora'] ?? '';
-$servico = $_POST['servico'] ?? '';
-$obs = $_POST['obs'] ?? '';
-$data = $_POST['data'] ?? '';
-$id = $_POST['id'] ?? '';
+
+if(!isset($_SESSION['id_cliente'])){
+    header('Location: agendamentos.php');
+}
+
+$funcionario = $_POST['funcionario'];
+$hora = $_POST['hora'];
+$servico = $_POST['servico'];
+$obs = $_POST['obs'];
+$data = $_POST['data'];
+$id = $_POST['id'];
+$id_cliente = $_SESSION['id_cliente'];
 
 if (empty($data) || empty($hora)) {
     echo 'Data e horário são obrigatórios!';
@@ -47,6 +54,7 @@ if ($timestampAgendamento < $timestampAtual) {
 }
 
 
+
 // Verificar se o horário já está ocupado
 $query = $pdo->prepare("SELECT * FROM agendamentos WHERE data = :data AND hora = :hora AND funcionario = :funcionario");
 $query->execute(['data' => $data, 'hora' => $hora, 'funcionario' => $funcionario]);
@@ -55,18 +63,6 @@ $res = $query->fetchAll(PDO::FETCH_ASSOC);
 if (count($res) > 0 && $res[0]['id'] != $id) {
     echo 'Este horário não está disponível!';
     exit();
-}
-
-// Verificar se o cliente já existe pelo telefone
-$query = $pdo->prepare("SELECT * FROM clientes WHERE telefone LIKE :telefone");
-$query->execute(['telefone' => $telefone]);
-$res = $query->fetchAll(PDO::FETCH_ASSOC);
-
-if (count($res) > 0) {
-    $id_cliente = $res[0]['id'];
-} else {
-    // Caso o cliente não exista, retornar a página de login
-    header('Location: agendamentos.php');
 }
 
 if (empty($id)) {
@@ -111,6 +107,17 @@ if (empty($id)) {
 
     echo 'Agendado com Sucesso';
 } else {
+
+    // Verificar se o horário já está ocupado
+    $query = $pdo->prepare("SELECT * FROM agendamentos WHERE id = :id AND cliente = :cliente");
+    $query->execute(['id' => $id, 'cliente' => $id_cliente]);
+    $res = $query->fetchAll(PDO::FETCH_ASSOC);
+
+    if (count($res) == 0 ) {
+        echo 'Você não pode editar esse agendamento!';
+        exit();
+    }
+
     // Atualizar agendamento existente
     $query = $pdo->prepare("UPDATE agendamentos SET funcionario = :funcionario, hora = :hora, data = :data, usuario = '0', status = 'Agendado', obs = :obs, data_lanc = CURDATE(), servico = :servico 
                             WHERE id = :id");
