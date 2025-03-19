@@ -21,6 +21,8 @@ if($total_reg > 0){
 	$atendimento = $res[0]['atendimento'];
 }
 
+
+
 if(@$_SESSION['nivel'] != 'Administrador'){
 	require_once("verificar-permissoes.php");
 }
@@ -168,7 +170,7 @@ $dataMesInicial = $partesInicial[1];
 							</li>
 
 
-							<li class="treeview <?php if(isset($menu_pessoas)){ echo 'oculto';} ?>">
+							<li class="treeview <?php echo @$menu_pessoas ?>">
 								<a href="#">
 									<i class="fa fa-users"></i>
 									<span>Pessoas</span>
@@ -188,7 +190,7 @@ $dataMesInicial = $partesInicial[1];
 
 
 
-							<li class="treeview <?php if(isset($menu_cadastros)){ echo 'oculto';}  ?>" >
+							<li class="treeview <?php  echo @$menu_cadastros;  ?>" >
 								<a href="#">
 									<i class="fa fa-plus"></i>
 									<span>Cadastros</span>
@@ -209,7 +211,7 @@ $dataMesInicial = $partesInicial[1];
 							</li>
 
 
-							<li class="treeview <?php if(isset($menu_produtos)){ echo 'oculto';}  ?>">
+							<li class="treeview <?php echo @$menu_produtos; ?>">
 								<a href="#">
 									<i class="fa fa-plus"></i>
 									<span>Produtos</span>
@@ -232,7 +234,7 @@ $dataMesInicial = $partesInicial[1];
 
 
 
-							<li class="treeview <?php if(isset($menu_financeiro)){ echo 'oculto';}  ?>" >
+							<li class="treeview <?php echo @$menu_financeiro; ?>" >
 								<a href="#">
 									<i class="fa fa-usd"></i>
 									<span>Financeiro</span>
@@ -255,7 +257,7 @@ $dataMesInicial = $partesInicial[1];
 
 
 
-							<li class="treeview <?php if(isset($menu_agendamentos)){ echo 'oculto';}  ?>">
+							<li class="treeview <?php echo @$menu_agendamentos; ?>">
 								<a href="#">
 									<i class="fa fa-calendar-o"></i>
 									<span>Agendamento / Serviço</span>
@@ -274,7 +276,7 @@ $dataMesInicial = $partesInicial[1];
 
 
 
-							<li class="treeview <?php if(isset($menu_relatorio)){ echo 'oculto';}   ?>" >
+							<li class="treeview <?php echo @$menu_relatorio;   ?>" >
 								<a href="#">
 									<i class="fa fa-file-pdf-o"></i>
 									<span>Relatórios</span>
@@ -307,8 +309,7 @@ $dataMesInicial = $partesInicial[1];
 
 
 
-							<li class="treeview <?php  
-							 ?>" >
+							<li class="treeview <?php  echo @$menu_site;?>" >
 								<a href="#">
 									<i class="fa fa-globe"></i>
 									<span>Dados do Site</span>
@@ -679,10 +680,6 @@ $dataMesInicial = $partesInicial[1];
 			<?php require_once("paginas/".$pag.'.php') ?>
 		</div>
 
-		<!--footer-->
-		<div class="footer">
-					
-		</div>
 		<!--//footer-->
 	</div>
 

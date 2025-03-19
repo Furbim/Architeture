@@ -387,9 +387,7 @@ for ($i = 1; $i <= 12; $i++) {
                     <h3>Demonstrativo Financeiro</h3>
                 </div>
 
-                <div id="Linegraph"
-                    style="width: 98%; height: 400px; margin: 10px auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); padding: 10px;">
-                </div>
+                <canvas id="financeChart"></canvas>
 
             </div>
 
@@ -431,113 +429,92 @@ for ($i = 1; $i <= 12; $i++) {
 
 <!-- for index page weekly sales java script -->
 <script src="js/SimpleChart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    $('#dados_grafico_despesa').val('<?= $dados_meses_despesas ?>');
-    var dados = $('#dados_grafico_despesa').val();
-    saldo_mes = dados.split('-');
+document.addEventListener("DOMContentLoaded", function () {
+    const canvas = document.getElementById("financeChart");
+    if (!canvas) {
+        console.error("Canvas #financeChart não encontrado!");
+        return;
+    }
 
+    // Ajuste de altura para um tamanho intermediário
+    canvas.style.maxHeight = "600px"; 
 
-    $('#dados_grafico_venda').val('<?= $dados_meses_vendas ?>');
-    var dados_venda = $('#dados_grafico_venda').val();
-    saldo_mes_venda = dados_venda.split('-');
+    const ctx = canvas.getContext("2d");
 
+    const saldo_mes = "<?= $dados_meses_despesas ?? '0-0-0-0-0-0-0-0-0-0-0-0' ?>".split('-').map(Number);
+    const saldo_mes_venda = "<?= $dados_meses_vendas ?? '0-0-0-0-0-0-0-0-0-0-0-0' ?>".split('-').map(Number);
+    const saldo_mes_servico = "<?= $dados_meses_servicos ?? '0-0-0-0-0-0-0-0-0-0-0-0' ?>".split('-').map(Number);
 
-    $('#dados_grafico_servico').val('<?= $dados_meses_servicos ?>');
-    var dados_servico = $('#dados_grafico_servico').val();
-    saldo_mes_servico = dados_servico.split('-');
+    const meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
 
-
-
-    var graphdata1 = {
-        linecolor: "#e32424",
-        title: "Despesas",
-        values: [
-            { X: "Janeiro", Y: parseFloat(saldo_mes[0]) },
-            { X: "Fevereiro", Y: parseFloat(saldo_mes[1]) },
-            { X: "Março", Y: parseFloat(saldo_mes[2]) },
-            { X: "Abril", Y: parseFloat(saldo_mes[3]) },
-            { X: "Maio", Y: parseFloat(saldo_mes[4]) },
-            { X: "Junho", Y: parseFloat(saldo_mes[5]) },
-            { X: "Julho", Y: parseFloat(saldo_mes[6]) },
-            { X: "Agosto", Y: parseFloat(saldo_mes[7]) },
-            { X: "Setembro", Y: parseFloat(saldo_mes[8]) },
-            { X: "Outubro", Y: parseFloat(saldo_mes[9]) },
-            { X: "Novembro", Y: parseFloat(saldo_mes[10]) },
-            { X: "Dezembro", Y: parseFloat(saldo_mes[11]) },
-
-        ]
-    };
-
-    var graphdata2 = {
-        linecolor: "#109447",
-        title: "Vendas",
-        values: [
-            { X: "Janeiro", Y: parseFloat(saldo_mes_venda[0]) },
-            { X: "Fevereiro", Y: parseFloat(saldo_mes_venda[1]) },
-            { X: "Março", Y: parseFloat(saldo_mes_venda[2]) },
-            { X: "Abril", Y: parseFloat(saldo_mes_venda[3]) },
-            { X: "Maio", Y: parseFloat(saldo_mes_venda[4]) },
-            { X: "Junho", Y: parseFloat(saldo_mes_venda[5]) },
-            { X: "Julho", Y: parseFloat(saldo_mes_venda[6]) },
-            { X: "Agosto", Y: parseFloat(saldo_mes_venda[7]) },
-            { X: "Setembro", Y: parseFloat(saldo_mes_venda[8]) },
-            { X: "Outubro", Y: parseFloat(saldo_mes_venda[9]) },
-            { X: "Novembro", Y: parseFloat(saldo_mes_venda[10]) },
-            { X: "Dezembro", Y: parseFloat(saldo_mes_venda[11]) },
-
-        ]
-    };
-
-
-    var graphdata3 = {
-        linecolor: "#0e248a",
-        title: "Serviços",
-        values: [
-            { X: "Janeiro", Y: parseFloat(saldo_mes_servico[0]) },
-            { X: "Fevereiro", Y: parseFloat(saldo_mes_servico[1]) },
-            { X: "Março", Y: parseFloat(saldo_mes_servico[2]) },
-            { X: "Abril", Y: parseFloat(saldo_mes_servico[3]) },
-            { X: "Maio", Y: parseFloat(saldo_mes_servico[4]) },
-            { X: "Junho", Y: parseFloat(saldo_mes_servico[5]) },
-            { X: "Julho", Y: parseFloat(saldo_mes_servico[6]) },
-            { X: "Agosto", Y: parseFloat(saldo_mes_servico[7]) },
-            { X: "Setembro", Y: parseFloat(saldo_mes_servico[8]) },
-            { X: "Outubro", Y: parseFloat(saldo_mes_servico[9]) },
-            { X: "Novembro", Y: parseFloat(saldo_mes_servico[10]) },
-            { X: "Dezembro", Y: parseFloat(saldo_mes_servico[11]) },
-
-        ]
-    };
-
-
-
-
-    $(function () {
-
-        $("#Linegraph").SimpleChart({
-            ChartType: "Line",
-            toolwidth: "50",
-            toolheight: "25",
-            axiscolor: "#E6E6E6",
-            textcolor: "#6E6E6E",
-            showlegends: true,
-            data: [graphdata3, graphdata2, graphdata1],
-            legendsize: "30",
-            legendposition: 'bottom',
-            xaxislabel: 'Meses',
-            title: 'Demonstrativo Financeiro',
-            yaxislabel: 'Totais R$',
-            linecolors: ["#3498db", "#2ecc71", "#e74c3c"],
-            fillcolors: ["rgba(52, 152, 219, 0.2)", "rgba(46, 204, 113, 0.2)", "rgba(231, 76, 60, 0.2)"],
-            linestyle: "curved",
-            gridcolor: "#F5F5F5",
-            pointsize: "5",
-            pointcolors: ["#3498db", "#2ecc71", "#e74c3c"],
-            pointbordercolors: ["#fff", "#fff", "#fff"],
-            pointborderthickness: "2"
-        });
-
+    new Chart(ctx, {
+        type: "bar",
+        data: {
+            labels: meses,
+            datasets: [
+                {
+                    label: "Despesas R$",
+                    data: saldo_mes,
+                    backgroundColor: "rgba(231, 76, 60, 0.7)",
+                    borderColor: "#e74c3c",
+                    borderWidth: 1
+                },
+                {
+                    label: "Vendas R$",
+                    data: saldo_mes_venda,
+                    backgroundColor: "rgba(46, 204, 113, 0.7)",
+                    borderColor: "#2ecc71",
+                    borderWidth: 1
+                },
+                {
+                    label: "Serviços R$",
+                    data: saldo_mes_servico,
+                    backgroundColor: "rgba(52, 152, 219, 0.7)",
+                    borderColor: "#3498db",
+                    borderWidth: 1
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true, // Mantém o tamanho proporcional
+            plugins: {
+                legend: {
+                    position: "bottom",
+                    labels: {
+                        font: {
+                            size: 14
+                        }
+                    }
+                },
+                title: {
+                    display: true,
+                    text: "Demonstrativo Financeiro",
+                    font: {
+                        size: 18
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: "Totais R$"
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: "Meses"
+                    }
+                }
+            }
+        }
     });
+});
 
 </script>
 <!-- //for index page weekly sales java script -->

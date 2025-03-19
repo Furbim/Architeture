@@ -9,9 +9,6 @@
   <!-- Mobile Metas -->
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <!-- Site Metas -->
-  <meta name="keywords" content="barbearia freitas, salão de beleza" />
-  <meta name="description" content="Fazemos todo tipo de serviço ..." />
-  <meta name="author" content="Barbearia" />
   <link rel="shortcut icon" href="images/<?php echo $icone_site ?>" type="image/x-icon">
 
   <title><?php echo $nome_sistema ?></title>
@@ -24,12 +21,14 @@
   <!--owl slider stylesheet -->
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
   <!-- font awesome style -->
-  <link href="css/font-awesome.min.css" rel="stylesheet" />
+  <!-- Font Awesome via CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <!-- Custom styles for this template -->
   <link href="css/style.css" rel="stylesheet" />
   <!-- responsive style -->
   <link href="css/responsive.css" rel="stylesheet" />
+  
 </head>
 
 <body class="sub_page">
