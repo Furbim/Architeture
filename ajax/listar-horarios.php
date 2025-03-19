@@ -50,27 +50,33 @@ if (count($res) == 0) {
 	foreach ($res as $horario) {
 		$hora = $horario['horario'];
 		$horaF = date("H:i", strtotime($hora));
+		$horaAtual = date("H:i");
 
-		// Verificar se o horário já está agendado
-		$query2 = $pdo->prepare("SELECT * FROM agendamentos WHERE data = :data AND hora = :hora AND funcionario = :funcionario");
-		$query2->execute(['data' => $data, 'hora' => $hora, 'funcionario' => $funcionario]);
-		$res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
 
-		// Se o horário não estiver agendado ou for o horário selecionado, exibir o radio button
-		if (count($res2) == 0 || $hora_rec == $hora) {
-			$checado = ($hora_rec == $hora) ? 'checked' : '';
-			?>
-			<div class="col-3">
-				<div class="form-check">
-					<input class="form-check-input" type="radio" name="hora" value="<?php echo $hora ?>" <?php echo $checado ?>
-						style="width:17px; height: 17px" required>
-					<label class="form-check-label" for="flexRadioDefault1">
-						<?php echo $horaF ?>
-					</label>
+		if ($horaAtual < $horaF) {
+
+
+			// Verificar se o horário já está agendado
+			$query2 = $pdo->prepare("SELECT * FROM agendamentos WHERE data = :data AND hora = :hora AND funcionario = :funcionario");
+			$query2->execute(['data' => $data, 'hora' => $hora, 'funcionario' => $funcionario]);
+			$res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
+
+			// Se o horário não estiver agendado ou for o horário selecionado, exibir o radio button
+			if (count($res2) == 0 || $hora_rec == $hora) {
+				$checado = ($hora_rec == $hora) ? 'checked' : '';
+				?>
+				<div class="col-3">
+					<div class="form-check">
+						<input class="form-check-input" type="radio" name="hora" value="<?php echo $hora ?>" <?php echo $checado ?>
+							style="width:17px; height: 17px" required>
+						<label class="form-check-label" for="flexRadioDefault1">
+							<?php echo $horaF ?>
+						</label>
+					</div>
 				</div>
-			</div>
-			<?php
+				<?php
 
+			}
 		}
 	}
 	?>

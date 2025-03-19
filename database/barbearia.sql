@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 14/03/2025 às 07:48
+-- Tempo de geração: 19/03/2025 às 08:21
 -- Versão do servidor: 8.2.0
 -- Versão do PHP: 8.2.13
 
@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS `agendamentos` (
   `status` varchar(20) NOT NULL,
   `servico` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=120 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=123 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `agendamentos`
@@ -159,7 +159,8 @@ INSERT INTO `agendamentos` (`id`, `funcionario`, `cliente`, `data`, `hora`, `obs
 (108, 10, 11, '2022-06-27', '14:00:00', '', '2022-06-27', 0, 'Agendado', 5),
 (114, 6, 15, '2025-03-04', '16:00:00', '', '2025-03-03', 0, 'Agendado', 10),
 (115, 6, 21, '2025-03-05', '15:00:00', '', '2025-03-04', 0, 'Agendado', 2),
-(116, 10, 22, '2025-03-04', '13:00:00', '', '2025-03-04', 0, 'Agendado', 2);
+(116, 10, 22, '2025-03-04', '13:00:00', '', '2025-03-04', 0, 'Agendado', 2),
+(122, 6, 1, '2025-03-19', '17:00:00', '', '2025-03-19', 0, 'Agendado', 10);
 
 -- --------------------------------------------------------
 
@@ -521,7 +522,7 @@ CREATE TABLE IF NOT EXISTS `horarios` (
   `horario` time NOT NULL,
   `funcionario` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `horarios`
@@ -553,7 +554,8 @@ INSERT INTO `horarios` (`id`, `horario`, `funcionario`) VALUES
 (25, '16:00:00', 6),
 (26, '17:00:00', 6),
 (27, '10:00:00', 11),
-(28, '12:00:00', 11);
+(28, '12:00:00', 11),
+(29, '07:00:00', 6);
 
 -- --------------------------------------------------------
 
@@ -741,90 +743,18 @@ CREATE TABLE IF NOT EXISTS `receber` (
   `servico` int NOT NULL,
   `funcionario` int NOT NULL,
   `barbearia_id` int NOT NULL DEFAULT '1',
+  `id_agendamento` int NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `barbearia_id` (`barbearia_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=110 DEFAULT CHARSET=utf8mb3;
+  KEY `barbearia_id` (`barbearia_id`),
+  KEY `id_agendamento` (`id_agendamento`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Despejando dados para a tabela `receber`
 --
 
-INSERT INTO `receber` (`id`, `descricao`, `tipo`, `valor`, `data_lanc`, `data_venc`, `data_pgto`, `usuario_lanc`, `usuario_baixa`, `foto`, `pessoa`, `pago`, `produto`, `quantidade`, `servico`, `funcionario`, `barbearia_id`) VALUES
-(30, 'Venda - (2) Creme Cabelo', 'Venda', 70.00, '2022-05-31', '2022-05-31', '2022-05-31', 6, 6, 'sem-foto.jpg', 0, 'Sim', 2, 2, 0, 0, 1),
-(32, 'Venda - (3) Pomada Cabelo XXX', 'Venda', 180.00, '2022-05-31', '2022-05-31', '2022-04-30', 6, 6, '31-05-2022-18-47-37-09-11-2021-10-17-10-pdfteste.pdf', 3, 'Sim', 1, 3, 0, 0, 1),
-(33, 'Corte', 'Conta', 35.00, '2022-05-31', '2022-05-31', '2022-05-30', 6, 6, 'sem-foto.jpg', 3, 'Sim', 0, 0, 0, 0, 1),
-(34, 'Barba', 'Conta', 20.00, '2022-05-31', '2022-05-30', '0000-00-00', 6, 0, 'sem-foto.jpg', 1, 'Não', 0, 0, 0, 0, 1),
-(36, 'Venda de Gel', 'Conta', 60.00, '2022-05-31', '2022-05-31', '0000-00-00', 6, 0, 'sem-foto.jpg', 3, 'Não', 0, 0, 0, 0, 1),
-(38, 'Barba', 'Serviço', 17.00, '2022-06-06', '2022-06-06', '2022-06-06', 6, 6, 'sem-foto.jpg', 2, 'Sim', 0, 0, 0, 0, 1),
-(40, 'Corte', 'Serviço', 25.00, '2022-06-06', '2022-06-08', '0000-00-00', 6, 0, 'sem-foto.jpg', 3, 'Não', 0, 0, 0, 0, 1),
-(41, 'Mão e Pé', 'Serviço', 50.00, '2022-06-06', '2022-06-06', '2022-05-06', 6, 6, 'sem-foto.jpg', 1, 'Sim', 0, 0, 0, 0, 1),
-(42, 'Mão e Pé', 'Serviço', 50.00, '2022-06-06', '2022-06-06', '2022-06-06', 6, 6, 'sem-foto.jpg', 1, 'Sim', 0, 0, 0, 0, 1),
-(43, 'Corte', 'Serviço', 25.00, '2022-06-06', '2022-06-06', '2022-06-06', 6, 6, 'sem-foto.jpg', 3, 'Sim', 0, 0, 0, 0, 1),
-(44, 'Barba', 'Serviço', 17.00, '2022-06-06', '2022-06-06', '2022-06-06', 6, 6, 'sem-foto.jpg', 2, 'Sim', 0, 0, 0, 0, 1),
-(45, 'Barba', 'Serviço', 17.00, '2022-06-06', '2022-06-06', '2022-06-06', 6, 6, 'sem-foto.jpg', 2, 'Sim', 0, 0, 0, 0, 1),
-(46, 'Barba', 'Serviço', 17.00, '2022-06-06', '2022-06-06', '2022-06-06', 6, 6, 'sem-foto.jpg', 2, 'Sim', 0, 0, 0, 0, 1),
-(47, 'Barba', 'Serviço', 17.00, '2022-06-06', '2022-06-06', '2022-06-06', 6, 6, 'sem-foto.jpg', 2, 'Sim', 0, 0, 0, 0, 1),
-(48, 'Luzes', 'Serviço', 35.00, '2022-06-06', '2022-06-06', '2022-06-06', 6, 6, 'sem-foto.jpg', 3, 'Sim', 0, 0, 0, 0, 1),
-(49, 'Barba', 'Serviço', 17.00, '2022-06-06', '2022-06-06', '2022-06-06', 6, 6, 'sem-foto.jpg', 2, 'Sim', 0, 0, 0, 0, 1),
-(50, 'Corte', 'Serviço', 80.00, '2022-06-06', '2022-06-06', '2022-06-06', 6, 6, 'sem-foto.jpg', 0, 'Sim', 0, 0, 0, 0, 1),
-(52, 'Corte', 'Serviço', 80.00, '2022-06-06', '2022-06-06', '2022-06-06', 6, 6, 'sem-foto.jpg', 1, 'Sim', 0, 0, 0, 0, 1),
-(53, 'Luzes', 'Serviço', 55.00, '2022-06-06', '2022-06-08', '2022-05-06', 6, 6, 'sem-foto.jpg', 3, 'Sim', 0, 0, 4, 0, 1),
-(54, 'Barba', 'Serviço', 17.00, '2022-06-06', '2022-06-06', '2022-06-06', 6, 6, 'sem-foto.jpg', 2, 'Sim', 0, 0, 2, 11, 1),
-(55, 'Barba', 'Serviço', 15.00, '2022-06-06', '2022-06-06', '2022-06-06', 6, 6, 'sem-foto.jpg', 2, 'Sim', 0, 0, 2, 10, 1),
-(56, 'Corte', 'Serviço', 25.00, '2022-06-06', '2022-06-07', '0000-00-00', 6, 0, 'sem-foto.jpg', 2, 'Não', 0, 0, 1, 10, 1),
-(57, 'Corte', 'Serviço', 25.00, '2022-06-06', '2022-06-07', '0000-00-00', 10, 0, 'sem-foto.jpg', 1, 'Não', 0, 0, 1, 10, 1),
-(58, 'Barba', 'Serviço', 17.00, '2022-06-08', '2022-06-08', '2022-06-08', 6, 6, 'sem-foto.jpg', 2, 'Sim', 0, 0, 2, 6, 1),
-(59, 'Barba', 'Serviço', 17.00, '2022-06-09', '2022-06-09', '2022-06-09', 6, 6, 'sem-foto.jpg', 2, 'Sim', 0, 0, 2, 6, 1),
-(60, 'Corte', 'Serviço', 25.00, '2022-06-09', '2022-06-10', '2022-06-09', 6, 6, 'sem-foto.jpg', 3, 'Sim', 0, 0, 1, 6, 1),
-(61, 'Barba', 'Serviço', 50.00, '2022-06-09', '2022-06-09', '2022-06-09', 6, 6, 'sem-foto.jpg', 2, 'Sim', 0, 0, 2, 10, 1),
-(62, 'Barba', 'Serviço', 50.00, '2022-06-09', '2022-06-10', '2022-06-09', 6, 6, 'sem-foto.jpg', 2, 'Sim', 0, 0, 2, 10, 1),
-(63, 'Barba', 'Serviço', 20.00, '2022-06-09', '2022-06-10', '2022-06-09', 6, 6, 'sem-foto.jpg', 4, 'Sim', 0, 0, 2, 11, 1),
-(64, 'Luzes', 'Serviço', 40.00, '2022-06-09', '2022-06-09', '2022-06-09', 6, 6, 'sem-foto.jpg', 2, 'Sim', 0, 0, 4, 0, 1),
-(65, 'Luzes', 'Serviço', 40.00, '2022-06-09', '2022-06-09', '2022-06-09', 6, 6, 'sem-foto.jpg', 2, 'Sim', 0, 0, 4, 6, 1),
-(66, 'Comissão - Barba', 'Serviço', 17.00, '2022-06-09', '2022-06-09', '2022-06-09', 6, 6, 'sem-foto.jpg', 2, 'Sim', 0, 0, 2, 6, 1),
-(67, 'Comissão - Hidrataçao', 'Serviço', 40.00, '2022-06-09', '2022-06-09', '2022-06-09', 6, 6, 'sem-foto.jpg', 1, 'Sim', 0, 0, 5, 6, 1),
-(68, 'Comissão - Hidrataçao', 'Serviço', 40.00, '2022-06-09', '2022-06-09', '2022-06-09', 6, 6, 'sem-foto.jpg', 2, 'Sim', 0, 0, 5, 6, 1),
-(69, 'Comissão - Barba', 'Serviço', 17.00, '2022-06-09', '2022-06-10', '2022-06-09', 6, 6, 'sem-foto.jpg', 2, 'Sim', 0, 0, 2, 11, 1),
-(70, 'Comissão - Barba', 'Serviço', 17.00, '2022-06-09', '2022-06-10', '0000-00-00', 6, 0, 'sem-foto.jpg', 2, 'Não', 0, 0, 2, 10, 1),
-(71, 'Barba', 'Serviço', 17.00, '2022-06-09', '2022-06-10', '2022-06-09', 6, 6, 'sem-foto.jpg', 2, 'Sim', 0, 0, 2, 11, 1),
-(72, 'Barba', 'Serviço', 17.00, '2022-06-09', '2022-06-10', '2022-06-09', 6, 6, 'sem-foto.jpg', 2, 'Sim', 0, 0, 2, 6, 1),
-(73, 'Corte', 'Serviço', 25.00, '2022-06-09', '2022-06-10', '2022-06-09', 6, 6, 'sem-foto.jpg', 3, 'Sim', 0, 0, 1, 6, 1),
-(74, 'Hidrataçao', 'Serviço', 40.00, '2022-06-09', '2022-06-09', '2022-06-09', 6, 6, 'sem-foto.jpg', 2, 'Sim', 0, 0, 5, 6, 1),
-(75, 'Barba', 'Serviço', 60.00, '2022-06-09', '2022-06-09', '2022-06-09', 6, 6, 'sem-foto.jpg', 2, 'Sim', 0, 0, 2, 6, 1),
-(76, 'Luzes', 'Serviço', 80.00, '2022-06-09', '2022-06-09', '2022-06-09', 6, 6, 'sem-foto.jpg', 4, 'Sim', 0, 0, 4, 6, 1),
-(77, 'Unha de Gel', 'Serviço', 100.00, '2022-06-09', '2022-06-10', '2022-06-09', 6, 6, 'sem-foto.jpg', 1, 'Sim', 0, 0, 9, 6, 1),
-(78, 'Barba', 'Serviço', 17.00, '2022-06-09', '2022-06-09', '2022-06-09', 6, 6, 'sem-foto.jpg', 2, 'Sim', 0, 0, 2, 6, 1),
-(79, 'Barba', 'Serviço', 17.00, '2022-06-09', '2022-06-10', '2022-06-09', 6, 6, 'sem-foto.jpg', 2, 'Sim', 0, 0, 2, 10, 1),
-(80, 'Mão e Pé', 'Serviço', 50.00, '2022-06-09', '2022-06-09', '2022-06-09', 6, 6, 'sem-foto.jpg', 3, 'Sim', 0, 0, 8, 12, 1),
-(81, 'Mão e Pé', 'Serviço', 65.00, '2022-06-09', '2022-06-10', '2022-06-09', 6, 6, 'sem-foto.jpg', 2, 'Sim', 0, 0, 8, 12, 1),
-(82, 'Corte', 'Serviço', 25.00, '2022-06-09', '2022-06-09', '2022-06-09', 6, 6, 'sem-foto.jpg', 3, 'Sim', 0, 0, 1, 11, 1),
-(83, 'Barba', 'Serviço', 17.00, '2022-06-09', '2022-06-11', '2022-06-09', 6, 6, 'sem-foto.jpg', 2, 'Sim', 0, 0, 2, 10, 1),
-(84, 'Luzes', 'Serviço', 35.00, '2022-06-09', '2022-06-09', '2022-06-09', 6, 6, 'sem-foto.jpg', 4, 'Sim', 0, 0, 4, 6, 1),
-(85, 'Hidrataçao', 'Serviço', 40.00, '2022-06-09', '2022-06-13', '2022-06-09', 6, 6, 'sem-foto.jpg', 1, 'Sim', 0, 0, 5, 6, 1),
-(86, 'Luzes', 'Serviço', 35.00, '2022-06-09', '2022-06-15', '2022-06-09', 6, 6, 'sem-foto.jpg', 4, 'Sim', 0, 0, 4, 11, 1),
-(87, 'Hidrataçao', 'Serviço', 40.00, '2022-06-09', '2022-06-09', '2022-06-09', 6, 6, 'sem-foto.jpg', 2, 'Sim', 0, 0, 5, 11, 1),
-(88, 'Pagamento Atrasado', 'Conta', 260.00, '2022-06-13', '2022-06-13', '2022-06-13', 6, 6, 'sem-foto.jpg', 0, 'Sim', 0, 0, 0, 0, 1),
-(89, 'Hidrataçao', 'Serviço', 40.00, '2022-06-13', '2022-06-13', '2022-06-13', 6, 6, 'sem-foto.jpg', 3, 'Sim', 0, 0, 5, 11, 1),
-(90, 'Barba', 'Serviço', 17.00, '2022-06-13', '2022-06-13', '2022-06-13', 6, 6, 'sem-foto.jpg', 2, 'Sim', 0, 0, 2, 6, 1),
-(91, 'Barba', 'Serviço', 17.00, '2022-06-13', '2022-06-13', '2022-06-13', 6, 6, 'sem-foto.jpg', 3, 'Sim', 0, 0, 2, 6, 1),
-(92, 'Venda - (4) Gel', 'Venda', 60.00, '2022-06-13', '2022-06-13', '2022-06-13', 6, 6, 'sem-foto.jpg', 2, 'Sim', 4, 4, 0, 0, 1),
-(93, 'Recebimento', 'Conta', 820.00, '2022-06-13', '2022-06-13', '2022-06-13', 6, 6, 'sem-foto.jpg', 0, 'Sim', 0, 0, 0, 0, 1),
-(94, 'Barba', 'Serviço', 17.00, '2022-06-15', '2022-06-15', '2022-06-15', 6, 6, 'sem-foto.jpg', 2, 'Sim', 0, 0, 2, 6, 1),
-(95, 'Barba', 'Serviço', 17.00, '2022-06-15', '2022-06-15', '2022-06-15', 6, 6, 'sem-foto.jpg', 2, 'Sim', 0, 0, 2, 6, 1),
-(96, 'Barba', 'Serviço', 17.00, '2022-06-15', '2022-06-15', '2022-06-15', 6, 6, 'sem-foto.jpg', 2, 'Sim', 0, 0, 2, 6, 1),
-(97, 'Barba', 'Serviço', 17.00, '2022-06-15', '2022-06-15', '2022-06-15', 6, 6, 'sem-foto.jpg', 2, 'Sim', 0, 0, 2, 6, 1),
-(98, 'Corte', 'Serviço', 25.00, '2022-06-15', '2022-06-15', '2022-06-15', 6, 6, 'sem-foto.jpg', 2, 'Sim', 0, 0, 1, 6, 1),
-(99, 'Barba', 'Serviço', 17.00, '2022-06-15', '2022-06-15', '2022-06-15', 6, 6, 'sem-foto.jpg', 3, 'Sim', 0, 0, 2, 10, 1),
-(100, 'Hidrataçao', 'Serviço', 40.00, '2022-06-15', '2022-06-15', '2022-06-15', 6, 6, 'sem-foto.jpg', 3, 'Sim', 0, 0, 5, 10, 1),
-(101, 'Luzes', 'Serviço', 35.00, '2022-06-15', '2022-06-15', '2022-06-15', 6, 6, 'sem-foto.jpg', 3, 'Sim', 0, 0, 4, 10, 1),
-(102, 'Barba', 'Serviço', 17.00, '2022-06-15', '2022-06-15', '2022-06-15', 6, 6, 'sem-foto.jpg', 3, 'Sim', 0, 0, 2, 10, 1),
-(103, 'Hidrataçao', 'Serviço', 50.00, '2022-06-15', '2022-06-15', '2022-06-15', 6, 6, 'sem-foto.jpg', 2, 'Sim', 0, 0, 5, 6, 1),
-(104, 'Barba', 'Serviço', 17.00, '2022-06-15', '2022-06-15', '2022-06-15', 6, 6, 'sem-foto.jpg', 2, 'Sim', 0, 0, 2, 6, 1),
-(105, 'Luzes', 'Serviço', 35.00, '2022-06-15', '2022-06-15', '2022-06-15', 6, 6, 'sem-foto.jpg', 2, 'Sim', 0, 0, 4, 6, 1),
-(106, 'Barba', 'Serviço', 0.00, '2022-06-27', '2022-06-27', '2022-06-27', 6, 6, 'sem-foto.jpg', 2, 'Sim', 0, 0, 2, 11, 1),
-(107, 'Barba', 'Serviço', 17.00, '2022-06-27', '2022-06-27', '2022-06-27', 6, 6, 'sem-foto.jpg', 2, 'Sim', 0, 0, 2, 11, 1),
-(108, 'Barba', 'Serviço', 0.00, '2022-06-27', '2022-06-27', '2022-06-27', 6, 6, 'sem-foto.jpg', 2, 'Sim', 0, 0, 2, 11, 1),
-(109, 'Barba', 'Serviço', 17.00, '2022-06-27', '2022-06-27', '2022-06-27', 6, 6, 'sem-foto.jpg', 2, 'Sim', 0, 0, 2, 11, 1);
+INSERT INTO `receber` (`id`, `descricao`, `tipo`, `valor`, `data_lanc`, `data_venc`, `data_pgto`, `usuario_lanc`, `usuario_baixa`, `foto`, `pessoa`, `pago`, `produto`, `quantidade`, `servico`, `funcionario`, `barbearia_id`, `id_agendamento`) VALUES
+(2, 'Corte + Barba', 'Serviço', 45.00, '2025-03-19', '2025-03-19', '2025-03-18', 6, 6, 'sem-foto.jpg', 1, 'Não', 0, 0, 10, 6, 1, 122);
 
 -- --------------------------------------------------------
 
@@ -1067,6 +997,7 @@ ALTER TABLE `produtos`
 -- Restrições para tabelas `receber`
 --
 ALTER TABLE `receber`
+  ADD CONSTRAINT `id_agendamento` FOREIGN KEY (`id_agendamento`) REFERENCES `agendamentos` (`id`),
   ADD CONSTRAINT `receber_ibfk_1` FOREIGN KEY (`barbearia_id`) REFERENCES `barbearias` (`id`);
 
 --

@@ -79,32 +79,6 @@ if (empty($id)) {
     ]);
     $id_agendamento = $pdo->lastInsertId(); // Captura o ID do agendamento inserido
 
-    // Obter informações do serviço
-    $query = $pdo->prepare("SELECT * FROM servicos WHERE id = :servico");
-    $query->execute(['servico' => $servico]);
-    $res = $query->fetch(PDO::FETCH_ASSOC);
-
-    if ($res) {
-        $nome_servico = $res['nome'];
-        $valor_serv = $res['valor'];
-
-        // Inserir pagamento
-        $query = $pdo->prepare("INSERT INTO receber (descricao, tipo, valor, data_lanc, data_venc, data_pgto, usuario_lanc, usuario_baixa, foto, pessoa, pago, servico, funcionario, id_agendamento)
-                                VALUES (:descricao, 'Serviço', :valor, CURDATE(), :data_venc, :data_pgto, :usuario_lanc, :usuario_baixa, 'sem-foto.jpg', :pessoa, 'Sim', :servico, :funcionario, :id_agendamento)");
-        $query->execute([
-            'descricao' => $nome_servico,
-            'valor' => $valor_serv,
-            'data_venc' => $data,
-            'data_pgto' => $data,
-            'usuario_lanc' => $funcionario,
-            'usuario_baixa' => $funcionario,
-            'pessoa' => $id_cliente,
-            'servico' => $servico,
-            'funcionario' => $funcionario,
-            'id_agendamento' => $id_agendamento
-        ]);
-    }
-
     echo 'Agendado com Sucesso';
 } else {
 
@@ -129,31 +103,6 @@ if (empty($id)) {
         'servico' => $servico,
         'id' => $id
     ]);
-
-    // Obter informações do serviço
-    $query = $pdo->prepare("SELECT * FROM servicos WHERE id = :servico");
-    $query->execute(['servico' => $servico]);
-    $res = $query->fetch(PDO::FETCH_ASSOC);
-
-    if ($res) {
-        $nome_servico = $res['nome'];
-        $valor_serv = $res['valor'];
-
-        // Atualizar a tabela receber
-        $query = $pdo->prepare("UPDATE receber SET descricao = :descricao, valor = :valor, data_venc = :data_venc, data_pgto = :data_pgto, usuario_lanc = :usuario_lanc, usuario_baixa = :usuario_baixa, servico = :servico, funcionario = :funcionario 
-                                WHERE id_agendamento = :id_agendamento");
-        $query->execute([
-            'descricao' => $nome_servico,
-            'valor' => $valor_serv,
-            'data_venc' => $data,
-            'data_pgto' => $data,
-            'usuario_lanc' => $funcionario,
-            'usuario_baixa' => $funcionario,
-            'servico' => $servico,
-            'funcionario' => $funcionario,
-            'id_agendamento' => $id
-        ]);
-    }
 
     echo 'Editado com Sucesso';
 }
