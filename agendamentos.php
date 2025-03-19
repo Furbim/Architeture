@@ -68,14 +68,7 @@ $temAgendamentos = count($agendamentos) > 0;
 			<form id="form-agenda" method="post"
 				style="margin-top: -25px !important; <?= $temAgendamentos ? 'display: none;' : '' ?>">
 				<div class="footer_form footer-col">
-					<div class="form-group">
-						<input oninput="buscarNome()" class="form-control" type="text" name="telefone" id="telefone"
-							value='<?= $telefone ?>' placeholder="Seu Telefone DDD + número" required disabled />
-					</div>
-					<div class="form-group">
-						<input onclick="buscarNome()" class="form-control" type="text" name="nome" id="nome"
-							value="<?= $nome ?>" placeholder="Seu Nome" required disabled />
-					</div>
+
 					<div class="form-group">
 						<input onchange="mudarFuncionario()" class="form-control" type="date" name="data" id="data"
 							value="<?= date('Y-m-d') ?>" min="<?= date('Y-m-d') ?>" required />
