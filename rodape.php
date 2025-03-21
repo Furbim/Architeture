@@ -41,29 +41,14 @@
             </a>
           </div>
         </div>
-        <div class="col-lg-3">
-          <div class="footer_form footer-col">
-            <h4>
-              CADASTRE-SE
-            </h4>
-            <form id="form_cadastro" method="post" action="entrar.php">
-              <input type="text" name="telefone" id="telefone_rodape" placeholder="Seu Telefone DDD + número" />
-              <input type="text" name="nome" placeholder="Seu Nome" />
-              <button type="submit">
-                Cadastrar
-              </button>
-            </form>
-            <br><small>
-              <div id="mensagem-rodape"></div>
-            </small>
-          </div>
-        </div>
       </div>
     </div>
   </div>
 
 </footer>
 <!-- footer section -->
+
+
 
 <!-- jQuery (Mantido para compatibilidade com máscaras e Owl Carousel) -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>

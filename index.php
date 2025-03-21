@@ -43,7 +43,7 @@ if ($total_reg > 0) {
                     <div class="btn-box">
                       <a href="http://api.whatsapp.com/send?1=pt_BR&phone=<?php echo $tel_whatsapp ?>" target="_blank"
                         class="btn1">
-                        Contate-nos
+                        Agendar um Horário
                       </a>
                     </div>
                   </div>
@@ -318,7 +318,8 @@ if ($total_reg > 0) {
 <!-- end contact section -->
 
 <!-- client section -->
-<?php
+ 
+<?php /*
 $query = $pdo->query("SELECT * FROM comentarios where ativo = 'Sim' and barbearia_id = $barbershop_id ORDER BY id asc");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $total_reg = @count($res);
@@ -336,7 +337,7 @@ if ($total_reg > 0) {
           <div class="owl-carousel client_owl-carousel">
 
             <?php
-            for ($i = 0; $i < $total_reg; $i++) {
+           for ($i = 0; $i < $total_reg; $i++) {
               foreach ($res[$i] as $key => $value) {
               }
 
@@ -378,13 +379,12 @@ if ($total_reg > 0) {
     </div>
 
   </section>
+ *
+<?php} */ ?>
 
-<?php } ?>
-
-<!-- end client section -->
+ <!-- end client section -->
 
 <?php require_once("rodape.php") ?>
-
 
 
 
