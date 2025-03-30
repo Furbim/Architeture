@@ -351,7 +351,7 @@ for ($i = 1; $i <= 12; $i++) {
         <div class="col-md-4 stat">
             <div class="content-top-1">
                 <div class="col-md-7 top-content">
-                    <h5>Serviços Pagos Hoje</h5>
+                    <h5>Serviços Concluídos Hoje</h5>
                     <label><?php echo $total_servicos_hoje ?>+</label>
                 </div>
                 <div class="col-md-5 top-content1">
@@ -462,7 +462,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     borderWidth: 1
                 },
                 {
-                    label: "Vendas R$",
+                    label: "Produtos R$",
                     data: saldo_mes_venda,
                     backgroundColor: "rgba(46, 204, 113, 0.7)",
                     borderColor: "#2ecc71",
@@ -490,7 +490,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
                 },
                 title: {
-                    display: true,
+                    display: false,
                     text: "Demonstrativo Financeiro",
                     font: {
                         size: 18

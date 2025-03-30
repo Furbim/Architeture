@@ -29,6 +29,7 @@ $query = $pdo->prepare("SELECT * FROM dias WHERE funcionario = :funcionario AND 
 $query->execute(['funcionario' => $funcionario, 'dia' => $dia_procurado]);
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 
+
 if (count($res) == 0) {
 	echo 'Este Funcionário não trabalha neste Dia!';
 	exit();
@@ -60,6 +61,7 @@ if (count($res) == 0) {
 			$query2 = $pdo->prepare("SELECT * FROM agendamentos WHERE data = :data AND hora = :hora AND funcionario = :funcionario");
 			$query2->execute(['data' => $data, 'hora' => $hora, 'funcionario' => $funcionario]);
 			$res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
+
 
 			// Se o horário não estiver agendado ou for o horário selecionado, exibir o radio button
 			if (count($res2) == 0 || $hora_rec == $hora) {
