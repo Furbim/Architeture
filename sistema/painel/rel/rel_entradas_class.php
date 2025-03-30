@@ -1,46 +1,29 @@
-<?php 
-
-include('../../conexao.php');
+<?php
+require_once("../../conexao.php");
 
 $dataInicial = $_POST['dataInicial'];
 $dataFinal = $_POST['dataFinal'];
-$filtro = urlencode($_POST['filtro']);
+$filtro = $_POST['filtro'] ?? '';
 
-//ALIMENTAR OS DADOS NO RELATÓRIO
-$html = file_get_contents($url_sistema."sistema/painel/rel/rel_entradas.php?dataInicial=$dataInicial&dataFinal=$dataFinal&filtro=$filtro");
+$query = $pdo->prepare("SELECT * FROM receber WHERE data BETWEEN :dataInicial AND :dataFinal AND (:filtro = '' OR descricao = :filtro) ORDER BY data");
+$query->bindValue(':dataInicial', $dataInicial);
+$query->bindValue(':dataFinal', $dataFinal);
+$query->bindValue(':filtro', $filtro);
+$query->execute();
+$itens = $query->fetchAll(PDO::FETCH_ASSOC);
 
-if($tipo_rel != 'PDF'){
-	echo $html;
-	exit();
+$total = 0;
+foreach($itens as $item) {
+    $total += $item['valor'];
 }
 
-//CARREGAR DOMPDF
-require_once '../../dompdf/autoload.inc.php';
-use Dompdf\Dompdf;
-use Dompdf\Options;
-
-header("Content-Transfer-Encoding: binary");
-header("Content-Type: image/png");
-
-//INICIALIZAR A CLASSE DO DOMPDF
-$options = new Options();
-$options->set('isRemoteEnabled', true);
-$pdf = new DOMPDF($options);
-
-
-
-//Definir o tamanho do papel e orientação da página
-$pdf->set_paper('A4', 'portrait');
-
-//CARREGAR O CONTEÚDO HTML
-$pdf->load_html($html);
-
-//RENDERIZAR O PDF
-$pdf->render();
-
-//NOMEAR O PDF GERADO
-$pdf->stream(
-'entradas.pdf',
-array("Attachment" => false)
-);
-?>
+header('Content-Type: application/json');
+echo json_encode([
+    'itens' => $itens,
+    'total' => $total,
+    'periodo' => [
+        'dataInicial' => $dataInicial,
+        'dataFinal' => $dataFinal
+    ],
+    'filtro' => $filtro ?: 'Todos'
+]);
