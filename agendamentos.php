@@ -27,7 +27,7 @@ $query = $pdo->prepare("SELECT
     FROM agendamentos
     INNER JOIN usuarios ON usuarios.id = agendamentos.funcionario
     INNER JOIN servicos ON servicos.id = agendamentos.servico
-    WHERE agendamentos.cliente = :id_cliente AND agendamentos.status = 'Agendado'
+    WHERE agendamentos.cliente = :id_cliente AND agendamentos.status = 'Agendado' AND agendamentos.data >= CURDATE() 
     ORDER BY agendamentos.data DESC;");
 
 $query->execute(['id_cliente' => $id_cliente]);

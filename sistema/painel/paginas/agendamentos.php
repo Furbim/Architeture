@@ -470,35 +470,37 @@ if(@$agendamentos == 'ocultar'){
 
 <script>
 
-	$("#form-servico").submit(function () {
-		event.preventDefault();
-		
-		var formData = new FormData(this);
+$("#form-servico").submit(function (event) {
+    event.preventDefault();
+    
+    var formData = new FormData(this);
 
-		$.ajax({
-			url: 'paginas/' + pag +  "/inserir-servico.php",
-			type: 'POST',
-			data: formData,
-
-			success: function (mensagem) {
-				$('#mensagem-servico').text('');
-				$('#mensagem-servico').removeClass()
-				if (mensagem.trim() == "Salvo com Sucesso") {                    
-					$('#btn-fechar-servico').click();
-					listar();
-				} else {
-					$('#mensagem-servico').addClass('text-danger')
-					$('#mensagem-servico').text(mensagem)
-				}
-
-			},
-
-			cache: false,
-			contentType: false,
-			processData: false,
-
-		});
-
-	});
+    $.ajax({
+        url: 'paginas/' + pag + "/inserir-servico.php",
+        type: 'POST',
+        data: formData,
+        success: function (mensagem) {
+            $('#mensagem-servico').text('');
+            $('#mensagem-servico').removeClass();
+            if (mensagem.trim() == "Salvo com Sucesso") {                    
+                $('#btn-fechar-servico').click();
+                listar();
+                // Adicione um alerta ou feedback visual
+                alert('Serviço concluído com sucesso!');
+            } else {
+                $('#mensagem-servico').addClass('text-danger');
+                $('#mensagem-servico').text(mensagem);
+                alert('Erro: ' + mensagem);
+            }
+        },
+        error: function() {
+            alert('Erro na comunicação com o servidor');
+        },
+        cache: false,
+        contentType: false,
+        processData: false,
+    });
+});
 
 </script>
+

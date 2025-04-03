@@ -152,14 +152,13 @@ HTML;
 
 <script type="text/javascript">
 	function fecharServico(id, cliente, servico, valor_servico, funcionario, nome_serv){
-	
 		$('#id_agd').val(id);
-		$('#cliente_agd').val(cliente);		
-		$('#servico_agd').val(servico);	
-		$('#valor_serv_agd').val(valor_servico);	
-		$('#funcionario_agd').val(funcionario).change();	
-		$('#titulo_servico').text(nome_serv);	
-		$('#descricao_serv_agd').val(nome_serv);	
+		$('#cliente_agd').val(cliente);        
+		$('#servico_agd').val(servico);    
+		$('#valor_serv_agd').val(valor_servico);    
+		$('#funcionario_agd').val(funcionario).change();    
+		$('#titulo_servico').text(nome_serv);    
+		$('#descricao_serv_agd').val(nome_serv);    
 
 		$('#modalServico').modal('show');
 	}
