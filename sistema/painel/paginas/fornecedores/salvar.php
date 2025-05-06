@@ -11,7 +11,7 @@ $chave_pix = $_POST['chave_pix'];
 
 
 //validar tel
-$query = $pdo->query("SELECT * from $tabela where telefone = '$telefone'");
+$query = $pdo->query("SELECT * from $tabela where telefone = '$telefone' and barbearia_id = $barbershop_id");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 if(@count($res) > 0 and $id != $res[0]['id']){
 	echo 'Telefone já Cadastrado, escolha outro!!';
@@ -20,7 +20,7 @@ if(@count($res) > 0 and $id != $res[0]['id']){
 
 
 if($id == ""){
-	$query = $pdo->prepare("INSERT INTO $tabela SET nome = :nome, telefone = :telefone, data_cad = curDate(), endereco = :endereco, tipo_chave = '$tipo_chave', chave_pix = :chave_pix");
+	$query = $pdo->prepare("INSERT INTO $tabela SET nome = :nome, telefone = :telefone, data_cad = curDate(), endereco = :endereco, tipo_chave = '$tipo_chave', chave_pix = :chave_pix, barbearia_id = $barbershop_id");
 }else{
 	$query = $pdo->prepare("UPDATE $tabela SET nome = :nome, telefone = :telefone,  endereco = :endereco, tipo_chave = '$tipo_chave', chave_pix = :chave_pix WHERE id = '$id'");
 }
