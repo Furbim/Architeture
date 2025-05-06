@@ -89,14 +89,14 @@
 	 *
 	 *  @example
 	 *    // Basic initialisation
-	 *    $(document).ready( function {
+	 *    document.addEventListener("DOMContentLoaded",  function {
 	 *      $('#example').dataTable();
 	 *    } );
 	 *
 	 *  @example
 	 *    // Initialisation with configuration options - in this case, disable
 	 *    // pagination and sorting.
-	 *    $(document).ready( function {
+	 *    document.addEventListener("DOMContentLoaded",  function {
 	 *      $('#example').dataTable( {
 	 *        "paginate": false,
 	 *        "sort": false
@@ -123,7 +123,7 @@
 		 *  @deprecated Since v1.10
 		 *
 		 *  @example
-		 *    $(document).ready(function() {
+		 *    document.addEventListener("DOMContentLoaded", function() {
 		 *      var oTable = $('#example').dataTable();
 		 *
 		 *      // Highlight every second row
@@ -131,7 +131,7 @@
 		 *    } );
 		 *
 		 *  @example
-		 *    $(document).ready(function() {
+		 *    document.addEventListener("DOMContentLoaded", function() {
 		 *      var oTable = $('#example').dataTable();
 		 *
 		 *      // Filter to rows with 'Webkit' in them, add a background colour and then
@@ -173,7 +173,7 @@
 		 *  @deprecated Since v1.10
 		 *
 		 *  @example
-		 *    $(document).ready(function() {
+		 *    document.addEventListener("DOMContentLoaded", function() {
 		 *      var oTable = $('#example').dataTable();
 		 *
 		 *      // Get the data from the first row in the table
@@ -184,7 +184,7 @@
 		 *    } );
 		 *
 		 *  @example
-		 *    $(document).ready(function() {
+		 *    document.addEventListener("DOMContentLoaded", function() {
 		 *      var oTable = $('#example').dataTable();
 		 *
 		 *      // Filter to 'Webkit' and get all data for
@@ -243,7 +243,7 @@
 		 *    // Global var for counter
 		 *    var giCount = 2;
 		 *
-		 *    $(document).ready(function() {
+		 *    document.addEventListener("DOMContentLoaded", function() {
 		 *      $('#example').dataTable();
 		 *    } );
 		 *
@@ -285,7 +285,7 @@
 		 *  @deprecated Since v1.10
 		 *
 		 *  @example
-		 *    $(document).ready(function() {
+		 *    document.addEventListener("DOMContentLoaded", function() {
 		 *      var oTable = $('#example').dataTable( {
 		 *        "sScrollY": "200px",
 		 *        "bPaginate": false
@@ -319,7 +319,7 @@
 		 *  @deprecated Since v1.10
 		 *
 		 *  @example
-		 *    $(document).ready(function() {
+		 *    document.addEventListener("DOMContentLoaded", function() {
 		 *      var oTable = $('#example').dataTable();
 		 *
 		 *      // Immediately 'nuke' the current rows (perhaps waiting for an Ajax callback...)
@@ -345,7 +345,7 @@
 		 *  @deprecated Since v1.10
 		 *
 		 *  @example
-		 *    $(document).ready(function() {
+		 *    document.addEventListener("DOMContentLoaded", function() {
 		 *      var oTable;
 		 *
 		 *      // 'open' an information row when a row is clicked on
@@ -377,7 +377,7 @@
 		 *  @deprecated Since v1.10
 		 *
 		 *  @example
-		 *    $(document).ready(function() {
+		 *    document.addEventListener("DOMContentLoaded", function() {
 		 *      var oTable = $('#example').dataTable();
 		 *
 		 *      // Immediately remove the first row
@@ -413,7 +413,7 @@
 		 *  @deprecated Since v1.10
 		 *
 		 *  @example
-		 *    $(document).ready(function() {
+		 *    document.addEventListener("DOMContentLoaded", function() {
 		 *      // This example is fairly pointless in reality, but shows how fnDestroy can be used
 		 *      var oTable = $('#example').dataTable();
 		 *      oTable.fnDestroy();
@@ -432,7 +432,7 @@
 		 *  @deprecated Since v1.10
 		 *
 		 *  @example
-		 *    $(document).ready(function() {
+		 *    document.addEventListener("DOMContentLoaded", function() {
 		 *      var oTable = $('#example').dataTable();
 		 *
 		 *      // Re-draw the table - you wouldn't want to do it here, but it's an example :-)
@@ -459,7 +459,7 @@
 		 *  @deprecated Since v1.10
 		 *
 		 *  @example
-		 *    $(document).ready(function() {
+		 *    document.addEventListener("DOMContentLoaded", function() {
 		 *      var oTable = $('#example').dataTable();
 		 *
 		 *      // Sometime later - filter...
@@ -498,7 +498,7 @@
 		 *
 		 *  @example
 		 *    // Row data
-		 *    $(document).ready(function() {
+		 *    document.addEventListener("DOMContentLoaded", function() {
 		 *      oTable = $('#example').dataTable();
 		 *
 		 *      oTable.$('tr').click( function () {
@@ -509,7 +509,7 @@
 		 *
 		 *  @example
 		 *    // Individual cell data
-		 *    $(document).ready(function() {
+		 *    document.addEventListener("DOMContentLoaded", function() {
 		 *      oTable = $('#example').dataTable();
 		 *
 		 *      oTable.$('td').click( function () {
@@ -545,7 +545,7 @@
 		 *  @deprecated Since v1.10
 		 *
 		 *  @example
-		 *    $(document).ready(function() {
+		 *    document.addEventListener("DOMContentLoaded", function() {
 		 *      var oTable = $('#example').dataTable();
 		 *
 		 *      // Get the nodes from the table
@@ -573,7 +573,7 @@
 		 *  @deprecated Since v1.10
 		 *
 		 *  @example
-		 *    $(document).ready(function() {
+		 *    document.addEventListener("DOMContentLoaded", function() {
 		 *      $('#example tbody td').click( function () {
 		 *        // Get the position of the current data from the node
 		 *        var aPos = oTable.fnGetPosition( this );
@@ -619,7 +619,7 @@
 		 *  @deprecated Since v1.10
 		 *
 		 *  @example
-		 *    $(document).ready(function() {
+		 *    document.addEventListener("DOMContentLoaded", function() {
 		 *      var oTable;
 		 *
 		 *      // 'open' an information row when a row is clicked on
@@ -655,7 +655,7 @@
 		 *  @deprecated Since v1.10
 		 *
 		 *  @example
-		 *    $(document).ready(function() {
+		 *    document.addEventListener("DOMContentLoaded", function() {
 		 *      var oTable;
 		 *
 		 *      // 'open' an information row when a row is clicked on
@@ -691,7 +691,7 @@
 		 *  @deprecated Since v1.10
 		 *
 		 *  @example
-		 *    $(document).ready(function() {
+		 *    document.addEventListener("DOMContentLoaded", function() {
 		 *      var oTable = $('#example').dataTable();
 		 *      oTable.fnPageChange( 'next' );
 		 *    } );
@@ -715,7 +715,7 @@
 		 *  @deprecated Since v1.10
 		 *
 		 *  @example
-		 *    $(document).ready(function() {
+		 *    document.addEventListener("DOMContentLoaded", function() {
 		 *      var oTable = $('#example').dataTable();
 		 *
 		 *      // Hide the second column after initialisation
@@ -740,7 +740,7 @@
 		 *  @deprecated Since v1.10
 		 *
 		 *  @example
-		 *    $(document).ready(function() {
+		 *    document.addEventListener("DOMContentLoaded", function() {
 		 *      var oTable = $('#example').dataTable();
 		 *      var oSettings = oTable.fnSettings();
 		 *
@@ -762,7 +762,7 @@
 		 *  @deprecated Since v1.10
 		 *
 		 *  @example
-		 *    $(document).ready(function() {
+		 *    document.addEventListener("DOMContentLoaded", function() {
 		 *      var oTable = $('#example').dataTable();
 		 *
 		 *      // Sort immediately with columns 0 and 1
@@ -784,7 +784,7 @@
 		 *  @deprecated Since v1.10
 		 *
 		 *  @example
-		 *    $(document).ready(function() {
+		 *    document.addEventListener("DOMContentLoaded", function() {
 		 *      var oTable = $('#example').dataTable();
 		 *
 		 *      // Sort on column 1, when 'sorter' is clicked on
@@ -813,7 +813,7 @@
 		 *  @deprecated Since v1.10
 		 *
 		 *  @example
-		 *    $(document).ready(function() {
+		 *    document.addEventListener("DOMContentLoaded", function() {
 		 *      var oTable = $('#example').dataTable();
 		 *      oTable.fnUpdate( 'Example update', 0, 0 ); // Single cell
 		 *      oTable.fnUpdate( ['a', 'b', 'c', 'd', 'e'], $('tbody tr')[0] ); // Row
@@ -853,7 +853,7 @@
 		 *  @deprecated Since v1.10
 		 *
 		 *  @example
-		 *    $(document).ready(function() {
+		 *    document.addEventListener("DOMContentLoaded", function() {
 		 *      var oTable = $('#example').dataTable();
 		 *      alert( oTable.fnVersionCheck( '1.9.0' ) );
 		 *    } );
@@ -9987,7 +9987,7 @@
 		 *
 		 *  @example
 		 *    // Using a 2D array data source
-		 *    $(document).ready( function () {
+		 *    document.addEventListener("DOMContentLoaded",  function () {
 		 *      $('#example').dataTable( {
 		 *        "data": [
 		 *          ['Trident', 'Internet Explorer 4.0', 'Win 95+', 4, 'X'],
@@ -10005,7 +10005,7 @@
 		 *
 		 *  @example
 		 *    // Using an array of objects as a data source (`data`)
-		 *    $(document).ready( function () {
+		 *    document.addEventListener("DOMContentLoaded",  function () {
 		 *      $('#example').dataTable( {
 		 *        "data": [
 		 *          {
@@ -10050,14 +10050,14 @@
 		 *
 		 *  @example
 		 *    // Sort by 3rd column first, and then 4th column
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "order": [[2,'asc'], [3,'desc']]
 		 *      } );
 		 *    } );
 		 *
 		 *    // No initial sorting
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "order": []
 		 *      } );
@@ -10080,7 +10080,7 @@
 		 *  @name DataTable.defaults.orderFixed
 		 *
 		 *  @example
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "orderFixed": [[0,'asc']]
 		 *      } );
@@ -10263,7 +10263,7 @@
 		 *  @name DataTable.defaults.lengthMenu
 		 *
 		 *  @example
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
 		 *      } );
@@ -10321,7 +10321,7 @@
 		 *  @name DataTable.defaults.searchCols
 		 *
 		 *  @example
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "searchCols": [
 		 *          null,
@@ -10347,7 +10347,7 @@
 		 *  @name DataTable.defaults.stripeClasses
 		 *
 		 *  @example
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "stripeClasses": [ 'strip1', 'strip2', 'strip3' ]
 		 *      } );
@@ -10367,7 +10367,7 @@
 		 *  @name DataTable.defaults.autoWidth
 		 *
 		 *  @example
-		 *    $(document).ready( function () {
+		 *    document.addEventListener("DOMContentLoaded",  function () {
 		 *      $('#example').dataTable( {
 		 *        "autoWidth": false
 		 *      } );
@@ -10389,7 +10389,7 @@
 		 *  @name DataTable.defaults.deferRender
 		 *
 		 *  @example
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "ajax": "sources/arrays.txt",
 		 *        "deferRender": true
@@ -10411,7 +10411,7 @@
 		 *  @name DataTable.defaults.destroy
 		 *
 		 *  @example
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "srollY": "200px",
 		 *        "paginate": false
@@ -10442,7 +10442,7 @@
 		 *  @name DataTable.defaults.searching
 		 *
 		 *  @example
-		 *    $(document).ready( function () {
+		 *    document.addEventListener("DOMContentLoaded",  function () {
 		 *      $('#example').dataTable( {
 		 *        "searching": false
 		 *      } );
@@ -10462,7 +10462,7 @@
 		 *  @name DataTable.defaults.info
 		 *
 		 *  @example
-		 *    $(document).ready( function () {
+		 *    document.addEventListener("DOMContentLoaded",  function () {
 		 *      $('#example').dataTable( {
 		 *        "info": false
 		 *      } );
@@ -10481,7 +10481,7 @@
 		 *  @name DataTable.defaults.lengthChange
 		 *
 		 *  @example
-		 *    $(document).ready( function () {
+		 *    document.addEventListener("DOMContentLoaded",  function () {
 		 *      $('#example').dataTable( {
 		 *        "lengthChange": false
 		 *      } );
@@ -10499,7 +10499,7 @@
 		 *  @name DataTable.defaults.paging
 		 *
 		 *  @example
-		 *    $(document).ready( function () {
+		 *    document.addEventListener("DOMContentLoaded",  function () {
 		 *      $('#example').dataTable( {
 		 *        "paging": false
 		 *      } );
@@ -10520,7 +10520,7 @@
 		 *  @name DataTable.defaults.processing
 		 *
 		 *  @example
-		 *    $(document).ready( function () {
+		 *    document.addEventListener("DOMContentLoaded",  function () {
 		 *      $('#example').dataTable( {
 		 *        "processing": true
 		 *      } );
@@ -10544,7 +10544,7 @@
 		 *  @name DataTable.defaults.retrieve
 		 *
 		 *  @example
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      initTable();
 		 *      tableActions();
 		 *    } );
@@ -10581,7 +10581,7 @@
 		 *  @name DataTable.defaults.scrollCollapse
 		 *
 		 *  @example
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "scrollY": "200",
 		 *        "scrollCollapse": true
@@ -10603,7 +10603,7 @@
 		 *  @name DataTable.defaults.serverSide
 		 *
 		 *  @example
-		 *    $(document).ready( function () {
+		 *    document.addEventListener("DOMContentLoaded",  function () {
 		 *      $('#example').dataTable( {
 		 *        "serverSide": true,
 		 *        "ajax": "xhr.php"
@@ -10623,7 +10623,7 @@
 		 *  @name DataTable.defaults.ordering
 		 *
 		 *  @example
-		 *    $(document).ready( function () {
+		 *    document.addEventListener("DOMContentLoaded",  function () {
 		 *      $('#example').dataTable( {
 		 *        "ordering": false
 		 *      } );
@@ -10643,7 +10643,7 @@
 		 *
 		 *  @example
 		 *    // Disable multiple column sorting ability
-		 *    $(document).ready( function () {
+		 *    document.addEventListener("DOMContentLoaded",  function () {
 		 *      $('#example').dataTable( {
 		 *        "orderMulti": false
 		 *      } );
@@ -10663,7 +10663,7 @@
 		 *  @name DataTable.defaults.orderCellsTop
 		 *
 		 *  @example
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "orderCellsTop": true
 		 *      } );
@@ -10685,7 +10685,7 @@
 		 *  @name DataTable.defaults.orderClasses
 		 *
 		 *  @example
-		 *    $(document).ready( function () {
+		 *    document.addEventListener("DOMContentLoaded",  function () {
 		 *      $('#example').dataTable( {
 		 *        "orderClasses": false
 		 *      } );
@@ -10710,7 +10710,7 @@
 		 *  @name DataTable.defaults.stateSave
 		 *
 		 *  @example
-		 *    $(document).ready( function () {
+		 *    document.addEventListener("DOMContentLoaded",  function () {
 		 *      $('#example').dataTable( {
 		 *        "stateSave": true
 		 *      } );
@@ -10732,7 +10732,7 @@
 		 *  @name DataTable.defaults.createdRow
 		 *
 		 *  @example
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "createdRow": function( row, data, dataIndex ) {
 		 *          // Bold the grade for all 'A' grade browsers
@@ -10757,7 +10757,7 @@
 		 *  @name DataTable.defaults.drawCallback
 		 *
 		 *  @example
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "drawCallback": function( settings ) {
 		 *          alert( 'DataTables has redrawn the table' );
@@ -10785,7 +10785,7 @@
 		 *  @name DataTable.defaults.footerCallback
 		 *
 		 *  @example
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "footerCallback": function( tfoot, data, start, end, display ) {
 		 *          tfoot.getElementsByTagName('th')[0].innerHTML = "Starting index is "+start;
@@ -10813,7 +10813,7 @@
 		 *  @example
 		 *    // Format a number using a single quote for the separator (note that
 		 *    // this can also be done with the language.thousands option)
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "formatNumber": function ( toFormat ) {
 		 *          return toFormat.toString().replace(
@@ -10849,7 +10849,7 @@
 		 *  @name DataTable.defaults.headerCallback
 		 *
 		 *  @example
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "fheaderCallback": function( head, data, start, end, display ) {
 		 *          head.getElementsByTagName('th')[0].innerHTML = "Displaying "+(end-start)+" records";
@@ -10904,7 +10904,7 @@
 		 *  @name DataTable.defaults.initComplete
 		 *
 		 *  @example
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "initComplete": function(settings, json) {
 		 *          alert( 'DataTables has finished its initialisation.' );
@@ -10928,7 +10928,7 @@
 		 *  @name DataTable.defaults.preDrawCallback
 		 *
 		 *  @example
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "preDrawCallback": function( settings ) {
 		 *          if ( $('#test').val() == 1 ) {
@@ -10956,7 +10956,7 @@
 		 *  @name DataTable.defaults.rowCallback
 		 *
 		 *  @example
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "rowCallback": function( row, data, displayIndex, displayIndexFull ) {
 		 *          // Bold the grade for all 'A' grade browsers
@@ -11038,7 +11038,7 @@
 		 *  @name DataTable.defaults.stateLoadCallback
 		 *
 		 *  @example
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "stateSave": true,
 		 *        "stateLoadCallback": function (settings, callback) {
@@ -11081,7 +11081,7 @@
 		 *
 		 *  @example
 		 *    // Remove a saved filter, so filtering is never loaded
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "stateSave": true,
 		 *        "stateLoadParams": function (settings, data) {
@@ -11092,7 +11092,7 @@
 		 *
 		 *  @example
 		 *    // Disallow state loading by returning false
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "stateSave": true,
 		 *        "stateLoadParams": function (settings, data) {
@@ -11116,7 +11116,7 @@
 		 *
 		 *  @example
 		 *    // Show an alert with the filtering value that was saved
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "stateSave": true,
 		 *        "stateLoaded": function (settings, data) {
@@ -11141,7 +11141,7 @@
 		 *  @name DataTable.defaults.stateSaveCallback
 		 *
 		 *  @example
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "stateSave": true,
 		 *        "stateSaveCallback": function (settings, data) {
@@ -11182,7 +11182,7 @@
 		 *
 		 *  @example
 		 *    // Remove a saved filter, so filtering is never saved
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "stateSave": true,
 		 *        "stateSaveParams": function (settings, data) {
@@ -11205,7 +11205,7 @@
 		 *  @name DataTable.defaults.stateDuration
 		 *
 		 *  @example
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "stateDuration": 60*60*24; // 1 day
 		 *      } );
@@ -11234,7 +11234,7 @@
 		 *
 		 *  @example
 		 *    // 57 records available in the table, no filtering applied
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "serverSide": true,
 		 *        "ajax": "scripts/server_processing.php",
@@ -11244,7 +11244,7 @@
 		 *
 		 *  @example
 		 *    // 57 records after filtering, 100 without filtering (an initial filter applied)
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "serverSide": true,
 		 *        "ajax": "scripts/server_processing.php",
@@ -11269,7 +11269,7 @@
 		 *  @name DataTable.defaults.pageLength
 		 *
 		 *  @example
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "pageLength": 50
 		 *      } );
@@ -11290,7 +11290,7 @@
 		 *  @name DataTable.defaults.displayStart
 		 *
 		 *  @example
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "displayStart": 20
 		 *      } );
@@ -11313,7 +11313,7 @@
 		 *  @name DataTable.defaults.tabIndex
 		 *
 		 *  @example
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "tabIndex": 1
 		 *      } );
@@ -11360,7 +11360,7 @@
 				 *  @name DataTable.defaults.language.aria.sortAscending
 				 *
 				 *  @example
-				 *    $(document).ready( function() {
+				 *    document.addEventListener("DOMContentLoaded",  function() {
 				 *      $('#example').dataTable( {
 				 *        "language": {
 				 *          "aria": {
@@ -11383,7 +11383,7 @@
 				 *  @name DataTable.defaults.language.aria.sortDescending
 				 *
 				 *  @example
-				 *    $(document).ready( function() {
+				 *    document.addEventListener("DOMContentLoaded",  function() {
 				 *      $('#example').dataTable( {
 				 *        "language": {
 				 *          "aria": {
@@ -11413,7 +11413,7 @@
 				 *  @name DataTable.defaults.language.paginate.first
 				 *
 				 *  @example
-				 *    $(document).ready( function() {
+				 *    document.addEventListener("DOMContentLoaded",  function() {
 				 *      $('#example').dataTable( {
 				 *        "language": {
 				 *          "paginate": {
@@ -11436,7 +11436,7 @@
 				 *  @name DataTable.defaults.language.paginate.last
 				 *
 				 *  @example
-				 *    $(document).ready( function() {
+				 *    document.addEventListener("DOMContentLoaded",  function() {
 				 *      $('#example').dataTable( {
 				 *        "language": {
 				 *          "paginate": {
@@ -11459,7 +11459,7 @@
 				 *  @name DataTable.defaults.language.paginate.next
 				 *
 				 *  @example
-				 *    $(document).ready( function() {
+				 *    document.addEventListener("DOMContentLoaded",  function() {
 				 *      $('#example').dataTable( {
 				 *        "language": {
 				 *          "paginate": {
@@ -11482,7 +11482,7 @@
 				 *  @name DataTable.defaults.language.paginate.previous
 				 *
 				 *  @example
-				 *    $(document).ready( function() {
+				 *    document.addEventListener("DOMContentLoaded",  function() {
 				 *      $('#example').dataTable( {
 				 *        "language": {
 				 *          "paginate": {
@@ -11507,7 +11507,7 @@
 			 *  @name DataTable.defaults.language.emptyTable
 			 *
 			 *  @example
-			 *    $(document).ready( function() {
+			 *    document.addEventListener("DOMContentLoaded",  function() {
 			 *      $('#example').dataTable( {
 			 *        "language": {
 			 *          "emptyTable": "No data available in table"
@@ -11539,7 +11539,7 @@
 			 *  @name DataTable.defaults.language.info
 			 *
 			 *  @example
-			 *    $(document).ready( function() {
+			 *    document.addEventListener("DOMContentLoaded",  function() {
 			 *      $('#example').dataTable( {
 			 *        "language": {
 			 *          "info": "Showing page _PAGE_ of _PAGES_"
@@ -11560,7 +11560,7 @@
 			 *  @name DataTable.defaults.language.infoEmpty
 			 *
 			 *  @example
-			 *    $(document).ready( function() {
+			 *    document.addEventListener("DOMContentLoaded",  function() {
 			 *      $('#example').dataTable( {
 			 *        "language": {
 			 *          "infoEmpty": "No entries to show"
@@ -11582,7 +11582,7 @@
 			 *  @name DataTable.defaults.language.infoFiltered
 			 *
 			 *  @example
-			 *    $(document).ready( function() {
+			 *    document.addEventListener("DOMContentLoaded",  function() {
 			 *      $('#example').dataTable( {
 			 *        "language": {
 			 *          "infoFiltered": " - filtering from _MAX_ records"
@@ -11605,7 +11605,7 @@
 			 *  @name DataTable.defaults.language.infoPostFix
 			 *
 			 *  @example
-			 *    $(document).ready( function() {
+			 *    document.addEventListener("DOMContentLoaded",  function() {
 			 *      $('#example').dataTable( {
 			 *        "language": {
 			 *          "infoPostFix": "All records shown are derived from real information."
@@ -11635,7 +11635,7 @@
 			 *  @name DataTable.defaults.language.decimal
 			 *
 			 *  @example
-			 *    $(document).ready( function() {
+			 *    document.addEventListener("DOMContentLoaded",  function() {
 			 *      $('#example').dataTable( {
 			 *        "language": {
 			 *          "decimal": ","
@@ -11659,7 +11659,7 @@
 			 *  @name DataTable.defaults.language.thousands
 			 *
 			 *  @example
-			 *    $(document).ready( function() {
+			 *    document.addEventListener("DOMContentLoaded",  function() {
 			 *      $('#example').dataTable( {
 			 *        "language": {
 			 *          "thousands": "'"
@@ -11683,7 +11683,7 @@
 			 *
 			 *  @example
 			 *    // Language change only
-			 *    $(document).ready( function() {
+			 *    document.addEventListener("DOMContentLoaded",  function() {
 			 *      $('#example').dataTable( {
 			 *        "language": {
 			 *          "lengthMenu": "Display _MENU_ records"
@@ -11693,7 +11693,7 @@
 			 *
 			 *  @example
 			 *    // Language and options change
-			 *    $(document).ready( function() {
+			 *    document.addEventListener("DOMContentLoaded",  function() {
 			 *      $('#example').dataTable( {
 			 *        "language": {
 			 *          "lengthMenu": 'Display <select>'+
@@ -11724,7 +11724,7 @@
 			 *  @name DataTable.defaults.language.loadingRecords
 			 *
 			 *  @example
-			 *    $(document).ready( function() {
+			 *    document.addEventListener("DOMContentLoaded",  function() {
 			 *      $('#example').dataTable( {
 			 *        "language": {
 			 *          "loadingRecords": "Please wait - loading..."
@@ -11745,7 +11745,7 @@
 			 *  @name DataTable.defaults.language.processing
 			 *
 			 *  @example
-			 *    $(document).ready( function() {
+			 *    document.addEventListener("DOMContentLoaded",  function() {
 			 *      $('#example').dataTable( {
 			 *        "language": {
 			 *          "processing": "DataTables is currently busy"
@@ -11770,7 +11770,7 @@
 			 *
 			 *  @example
 			 *    // Input text box will be appended at the end automatically
-			 *    $(document).ready( function() {
+			 *    document.addEventListener("DOMContentLoaded",  function() {
 			 *      $('#example').dataTable( {
 			 *        "language": {
 			 *          "search": "Filter records:"
@@ -11780,7 +11780,7 @@
 			 *
 			 *  @example
 			 *    // Specify where the filter should appear
-			 *    $(document).ready( function() {
+			 *    document.addEventListener("DOMContentLoaded",  function() {
 			 *      $('#example').dataTable( {
 			 *        "language": {
 			 *          "search": "Apply filter _INPUT_ to table"
@@ -11816,7 +11816,7 @@
 			 *  @name DataTable.defaults.language.url
 			 *
 			 *  @example
-			 *    $(document).ready( function() {
+			 *    document.addEventListener("DOMContentLoaded",  function() {
 			 *      $('#example').dataTable( {
 			 *        "language": {
 			 *          "url": "http://www.sprymedia.co.uk/dataTables/lang.txt"
@@ -11838,7 +11838,7 @@
 			 *  @name DataTable.defaults.language.zeroRecords
 			 *
 			 *  @example
-			 *    $(document).ready( function() {
+			 *    document.addEventListener("DOMContentLoaded",  function() {
 			 *      $('#example').dataTable( {
 			 *        "language": {
 			 *          "zeroRecords": "No records to display"
@@ -11865,7 +11865,7 @@
 		 *  @name DataTable.defaults.search
 		 *
 		 *  @example
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "search": {"search": "Initial search"}
 		 *      } );
@@ -11959,7 +11959,7 @@
 		 *  @name DataTable.defaults.dom
 		 *
 		 *  @example
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "dom": '&lt;"top"i&gt;rt&lt;"bottom"flp&gt;&lt;"clear"&gt;'
 		 *      } );
@@ -11979,7 +11979,7 @@
 		 *  @name DataTable.defaults.searchDelay
 		 *
 		 *  @example
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "searchDelay": 200
 		 *      } );
@@ -12007,7 +12007,7 @@
 		 *  @name DataTable.defaults.pagingType
 		 *
 		 *  @example
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "pagingType": "full_numbers"
 		 *      } );
@@ -12031,7 +12031,7 @@
 		 *  @name DataTable.defaults.scrollX
 		 *
 		 *  @example
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "scrollX": true,
 		 *        "scrollCollapse": true
@@ -12055,7 +12055,7 @@
 		 *  @name DataTable.defaults.scrollXInner
 		 *
 		 *  @example
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "scrollX": "100%",
 		 *        "scrollXInner": "110%"
@@ -12079,7 +12079,7 @@
 		 *  @name DataTable.defaults.scrollY
 		 *
 		 *  @example
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "scrollY": "200px",
 		 *        "paginate": false
@@ -12164,7 +12164,7 @@
 		 *
 		 *  @example
 		 *    // Using `columnDefs`
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "columnDefs": [
 		 *          { "orderData": [ 0, 1 ], "targets": [ 0 ] },
@@ -12176,7 +12176,7 @@
 		 *
 		 *  @example
 		 *    // Using `columns`
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "columns": [
 		 *          { "orderData": [ 0, 1 ] },
@@ -12204,7 +12204,7 @@
 		 *
 		 *  @example
 		 *    // Using `columnDefs`
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "columnDefs": [
 		 *          { "orderSequence": [ "asc" ], "targets": [ 1 ] },
@@ -12216,7 +12216,7 @@
 		 *
 		 *  @example
 		 *    // Using `columns`
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "columns": [
 		 *          null,
@@ -12241,7 +12241,7 @@
 		 *
 		 *  @example
 		 *    // Using `columnDefs`
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "columnDefs": [
 		 *          { "searchable": false, "targets": [ 0 ] }
@@ -12250,7 +12250,7 @@
 		 *
 		 *  @example
 		 *    // Using `columns`
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "columns": [
 		 *          { "searchable": false },
@@ -12274,7 +12274,7 @@
 		 *
 		 *  @example
 		 *    // Using `columnDefs`
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "columnDefs": [
 		 *          { "orderable": false, "targets": [ 0 ] }
@@ -12283,7 +12283,7 @@
 		 *
 		 *  @example
 		 *    // Using `columns`
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "columns": [
 		 *          { "orderable": false },
@@ -12307,7 +12307,7 @@
 		 *
 		 *  @example
 		 *    // Using `columnDefs`
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "columnDefs": [
 		 *          { "visible": false, "targets": [ 0 ] }
@@ -12316,7 +12316,7 @@
 		 *
 		 *  @example
 		 *    // Using `columns`
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "columns": [
 		 *          { "visible": false },
@@ -12346,7 +12346,7 @@
 		 *  @dtopt Columns
 		 *
 		 *  @example
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "columnDefs": [ {
 		 *          "targets": [3],
@@ -12449,7 +12449,7 @@
 		 *    //      "version": {value},
 		 *    //      "grade": {value}
 		 *    //   }
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "ajaxSource": "sources/objects.txt",
 		 *        "columns": [
@@ -12475,7 +12475,7 @@
 		 *    //         {value}, {value}
 		 *    //      ]
 		 *    //   }
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "ajaxSource": "sources/deep.txt",
 		 *        "columns": [
@@ -12491,7 +12491,7 @@
 		 *  @example
 		 *    // Using `data` as a function to provide different information for
 		 *    // sorting, filtering and display. In this case, currency (price)
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "columnDefs": [ {
 		 *          "targets": [ 0 ],
@@ -12518,7 +12518,7 @@
 		 *
 		 *  @example
 		 *    // Using default content
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "columnDefs": [ {
 		 *          "targets": [ 0 ],
@@ -12530,7 +12530,7 @@
 		 *
 		 *  @example
 		 *    // Using array notation - outputting a list from an array
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "columnDefs": [ {
 		 *          "targets": [ 0 ],
@@ -12601,7 +12601,7 @@
 		 *
 		 *  @example
 		 *    // Create a comma separated list from an array of objects
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "ajaxSource": "sources/deep.txt",
 		 *        "columns": [
@@ -12617,7 +12617,7 @@
 		 *
 		 *  @example
 		 *    // Execute a function to obtain data
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "columnDefs": [ {
 		 *          "targets": [ 0 ],
@@ -12634,7 +12634,7 @@
 		 *    // Here the `phone` integer is used for sorting and type detection, while `phone_filter`
 		 *    // (which has both forms) is used for filtering for if a user inputs either format, while
 		 *    // the formatted phone number is the one that is shown in the table.
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "columnDefs": [ {
 		 *          "targets": [ 0 ],
@@ -12650,7 +12650,7 @@
 		 *
 		 *  @example
 		 *    // Use as a function to create a link from the data source
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "columnDefs": [ {
 		 *          "targets": [ 0 ],
@@ -12677,7 +12677,7 @@
 		 *
 		 *  @example
 		 *    // Make the first column use TH cells
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "columnDefs": [ {
 		 *          "targets": [ 0 ],
@@ -12699,7 +12699,7 @@
 		 *
 		 *  @example
 		 *    // Using `columnDefs`
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "columnDefs": [
 		 *          { "class": "my_class", "targets": [ 0 ] }
@@ -12709,7 +12709,7 @@
 		 *
 		 *  @example
 		 *    // Using `columns`
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "columns": [
 		 *          { "class": "my_class" },
@@ -12741,7 +12741,7 @@
 		 *
 		 *  @example
 		 *    // Using `columns`
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "columns": [
 		 *          null,
@@ -12769,7 +12769,7 @@
 		 *
 		 *  @example
 		 *    // Using `columnDefs`
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "columnDefs": [
 		 *          {
@@ -12783,7 +12783,7 @@
 		 *
 		 *  @example
 		 *    // Using `columns`
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "columns": [
 		 *          null,
@@ -12815,7 +12815,7 @@
 		 *
 		 *  @example
 		 *    // Using `columnDefs`
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "columnDefs": [
 		 *          { "name": "engine", "targets": [ 0 ] },
@@ -12829,7 +12829,7 @@
 		 *
 		 *  @example
 		 *    // Using `columns`
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "columns": [
 		 *          { "name": "engine" },
@@ -12857,7 +12857,7 @@
 		 *
 		 *  @example
 		 *    // Using `columnDefs`
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "columnDefs": [
 		 *          { "orderDataType": "dom-text", "targets": [ 2, 3 ] },
@@ -12870,7 +12870,7 @@
 		 *
 		 *  @example
 		 *    // Using `columns`
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "columns": [
 		 *          null,
@@ -12897,7 +12897,7 @@
 		 *
 		 *  @example
 		 *    // Using `columnDefs`
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "columnDefs": [
 		 *          { "title": "My column title", "targets": [ 0 ] }
@@ -12907,7 +12907,7 @@
 		 *
 		 *  @example
 		 *    // Using `columns`
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "columns": [
 		 *          { "title": "My column title" },
@@ -12938,7 +12938,7 @@
 		 *
 		 *  @example
 		 *    // Using `columnDefs`
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "columnDefs": [
 		 *          { "type": "html", "targets": [ 0 ] }
@@ -12948,7 +12948,7 @@
 		 *
 		 *  @example
 		 *    // Using `columns`
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "columns": [
 		 *          { "type": "html" },
@@ -12976,7 +12976,7 @@
 		 *
 		 *  @example
 		 *    // Using `columnDefs`
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "columnDefs": [
 		 *          { "width": "20%", "targets": [ 0 ] }
@@ -12986,7 +12986,7 @@
 		 *
 		 *  @example
 		 *    // Using `columns`
-		 *    $(document).ready( function() {
+		 *    document.addEventListener("DOMContentLoaded",  function() {
 		 *      $('#example').dataTable( {
 		 *        "columns": [
 		 *          { "width": "20%" },

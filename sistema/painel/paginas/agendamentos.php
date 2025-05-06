@@ -323,7 +323,7 @@ if(@$agendamentos == 'ocultar'){
 <!-- //calendar -->
 
 <script type="text/javascript">
-	$(document).ready(function() {
+	document.addEventListener("DOMContentLoaded", function() {
 		
 		$('.sel3').select2({
 			dropdownParent: $('#modalForm')
@@ -333,7 +333,7 @@ if(@$agendamentos == 'ocultar'){
 
 
 <script type="text/javascript">
-	$(document).ready(function() {
+	document.addEventListener("DOMContentLoaded", function() {
 		$('.sel2').select2({
 			
 		});
@@ -342,7 +342,7 @@ if(@$agendamentos == 'ocultar'){
 
 
 <script type="text/javascript">
-	$(document).ready(function() {
+	document.addEventListener("DOMContentLoaded", function() {
 		
 		$('.sel4').select2({
 			dropdownParent: $('#modalServico')

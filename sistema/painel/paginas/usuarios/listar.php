@@ -117,7 +117,7 @@ HTML;
 ?>
 
 <script type="text/javascript">
-	$(document).ready( function () {
+	document.addEventListener("DOMContentLoaded",  function () {
     $('#tabela').DataTable({
     		"ordering": false,
 			"stateSave": true

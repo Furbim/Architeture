@@ -104,7 +104,7 @@ $dataMesInicial = $partesInicial[1];
 
 	<script type="text/javascript">
 
-		$(document).ready(function () {
+		document.addEventListener("DOMContentLoaded", function () {
 			$('#demo-pie-1').pieChart({
 				barColor: '#2dde98',
 				trackColor: '#eee',
@@ -1826,7 +1826,7 @@ $dataMesInicial = $partesInicial[1];
 
 
 <script type="text/javascript">
-	$(document).ready(function () {
+	document.addEventListener("DOMContentLoaded", function () {
 		$('.sel15').select2({
 			dropdownParent: $('#RelComissoes')
 		});

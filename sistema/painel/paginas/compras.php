@@ -344,7 +344,7 @@ $data_final_mes = $ano_atual."-".$mes_atual."-".$dia_final_mes;
 
 
 <script type="text/javascript">
-	$(document).ready(function() {
+	document.addEventListener("DOMContentLoaded", function() {
 		$('.sel2').select2({
 			dropdownParent: $('#modalForm')
 		});

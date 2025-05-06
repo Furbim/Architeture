@@ -299,7 +299,7 @@ $data_atual = date('Y-m-d');
 <!-- //calendar -->
 
 <script type="text/javascript">
-	$(document).ready(function() {
+	document.addEventListener("DOMContentLoaded", function() {
 
 		listarHorarios();
 		
@@ -311,7 +311,7 @@ $data_atual = date('Y-m-d');
 
 
 <script type="text/javascript">
-	$(document).ready(function() {
+	document.addEventListener("DOMContentLoaded", function() {
 		$('.sel2').select2({
 			
 		});
@@ -320,7 +320,7 @@ $data_atual = date('Y-m-d');
 
 
 <script type="text/javascript">
-	$(document).ready(function() {
+	document.addEventListener("DOMContentLoaded", function() {
 		
 		$('.sel4').select2({
 			dropdownParent: $('#modalServico')

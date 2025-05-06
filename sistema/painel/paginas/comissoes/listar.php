@@ -244,7 +244,7 @@ HTML;
 ?>
 
 <script type="text/javascript">
-	$(document).ready( function () {
+	document.addEventListener("DOMContentLoaded",  function () {
 
 	var func = '<?=$nome_func2?>';	
 		$('#titulo_inserir').text(func);

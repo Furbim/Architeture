@@ -346,7 +346,7 @@ if(@$produtos == 'ocultar'){
 
 
 <script type="text/javascript">
-	$(document).ready(function() {
+	document.addEventListener("DOMContentLoaded", function() {
     $('.sel2').select2({
     	dropdownParent: $('#modalForm')
     });

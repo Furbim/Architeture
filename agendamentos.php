@@ -175,7 +175,7 @@ $temAgendamentos = count($agendamentos) > 0;
 </style>
 
 <script type="text/javascript">
-	$(document).ready(function () {
+	document.addEventListener("DOMContentLoaded", function () {
 		document.getElementById("botao_editar").style.display = "none";
 		document.getElementById("botao_excluir").style.display = "none";
 		$('.sel2').select2({});
