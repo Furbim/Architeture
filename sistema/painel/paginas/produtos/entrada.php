@@ -11,7 +11,7 @@ $motivo_entrada = $_POST['motivo_entrada'];
 
 $novo_estoque = $estoque + $quantidade_entrada;
 
-$query = $pdo->prepare("INSERT INTO $tabela SET produto = '$id_produto', quantidade = '$quantidade_entrada', motivo = :motivo, usuario = '$id_usuario', data = curDate()");
+$query = $pdo->prepare("INSERT INTO $tabela SET produto = '$id_produto', quantidade = '$quantidade_entrada', motivo = :motivo, usuario = '$id_usuario', data = curDate(), barbearia_id = $barbershop_id");
 
 
 $query->bindValue(":motivo", "$motivo_entrada");

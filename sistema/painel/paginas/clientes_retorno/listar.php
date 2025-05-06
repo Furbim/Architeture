@@ -3,7 +3,15 @@ require_once("../../../conexao.php");
 $tabela = 'clientes';
 $data_atual = date('Y-m-d');
 
-$query = $pdo->query("SELECT * FROM $tabela where alertado != 'Sim' and data_retorno < curDate() ORDER BY data_retorno asc");
+$query = $pdo->query("
+SELECT DISTINCT c.id, c.nome, c.telefone, c.email, c.data_nasc, c.data_cad, 
+       c.endereco, c.cartoes, c.data_retorno, c.ultimo_servico
+FROM clientes AS c
+INNER JOIN agendamentos AS a ON c.id = a.cliente
+INNER JOIN usuarios AS u ON a.funcionario = u.id
+WHERE u.barbearia_id = $barbershop_id AND c.alertado != 'Sim' and c.data_retorno < curDate()
+ORDER BY c.data_retorno DESC
+");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $total_reg = @count($res);
 if($total_reg > 0){
