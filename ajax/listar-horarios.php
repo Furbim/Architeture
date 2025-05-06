@@ -48,14 +48,16 @@ if (count($res) == 0) {
 
 <div class="row">
 	<?php
+	$cont = 0;
 	foreach ($res as $horario) {
 		$hora = $horario['horario'];
 		$horaF = date("H:i", strtotime($hora));
 		$horaAtual = date("H:i");
 
 
-		if ($horaAtual < $horaF) {
+		if ($horaAtual < $horaF || $data > date('Y-m-d')) {
 
+			$cont++;
 
 			// Verificar se o horário já está agendado
 			$query2 = $pdo->prepare("SELECT * FROM agendamentos WHERE data = :data AND hora = :hora AND funcionario = :funcionario");
@@ -80,6 +82,10 @@ if (count($res) == 0) {
 
 			}
 		}
+	}
+	if($cont == 0){
+		echo 'Nenhum horário disponível para hoje!';
+		exit();
 	}
 	?>
 </div>
