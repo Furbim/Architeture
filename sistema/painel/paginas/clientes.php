@@ -12,105 +12,10 @@ if(@$clientes == 'ocultar'){
 }
 ?>
 
-<div class="">      
-	<a class="btn btn-primary" onclick="inserir()" class="btn btn-primary btn-flat btn-pri"><i class="fa fa-plus" aria-hidden="true"></i> Novo Cliente</a>
-</div>
 
 <div class="bs-example widget-shadow" style="padding:15px" id="listar">
 	
 </div>
-
-
-
-
-
-
-<!-- Modal Inserir-->
-<div class="modal fade" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title"><span id="titulo_inserir"></span></h4>
-				<button id="btn-fechar" type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: -20px">
-					<span aria-hidden="true" >&times;</span>
-				</button>
-			</div>
-			<form id="form">
-			<div class="modal-body">
-
-					<div class="row">
-						<div class="col-md-5">
-							<div class="form-group">
-								<label for="exampleInputEmail1">Nome</label>
-								<input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" required>    
-							</div> 	
-						</div>
-						<div class="col-md-4">
-							<div class="form-group">
-								<label for="exampleInputEmail1">Telefone</label>
-								<input type="text" class="form-control" id="telefone" name="telefone" placeholder="Telefone" >    
-							</div> 	
-						</div>
-						<div class="col-md-4">
-							<div class="form-group">
-								<label for="exampleInputEmail1">Email</label>
-								<input type="mail" class="form-control" id="email" name="email" placeholder="Email" >    
-							</div> 	
-						</div>
-						<div class="col-md-4">
-							<div class="form-group">
-								<label for="exampleInputEmail1">Senha</label>
-								<input type="password" class="form-control" id="senha" name="senha" placeholder="Email" >    
-							</div> 	
-						</div>
-						<div class="col-md-3">
-							<div class="form-group">
-								<label for="exampleInputEmail1">Cartões</label>
-								<input type="number" class="form-control" id="cartao" name="cartao"  value="0">    
-							</div> 	
-						</div>
-					</div>
-
-							
-
-					<div class="row">
-						<div class="col-md-8">
-							<div class="form-group">
-								<label for="exampleInputEmail1">Endereço</label>
-								<input type="text" class="form-control" id="endereco" name="endereco" placeholder="Rua X Número 1 Bairro xxx" >    
-							</div> 	
-						</div>
-
-
-						<div class="col-md-4">
-							<div class="form-group">
-								<label for="exampleInputEmail1">Nascimento</label>
-								<input type="date" class="form-control" id="data_nasc" name="data_nasc" >    
-							</div> 	
-						</div>
-						
-					</div>
-
-
-					
-						<input type="hidden" name="id" id="id">
-
-					<br>
-					<small><div id="mensagem" align="center"></div></small>
-				</div>
-
-				<div class="modal-footer">      
-					<button type="submit" class="btn btn-primary">Salvar</button>
-				</div>
-			</form>
-
-			
-		</div>
-	</div>
-</div>
-
-
-
 
 
 <!-- Modal Dados-->

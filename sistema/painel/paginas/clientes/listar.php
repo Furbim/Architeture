@@ -3,7 +3,15 @@ require_once("../../../conexao.php");
 $tabela = 'clientes';
 $data_atual = date('Y-m-d');
 
-$query = $pdo->query("SELECT * FROM $tabela WHERE barbearia_id = $barbershop_id ORDER BY id desc");
+$query = $pdo->query("
+	SELECT DISTINCT c.id, c.nome, c.telefone, c.email, c.data_nasc, c.data_cad, 
+       c.endereco, c.cartoes, c.data_retorno, c.ultimo_servico
+FROM clientes AS c
+INNER JOIN agendamentos AS a ON c.id = a.cliente
+INNER JOIN usuarios AS u ON a.funcionario = u.id
+WHERE u.barbearia_id = $barbershop_id
+ORDER BY c.id DESC
+");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $total_reg = @count($res);
 if($total_reg > 0){
@@ -77,11 +85,7 @@ echo <<<HTML
 <td class="esc {$classe_retorno}">{$data_retornoF}</td>
 <td class="esc">{$cartoes}</td>
 <td>
-		<big><a href="#" onclick="editar('{$id}','{$nome}', '{$telefone}', '{$endereco}', '{$data_nasc}', '{$cartoes}')" title="Editar Dados"><i class="fa fa-edit text-primary"></i></a></big>
-
 		<big><a href="#" onclick="mostrar('{$nome}', '{$telefone}', '{$cartoes}', '{$data_cadF}', '{$data_nascF}', '{$endereco}', '{$data_retornoF}', '{$nome_servico}')" title="Ver Dados"><i class="fa fa-info-circle text-secondary"></i></a></big>
-
-
 
 		<li class="dropdown head-dpdn2" style="display: inline-block;">
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><big><i class="fa fa-trash-o text-danger"></i></big></a>
@@ -126,32 +130,6 @@ HTML;
     	});
     $('#tabela_filter label input').focus();
 } );
-</script>
-
-
-<script type="text/javascript">
-	function editar(id, nome, telefone, endereco, data_nasc, cartoes){
-		$('#id').val(id);
-		$('#nome').val(nome);		
-		$('#telefone').val(telefone);		
-		$('#endereco').val(endereco);
-		$('#data_nasc').val(data_nasc);
-		$('#cartao').val(cartoes);
-
-		
-		$('#titulo_inserir').text('Editar Registro');
-		$('#modalForm').modal('show');
-		
-	}
-
-	function limparCampos(){
-		$('#id').val('');
-		$('#nome').val('');
-		$('#telefone').val('');
-		$('#endereco').val('');
-		$('#data_nasc').val('');
-		$('#cartao').val('0');
-	}
 </script>
 
 
