@@ -85,24 +85,9 @@ echo <<<HTML
 <td class="esc {$classe_retorno}">{$data_retornoF}</td>
 <td class="esc">{$cartoes}</td>
 <td>
-		<big><a href="#" onclick="mostrar('{$nome}', '{$telefone}', '{$cartoes}', '{$data_cadF}', '{$data_nascF}', '{$endereco}', '{$data_retornoF}', '{$nome_servico}')" title="Ver Dados"><i class="fa fa-info-circle text-secondary"></i></a></big>
-
-		<li class="dropdown head-dpdn2" style="display: inline-block;">
-		<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><big><i class="fa fa-trash-o text-danger"></i></big></a>
-
-		<ul class="dropdown-menu" style="margin-left:-230px;">
-		<li>
-		<div class="notification_desc2">
-		<p>Confirmar Exclusão? <a href="#" onclick="excluir('{$id}')"><span class="text-danger">Sim</span></a></p>
-		</div>
-		</li>										
-		</ul>
-		</li>
-
-
-		<big><a href="http://api.whatsapp.com/send?1=pt_BR&phone=$whats&text=" target="_blank" title="Abrir Whatsapp"><i class="fa fa-whatsapp verde"></i></a></big>
-
-		</td>
+	<big><a href="#" onclick="mostrar('{$nome}', '{$telefone}', '{$cartoes}', '{$data_cadF}', '{$data_nascF}', '{$endereco}', '{$data_retornoF}', '{$nome_servico}')" title="Ver Dados"><i class="fa fa-info-circle text-secondary"></i></a></big>
+	<big><a href="http://api.whatsapp.com/send?1=pt_BR&phone=$whats&text=" target="_blank" title="Abrir Whatsapp"><i class="fa fa-whatsapp verde"></i></a></big>
+</td>
 </tr>
 HTML;
 
