@@ -219,7 +219,7 @@ if(@$servicos == 'ocultar'){
 
 
 
-<script type="text/javascript">var pag = "<?=$pag?>"</script>
+<script type="text/javascript">var pag = "<?=$pag?>";</script>
 <script src="js/ajax.js"></script>
 
 

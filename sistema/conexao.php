@@ -21,7 +21,7 @@ if(isset($_GET['id'])){
 $barbershop_id = $_GET['id'];
 $_SESSION['barbearia_id'] = $barbershop_id;
 }else{
-	$barbershop_id = 1;
+	$barbershop_id = 2;
 }
 
 

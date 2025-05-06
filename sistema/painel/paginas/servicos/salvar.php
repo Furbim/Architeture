@@ -19,7 +19,7 @@ if($categoria == 0){
 }
 
 //validar nome
-$query = $pdo->query("SELECT * from $tabela where nome = '$nome'");
+$query = $pdo->query("SELECT * from $tabela where nome = '$nome' and barbearia_id = $barbershop_id");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 if(@count($res) > 0 and $id != $res[0]['id']){
 	echo 'Nome já Cadastrado, escolha outro!!';
@@ -31,7 +31,7 @@ if(@count($res) > 0 and $id != $res[0]['id']){
 
 
 //validar troca da foto
-$query = $pdo->query("SELECT * FROM $tabela where id = '$id'");
+$query = $pdo->query("SELECT * FROM $tabela where id = '$id' and barbearia_id = $barbershop_id");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $total_reg = @count($res);
 if($total_reg > 0){
@@ -42,10 +42,19 @@ if($total_reg > 0){
 
 
 //SCRIPT PARA SUBIR FOTO NO SERVIDOR
-$nome_img = date('d-m-Y H:i:s') .'-'.@$_FILES['foto']['name'];
-$nome_img = preg_replace('/[ :]+/' , '-' , $nome_img);
+// Diretório específico da barbearia
+$diretorio = '../../img/servicos/' . $barbershop_id;
 
-$caminho = '../../img/servicos/' .$nome_img;
+// Cria o diretório se não existir
+if (!is_dir($diretorio)) {
+	mkdir($diretorio, 0755, true);
+}
+
+// Nome limpo e único da imagem
+$nome_img = date('d-m-Y-H-i-s') . '-' . @$_FILES['foto']['name'];
+$nome_img = preg_replace('/[ :]+/', '-', $nome_img); // Remove espaços e símbolos inválidos
+
+$caminho = $diretorio . '/' . $nome_img;
 
 $imagem_temp = @$_FILES['foto']['tmp_name']; 
 
@@ -54,11 +63,11 @@ if(@$_FILES['foto']['name'] != ""){
 	if($ext == 'png' or $ext == 'jpg' or $ext == 'jpeg' or $ext == 'gif'){ 
 	
 			//EXCLUO A FOTO ANTERIOR
-			if($foto != "sem-foto.jpg"){
-				@unlink('../../img/servicos/'.$foto);
+			if ($foto != "sem-foto.jpg" && file_exists('../../img/servicos/' . $foto)) {
+				@unlink('../../img/servicos/' . $foto);
 			}
 
-			$foto = $nome_img;
+			$foto = $barbershop_id . '/' . $nome_img;;
 		
 		move_uploaded_file($imagem_temp, $caminho);
 	}else{
@@ -71,7 +80,7 @@ if(@$_FILES['foto']['name'] != ""){
 
 
 if($id == ""){
-	$query = $pdo->prepare("INSERT INTO $tabela SET nome = :nome, categoria = '$categoria', valor = :valor, dias_retorno = '$dias_retorno', ativo = 'Sim', foto = '$foto', comissao = :comissao");
+	$query = $pdo->prepare("INSERT INTO $tabela SET nome = :nome, categoria = '$categoria', valor = :valor, dias_retorno = '$dias_retorno', ativo = 'Sim', foto = '$foto', comissao = :comissao, barbearia_id = $barbershop_id");
 }else{
 	$query = $pdo->prepare("UPDATE $tabela SET nome = :nome, categoria = '$categoria', valor = :valor, dias_retorno = '$dias_retorno', foto = '$foto', comissao = :comissao WHERE id = '$id'");
 }
