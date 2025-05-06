@@ -29,21 +29,29 @@ $data_final_mes = $ano_atual . "-" . $mes_atual . "-" . $dia_final_mes;
 
 
 
-$query = $pdo->query("SELECT * FROM clientes ");
+$query = $pdo->query("
+SELECT DISTINCT c.id, c.nome, c.telefone, c.email, c.data_nasc, c.data_cad, 
+       c.endereco, c.cartoes, c.data_retorno, c.ultimo_servico
+FROM clientes AS c
+INNER JOIN agendamentos AS a ON c.id = a.cliente
+INNER JOIN usuarios AS u ON a.funcionario = u.id
+WHERE u.barbearia_id = $barbershop_id
+ORDER BY c.id DESC
+");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $total_clientes = @count($res);
 
-$query = $pdo->query("SELECT * FROM pagar where data_venc = curDate() and pago != 'Sim' ");
+$query = $pdo->query("SELECT * FROM pagar where data_venc = curDate() and pago != 'Sim' and barbearia_id = $barbershop_id");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $contas_pagar_hoje = @count($res);
 
 
-$query = $pdo->query("SELECT * FROM receber where data_venc = curDate() and pago != 'Sim' ");
+$query = $pdo->query("SELECT * FROM receber where data_venc = curDate() and pago != 'Sim' and barbearia_id = $barbershop_id");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $contas_receber_hoje = @count($res);
 
 
-$query = $pdo->query("SELECT * FROM produtos");
+$query = $pdo->query("SELECT * FROM produtos WHERE barbearia_id = $barbershop_id");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $total_reg = @count($res);
 $estoque_baixo = 0;
@@ -62,16 +70,26 @@ if ($total_reg > 0) {
 
 
 //totalizando agendamentos
-$query = $pdo->query("SELECT * FROM agendamentos where data = curDate() ");
+$query = $pdo->query("
+    SELECT a.* FROM agendamentos AS a
+    INNER JOIN usuarios AS u ON a.funcionario = u.id
+    WHERE u.barbearia_id = $barbershop_id AND a.data = CURDATE()
+    ORDER BY a.id DESC
+");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $total_agendamentos_hoje = @count($res);
 
-$query = $pdo->query("SELECT * FROM agendamentos where data = curDate() and status = 'Concluído'");
+// Agendamentos concluídos de hoje (da mesma barbearia)
+$query = $pdo->query("
+    SELECT a.* FROM agendamentos AS a
+    INNER JOIN usuarios AS u ON a.funcionario = u.id
+    WHERE u.barbearia_id = $barbershop_id AND a.data = CURDATE() AND a.status = 'Concluído'
+");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $total_agendamentos_concluido_hoje = @count($res);
 
-
-if ($total_agendamentos_concluido_hoje > 0 and $total_agendamentos_hoje > 0) {
+// Porcentagem concluída
+if ($total_agendamentos_concluido_hoje > 0 && $total_agendamentos_hoje > 0) {
     $porcentagemAgendamentos = ($total_agendamentos_concluido_hoje / $total_agendamentos_hoje) * 100;
 } else {
     $porcentagemAgendamentos = 0;
@@ -80,13 +98,12 @@ if ($total_agendamentos_concluido_hoje > 0 and $total_agendamentos_hoje > 0) {
 
 
 
-
 //totalizando agendamentos pagos
-$query = $pdo->query("SELECT * FROM receber where data_lanc = curDate() and tipo = 'Serviço' ");
+$query = $pdo->query("SELECT * FROM receber where data_lanc = curDate() and tipo = 'Serviço' and barbearia_id = $barbershop_id");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $total_servicos_hoje = @count($res);
 
-$query = $pdo->query("SELECT * FROM receber where data_lanc = curDate() and tipo = 'Serviço' and pago = 'Sim' ");
+$query = $pdo->query("SELECT * FROM receber where data_lanc = curDate() and tipo = 'Serviço' and pago = 'Sim' and barbearia_id = $barbershop_id");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $total_servicos_pago_hoje = @count($res);
 
@@ -101,11 +118,11 @@ if ($total_servicos_pago_hoje > 0 and $total_servicos_hoje > 0) {
 
 
 //totalizando comissoes pagas mes
-$query = $pdo->query("SELECT * FROM pagar where data_lanc >= '$data_inicio_mes' and data_lanc <= '$data_final_mes' and tipo = 'Comissão' ");
+$query = $pdo->query("SELECT * FROM pagar where data_lanc >= '$data_inicio_mes' and data_lanc <= '$data_final_mes' and tipo = 'Comissão' and barbearia_id = $barbershop_id");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $total_comissoes_mes = @count($res);
 
-$query = $pdo->query("SELECT * FROM pagar where data_lanc >= '$data_inicio_mes' and data_lanc <= '$data_final_mes' and tipo = 'Comissão' and pago = 'Sim' ");
+$query = $pdo->query("SELECT * FROM pagar where data_lanc >= '$data_inicio_mes' and data_lanc <= '$data_final_mes' and tipo = 'Comissão' and pago = 'Sim' and barbearia_id = $barbershop_id");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $total_comissoes_mes_pagas = @count($res);
 
@@ -123,7 +140,7 @@ if ($total_comissoes_mes_pagas > 0 and $total_comissoes_mes > 0) {
 
 //TOTALIZAR CONTAS DO DIA
 $total_debitos_dia = 0;
-$query = $pdo->query("SELECT * FROM pagar where data_pgto = curDate()");
+$query = $pdo->query("SELECT * FROM pagar where data_pgto = curDate() and barbearia_id = $barbershop_id");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 if (@count($res) > 0) {
     for ($i = 0; $i < @count($res); $i++) {
@@ -134,7 +151,7 @@ if (@count($res) > 0) {
 }
 
 $total_ganhos_dia = 0;
-$query = $pdo->query("SELECT * FROM receber where data_pgto = curDate() ");
+$query = $pdo->query("SELECT * FROM receber where data_pgto = curDate() and barbearia_id = $barbershop_id ");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 if (@count($res) > 0) {
     for ($i = 0; $i < @count($res); $i++) {
@@ -186,7 +203,7 @@ for ($i = 1; $i <= 12; $i++) {
 
         //DESPESAS
         $total_mes_despesa = 0;
-        $query = $pdo->query("SELECT * FROM pagar where pago = 'Sim' and tipo != 'Comissão' and data_pgto >= '$data_mes_inicio_grafico' and data_pgto <= '$data_mes_final_grafico' ORDER BY id asc");
+        $query = $pdo->query("SELECT * FROM pagar where pago = 'Sim' and tipo != 'Comissão' and data_pgto >= '$data_mes_inicio_grafico' and data_pgto <= '$data_mes_final_grafico' and barbearia_id = $barbershop_id ORDER BY id asc");
         $res = $query->fetchAll(PDO::FETCH_ASSOC);
         $total_reg = @count($res);
         if($total_reg > 0){
@@ -204,7 +221,7 @@ for ($i = 1; $i <= 12; $i++) {
 
     //VENDAS
     $total_mes_vendas = 0;
-    $query = $pdo->query("SELECT * FROM receber where pago = 'Sim' and tipo = 'Venda' and data_pgto >= '$data_mes_inicio_grafico' and data_pgto <= '$data_mes_final_grafico' ORDER BY id asc");
+    $query = $pdo->query("SELECT * FROM receber where pago = 'Sim' and tipo = 'Venda' and data_pgto >= '$data_mes_inicio_grafico' and data_pgto <= '$data_mes_final_grafico' and barbearia_id = $barbershop_id ORDER BY id asc");
     $res = $query->fetchAll(PDO::FETCH_ASSOC);
     $total_reg = @count($res);
     if ($total_reg > 0) {
@@ -223,7 +240,7 @@ for ($i = 1; $i <= 12; $i++) {
 
     //SERVICOS
     $total_mes_servicos = 0;
-    $query = $pdo->query("SELECT * FROM receber where pago = 'Sim' and tipo = 'Serviço' and data_pgto >= '$data_mes_inicio_grafico' and data_pgto <= '$data_mes_final_grafico' ORDER BY id asc");
+    $query = $pdo->query("SELECT * FROM receber where pago = 'Sim' and tipo = 'Serviço' and data_pgto >= '$data_mes_inicio_grafico' and data_pgto <= '$data_mes_final_grafico' and barbearia_id = $barbershop_id ORDER BY id asc");
     $res = $query->fetchAll(PDO::FETCH_ASSOC);
     $total_reg = @count($res);
     if ($total_reg > 0) {
