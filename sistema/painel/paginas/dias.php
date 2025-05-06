@@ -4,8 +4,18 @@ require_once("verificar.php");
 require_once("../conexao.php");
 
 $pag = 'funcionarios';
-?>
+$id_funcionario = $_SESSION['id'];
 
+// Dias da semana disponíveis
+$dias_semana = ['Segunda-Feira', 'Terça-Feira', 'Quarta-Feira', 'Quinta-Feira', 'Sexta-Feira', 'Sábado', 'Domingo'];
+
+// Buscar dias já cadastrados para esse funcionário
+$query = $pdo->query("SELECT dia FROM dias WHERE funcionario = $id_funcionario");
+$dados = $query->fetchAll(PDO::FETCH_COLUMN);
+
+// Remover os dias já cadastrados da lista
+$dias_disponiveis = array_diff($dias_semana, $dados);
+?>
 
 <form id="form-dias">
     <div class="row">
@@ -13,15 +23,10 @@ $pag = 'funcionarios';
             <div class="form-group">
                 <label for="exampleInputEmail1">Dia</label>
                 <select class="form-control" id="dias" name="dias" required>
-                    <option value="Segunda-Feira">Segunda-Feira</option>
-                    <option value="Terça-Feira">Terça-Feira</option>
-                    <option value="Quarta-Feira">Quarta-Feira</option>
-                    <option value="Quinta-Feira">Quinta-Feira</option>
-                    <option value="Sexta-Feira">Sexta-Feira</option>
-                    <option value="Sábado">Sábado</option>
-                    <option value="Domingo">Domingo</option>
-
-
+                    <option value="">Selecione um dia</option>
+                    <?php foreach ($dias_disponiveis as $dia): ?>
+                        <option value="<?php echo $dia ?>"><?php echo $dia ?></option>
+                    <?php endforeach; ?>
                 </select>
             </div>
         </div>
@@ -47,7 +52,9 @@ $pag = 'funcionarios';
 
 
 
-<script type="text/javascript">var pag = "<?= $pag ?>"</script>
+<script type="text/javascript">
+    var pag = "<?= $pag ?>";
+</script>
 
 
 <script type="text/javascript">

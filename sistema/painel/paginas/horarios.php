@@ -4,6 +4,11 @@ require_once("verificar.php");
 require_once("../conexao.php");
 
 $pag = 'funcionarios';
+$id_funcionario = $_SESSION['id'];
+
+// Buscar horários já cadastrados para esse funcionário
+$query = $pdo->query("SELECT horario FROM horarios WHERE funcionario = $id_funcionario");
+$horarios_existentes = $query->fetchAll(PDO::FETCH_COLUMN);
 ?>
 
 
@@ -36,7 +41,8 @@ $pag = 'funcionarios';
 
 
 <script type="text/javascript">
-var pag = "<?=$pag?>"</script>
+    var pag = "<?=$pag?>";
+</script>
 
 
 <script type="text/javascript">

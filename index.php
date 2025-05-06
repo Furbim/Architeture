@@ -80,6 +80,12 @@ if ($total_reg > 0) {
 
 <!-- product section -->
 
+<?php
+$query = $pdo->query("SELECT * FROM servicos WHERE ativo = 'Sim' AND barbearia_id = $barbershop_id ORDER BY id ASC");
+$res = $query->fetchAll(PDO::FETCH_ASSOC);
+$total_reg = @count($res);
+if ($total_reg > 0) {
+?>
 <section class="product_section layout_padding">
   <div class="container">
     <div class="heading_container heading_center ">
@@ -88,83 +94,58 @@ if ($total_reg > 0) {
       </h2>
       <p class="col-lg-8 px-0">
         <?php
-        $query = $pdo->query("SELECT * FROM cat_servicos WHERE barbearia_id = $barbershop_id ORDER BY id asc");
-        $res = $query->fetchAll(PDO::FETCH_ASSOC);
-        $total_reg = @count($res);
-        if ($total_reg > 0) {
-          for ($i = 0; $i < $total_reg; $i++) {
-            foreach ($res[$i] as $key => $value) {
-            }
-            $id = $res[$i]['id'];
-            $nome = $res[$i]['nome'];
-
+        $query_cat = $pdo->query("SELECT * FROM cat_servicos WHERE barbearia_id = $barbershop_id ORDER BY id ASC");
+        $res_cat = $query_cat->fetchAll(PDO::FETCH_ASSOC);
+        $total_cat = @count($res_cat);
+        if ($total_cat > 0) {
+          for ($i = 0; $i < $total_cat; $i++) {
+            $nome = $res_cat[$i]['nome'];
             echo $nome;
-
-            if ($i < ($total_reg - 1)) {
+            if ($i < ($total_cat - 1)) {
               echo ' / ';
             }
-
           }
-
         }
-
-        $query = $pdo->query("SELECT * FROM servicos where ativo = 'Sim' and barbearia_id = $barbershop_id ORDER BY id asc");
-        $res = $query->fetchAll(PDO::FETCH_ASSOC);
-        $total_reg = @count($res);
-        if ($total_reg > 0) {
-          ?>
-        </p>
-      </div>
-      <div class="product_container">
-        <div class="product_owl-carousel owl-carousel owl-theme ">
-
-          <?php
-          for ($i = 0; $i < $total_reg; $i++) {
-            foreach ($res[$i] as $key => $value) {
-            }
-
-            $id = $res[$i]['id'];
-            $nome = $res[$i]['nome'];
-            $valor = $res[$i]['valor'];
-            $foto = $res[$i]['foto'];
-            $valorF = number_format($valor, 2, ',', '.');
-            $nomeF = mb_strimwidth($nome, 0, 20, "...");
-            ?>
-
-            <div class="item">
-              <div class="box">
-                <div class="img-box">
-                  <img src="sistema/painel/img/servicos/<?php echo $foto ?>" alt="">
-                </div>
-                <div class="detail-box">
-                  <h4>
-                    <?php echo $nomeF ?>
-                  </h4>
-                  <h6 class="price">
-                    <span class="new_price">
-                      R$ <?php echo $valorF ?>
-                    </span>
-
-                  </h6>
-                  <a href="agendamentos.php">
-                    Agendar
-                  </a>
-                </div>
+        ?>
+      </p>
+    </div>
+    <div class="product_container">
+      <div class="product_owl-carousel owl-carousel owl-theme ">
+        <?php
+        for ($i = 0; $i < $total_reg; $i++) {
+          $id = $res[$i]['id'];
+          $nome = $res[$i]['nome'];
+          $valor = $res[$i]['valor'];
+          $foto = $res[$i]['foto'];
+          $valorF = number_format($valor, 2, ',', '.');
+          $nomeF = mb_strimwidth($nome, 0, 20, "...");
+        ?>
+          <div class="item">
+            <div class="box">
+              <div class="img-box">
+                <img src="sistema/painel/img/servicos/<?php echo $foto ?>" alt="">
+              </div>
+              <div class="detail-box">
+                <h4>
+                  <?php echo $nomeF ?>
+                </h4>
+                <h6 class="price">
+                  <span class="new_price">
+                    R$ <?php echo $valorF ?>
+                  </span>
+                </h6>
+                <a href="agendamentos.php">
+                  Agendar
+                </a>
               </div>
             </div>
-
-          <?php
-          }
-          ?>
-
-
-        </div>
+          </div>
+        <?php } ?>
       </div>
-
-    <?php } ?>
+    </div>
   </div>
 </section>
-
+<?php } ?>
 <!-- product section ends -->
 
 <!-- about section -->
@@ -201,7 +182,7 @@ if ($total_reg > 0) {
 <!-- product section -->
 
 <?php
-$query = $pdo->query("SELECT * FROM produtos where estoque > 0 and valor_venda >  0 ORDER BY id desc limit 8");
+$query = $pdo->query("SELECT * FROM produtos where estoque > 0 and valor_venda >  0 and barbearia_id = $barbershop_id ORDER BY id desc limit 8");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $total_reg = @count($res);
 if ($total_reg > 0) {
