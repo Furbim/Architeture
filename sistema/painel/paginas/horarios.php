@@ -35,11 +35,12 @@ $pag = 'funcionarios';
 
 
 
-<script type="text/javascript">var pag = "<?=$pag?>"</script>
+<script type="text/javascript">
+var pag = "<?=$pag?>"</script>
 
 
 <script type="text/javascript">
-	$(document).ready(function() {
+	document.addEventListener("DOMContentLoaded", function() {
 		var func = $("#id_horarios").val();
 		listarHorarios(func)
 	});
