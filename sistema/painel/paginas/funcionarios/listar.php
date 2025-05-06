@@ -2,7 +2,7 @@
 require_once("../../../conexao.php");
 $tabela = 'usuarios';
 
-$query = $pdo->query("SELECT * FROM $tabela where nivel != 'Administrador' ORDER BY id desc");
+$query = $pdo->query("SELECT * FROM $tabela where nivel != 'Administrador' and barbearia_id = $barbershop_id ORDER BY id desc");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $total_reg = @count($res);
 if($total_reg > 0){

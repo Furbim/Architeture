@@ -53,10 +53,17 @@ if($total_reg > 0){
 
 
 //SCRIPT PARA SUBIR FOTO NO SERVIDOR
-$nome_img = date('d-m-Y H:i:s') .'-'.@$_FILES['foto']['name'];
-$nome_img = preg_replace('/[ :]+/' , '-' , $nome_img);
+$diretorio = '../../img/perfil/' . $barbershop_id;
 
-$caminho = '../../img/perfil/' .$nome_img;
+// Cria o diretório se não existir
+if (!is_dir($diretorio)) {
+	mkdir($diretorio, 0755, true);
+}
+
+$nome_img = date('d-m-Y-H-i-s') . '-' . @$_FILES['foto']['name'];
+$nome_img = preg_replace('/[ :]+/', '-', $nome_img);
+
+$caminho = $diretorio . '/' . $nome_img;
 
 $imagem_temp = @$_FILES['foto']['tmp_name']; 
 
@@ -65,11 +72,11 @@ if(@$_FILES['foto']['name'] != ""){
 	if($ext == 'png' or $ext == 'jpg' or $ext == 'jpeg' or $ext == 'gif'){ 
 	
 			//EXCLUO A FOTO ANTERIOR
-			if($foto != "sem-foto.jpg"){
-				@unlink('../../img/perfil/'.$foto);
+			if ($foto != "sem-foto.jpg" && file_exists('../../img/perfil/' . $foto)) {
+				@unlink('../../img/perfil/' . $foto);
 			}
 
-			$foto = $nome_img;
+			$foto = $barbershop_id . '/' . $nome_img;
 		
 		move_uploaded_file($imagem_temp, $caminho);
 	}else{
@@ -82,7 +89,7 @@ if(@$_FILES['foto']['name'] != ""){
 
 
 if($id == ""){
-	$query = $pdo->prepare("INSERT INTO $tabela SET nome = :nome, email = :email, cpf = :cpf, senha = '$senha', senha_crip = '$senha_crip', nivel = '$cargo', data = curDate(), ativo = 'Sim', telefone = :telefone, endereco = :endereco, foto = '$foto', atendimento = '$atendimento', tipo_chave = '$tipo_chave', chave_pix = :chave_pix");
+	$query = $pdo->prepare("INSERT INTO $tabela SET nome = :nome, email = :email, cpf = :cpf, senha = '$senha', senha_crip = '$senha_crip', nivel = '$cargo', data = curDate(), ativo = 'Sim', telefone = :telefone, endereco = :endereco, foto = '$foto', atendimento = '$atendimento', tipo_chave = '$tipo_chave', chave_pix = :chave_pix, barbearia_id = $barbershop_id");
 }else{
 	$query = $pdo->prepare("UPDATE $tabela SET nome = :nome, email = :email, cpf = :cpf, nivel = '$cargo', telefone = :telefone, endereco = :endereco, foto = '$foto', atendimento = '$atendimento', tipo_chave = '$tipo_chave', chave_pix = :chave_pix WHERE id = '$id'");
 }
