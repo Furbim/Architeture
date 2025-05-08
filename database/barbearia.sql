@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 06/05/2025 às 20:51
+-- Tempo de geração: 08/05/2025 às 05:04
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -149,19 +149,20 @@ INSERT INTO `barbearias` (`id`, `nome`, `endereco`, `telefone`, `email`, `data_c
 
 CREATE TABLE `cargos` (
   `id` int(11) NOT NULL,
-  `nome` varchar(35) NOT NULL
+  `nome` varchar(35) NOT NULL,
+  `barbearia_id` int(11) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Despejando dados para a tabela `cargos`
 --
 
-INSERT INTO `cargos` (`id`, `nome`) VALUES
-(9, 'Administrador'),
-(10, 'Gerente'),
-(11, 'Recepcionista'),
-(12, 'Barbeiro'),
-(13, 'Cabelereira');
+INSERT INTO `cargos` (`id`, `nome`, `barbearia_id`) VALUES
+(9, 'Administrador', 1),
+(10, 'Gerente', 1),
+(11, 'Recepcionista', 1),
+(12, 'Barbeiro', 1),
+(13, 'Cabelereira', 1);
 
 -- --------------------------------------------------------
 
@@ -206,7 +207,7 @@ CREATE TABLE `cat_servicos` (
 INSERT INTO `cat_servicos` (`id`, `nome`, `barbearia_id`) VALUES
 (1, 'Corte', 1),
 (2, 'Química', 1),
-(5, 'Manicure e Pedicure', 2),
+(5, 'Manicure e Pedicure', 1),
 (6, 'Depilação', 1);
 
 -- --------------------------------------------------------
@@ -264,7 +265,7 @@ INSERT INTO `comentarios` (`id`, `nome`, `texto`, `foto`, `ativo`, `barbearia_id
 (3, 'Marcos Silva', 'Aqui será o texto do comentário referente a essa mensagem e poderá ser aprovado ou não pelo administrador do site.', '14-06-2022-19-11-32-30-05-2022-13-19-34-08-03-2022-22-21-20-02-03-2022-09-59-04-Arthur.jpg', 'Sim', 1),
 (4, 'Marcos Santos', 'Aqui será o texto do comentário referente a essa mensagem e poderá ser aprovado ou não pelo administrador do site.', '14-06-2022-19-11-50-c2.jpg', 'Sim', 1),
 (15, 'Fabricio Campos', 'Excelente barbearia, sempre bom atendimento, preços assecíveis, Excelente barbearia, sempre bom atendimento, preços assecíveis, Excelente barbearia, sempre bom atendimento, preços assecíveis, ', '14-06-2022-20-10-40-c1.jpg', 'Sim', 1),
-(16, 'Marcelo Silva', 'Excelente barbearia, sempre bom atendimento, preços assecíveis, Excelente barbearia, sempre bom atendimento, preços assecíveis, Excelente barbearia, sempre bom atendimento, preços assecíveis, ', '14-06-2022-20-13-02-c2.jpg', 'Sim', 1),
+(16, 'Marcelo Silva', 'Excelente barbearia, sempre bom atendimento, preços assecíveis, Excelente barbearia, sempre bom atendimento, preços assecíveis, Excelente barbearia, sempre bom atendimento, preços assecíveis, ', '14-06-2022-20-13-02-c2.jpg', 'Não', 1),
 (18, 'Priscila Matos', 'Excelente Salão de cabereira, muito bom atendimento.', '14-06-2022-20-17-37-favicon.png', 'Não', 1),
 (21, 'Thiago', ' sjdiofhsjdfhslkjdfhlkajshdldjahlfkds', '12-03-2025-11-47-08-user.png', 'Sim', 1);
 
@@ -891,7 +892,8 @@ ALTER TABLE `barbearias`
 -- Índices de tabela `cargos`
 --
 ALTER TABLE `cargos`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_cargos_barbearia` (`barbearia_id`);
 
 --
 -- Índices de tabela `cat_produtos`
@@ -1063,7 +1065,7 @@ ALTER TABLE `cat_produtos`
 -- AUTO_INCREMENT de tabela `cat_servicos`
 --
 ALTER TABLE `cat_servicos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de tabela `clientes`
@@ -1177,6 +1179,12 @@ ALTER TABLE `usuarios_permissoes`
 ALTER TABLE `assinaturas`
   ADD CONSTRAINT `assinaturas_ibfk_1` FOREIGN KEY (`barbearia_id`) REFERENCES `barbearias` (`id`),
   ADD CONSTRAINT `assinaturas_ibfk_2` FOREIGN KEY (`plano_id`) REFERENCES `planos_assinatura` (`id`);
+
+--
+-- Restrições para tabelas `cargos`
+--
+ALTER TABLE `cargos`
+  ADD CONSTRAINT `fk_cargos_barbearia` FOREIGN KEY (`barbearia_id`) REFERENCES `barbearias` (`id`);
 
 --
 -- Restrições para tabelas `cat_produtos`
