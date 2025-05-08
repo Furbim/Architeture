@@ -18,8 +18,8 @@ if (!isset($_SESSION)) {
 }
 
 if(isset($_GET['id'])){
-$barbershop_id = $_GET['id'];
-$_SESSION['barbearia_id'] = $barbershop_id;
+	$barbershop_id = $_GET['id'];
+	$_SESSION['barbearia_id'] = $barbershop_id;
 }else{
 	$barbershop_id = 1;
 }
@@ -63,14 +63,10 @@ if($total_reg == 0){
 	$icone_site = $res[0]['icone_site'];
 	$texto_sobre = $res[0]['texto_sobre'];
 	$quantidade_cartoes = $res[0]['quantidade_cartoes'];
-
-	
-
 	$tel_whatsapp = '55'.preg_replace('/[ ()-]+/' , '' , $whatsapp_sistema);
-	
 	
 }
 
 
 
- ?>
+?>

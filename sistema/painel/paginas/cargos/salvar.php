@@ -7,7 +7,7 @@ $nome = $_POST['nome'];
 
 
 //validar nome
-$query = $pdo->query("SELECT * from $tabela where nome = '$nome'");
+$query = $pdo->query("SELECT * from $tabela where nome = '$nome' and barbearia_id = $barbershop_id");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 if(@count($res) > 0 and $id != $res[0]['id']){
 	echo 'Nome já Cadastrado, escolha outro!!';
@@ -16,7 +16,7 @@ if(@count($res) > 0 and $id != $res[0]['id']){
 
 
 if($id == ""){
-	$query = $pdo->prepare("INSERT INTO $tabela SET nome = :nome");
+	$query = $pdo->prepare("INSERT INTO $tabela (nome,barbearia_id) VALUES nome = :nome, barbearia_id = $barbershop_id");
 }else{
 	$query = $pdo->prepare("UPDATE $tabela SET nome = :nome WHERE id = '$id'");
 }
