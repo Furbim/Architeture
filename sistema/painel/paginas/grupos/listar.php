@@ -2,7 +2,7 @@
 require_once("../../../conexao.php");
 $tabela = 'grupo_acessos';
 
-$query = $pdo->query("SELECT * FROM $tabela ORDER BY id desc");
+$query = $pdo->query("SELECT * FROM $tabela WHERE barbearia_id = $barbershop_id ORDER BY id desc");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $total_reg = @count($res);
 if($total_reg > 0){
@@ -26,7 +26,7 @@ for($i=0; $i < $total_reg; $i++){
 	$nome = $res[$i]['nome'];
 
 
-	$query2 = $pdo->query("SELECT * FROM acessos where grupo = '$id'");
+	$query2 = $pdo->query("SELECT * FROM acessos where grupo = '$id' and barbearia_id = $barbershop_id");
 	$res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
 	$total_servicos = @count($res2);
 		
