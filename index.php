@@ -300,7 +300,7 @@ if ($total_reg > 0) {
 
 <!-- client section -->
  
-<?php /*
+<!-- <?php /*
 $query = $pdo->query("SELECT * FROM comentarios where ativo = 'Sim' and barbearia_id = $barbershop_id ORDER BY id asc");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $total_reg = @count($res);
@@ -361,7 +361,7 @@ if ($total_reg > 0) {
 
   </section>
  *
-<?php} */ ?>
+<?php} */ ?> -->
 
  <!-- end client section -->
 
