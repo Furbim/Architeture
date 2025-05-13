@@ -19,7 +19,7 @@ $query->execute();
 
 
 //atualizar o total no estoque do produto
-$pdo->query("UPDATE produtos SET estoque = '$novo_estoque' WHERE id = '$id_produto'");
+$pdo->query("UPDATE produtos SET estoque = '$novo_estoque' WHERE id = '$id_produto' AND barbearia_id = '$barbershop_id'");
 
 echo 'Salvo com Sucesso';
  ?>

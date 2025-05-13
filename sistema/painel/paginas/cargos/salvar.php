@@ -6,6 +6,7 @@ $id = $_POST['id'];
 $nome = $_POST['nome'];
 
 
+
 //validar nome
 $query = $pdo->query("SELECT * from $tabela where nome = '$nome' and barbearia_id = $barbershop_id");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);

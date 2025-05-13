@@ -28,8 +28,6 @@ if(@count($res) > 0 and $id != $res[0]['id']){
 
 
 
-
-
 //validar troca da foto
 $query = $pdo->query("SELECT * FROM $tabela where id = '$id'");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -41,24 +39,30 @@ if($total_reg > 0){
 }
 
 
-//SCRIPT PARA SUBIR FOTO NO SERVIDOR
-$nome_img = date('d-m-Y H:i:s') .'-'.@$_FILES['foto']['name'];
-$nome_img = preg_replace('/[ :]+/' , '-' , $nome_img);
+$diretorio = '../../img/produtos/' . $barbershop_id;
 
-$caminho = '../../img/produtos/' .$nome_img;
+if (!is_dir($diretorio)) {
+	mkdir($diretorio, 0755, true);
+}
 
-$imagem_temp = @$_FILES['foto']['tmp_name']; 
+// Nome limpo e único da imagem
+$nome_img = date('d-m-Y-H-i-s') . '-' . @$_FILES['foto']['name'];
+$nome_img = preg_replace('/[ :]+/', '-', $nome_img); // Remove espaços e símbolos inválidos
+
+$caminho = $diretorio . '/' . $nome_img;
+
+$imagem_temp = @$_FILES['foto']['tmp_name'];  
 
 if(@$_FILES['foto']['name'] != ""){
 	$ext = pathinfo($nome_img, PATHINFO_EXTENSION);   
 	if($ext == 'png' or $ext == 'jpg' or $ext == 'jpeg' or $ext == 'gif'){ 
 	
 			//EXCLUO A FOTO ANTERIOR
-			if($foto != "sem-foto.jpg"){
+			if($foto != "sem-foto.jpg" && file_exists('../../img/produtos/' . $foto)){
 				@unlink('../../img/produtos/'.$foto);
 			}
 
-			$foto = $nome_img;
+			$foto = $barbershop_id . '/' . $nome_img;
 		
 		move_uploaded_file($imagem_temp, $caminho);
 	}else{
@@ -71,7 +75,7 @@ if(@$_FILES['foto']['name'] != ""){
 
 
 if($id == ""){
-	$query = $pdo->prepare("INSERT INTO $tabela SET nome = :nome, categoria = '$categoria', valor_compra = :valor_compra, valor_venda = :valor_venda, descricao = :descricao, foto = '$foto', nivel_estoque = '$nivel_estoque'");
+	$query = $pdo->prepare("INSERT INTO $tabela SET nome = :nome, categoria = '$categoria', valor_compra = :valor_compra, valor_venda = :valor_venda, descricao = :descricao, foto = '$foto', nivel_estoque = '$nivel_estoque', barbearia_id = '$barbershop_id'");
 }else{
 	$query = $pdo->prepare("UPDATE $tabela SET nome = :nome, categoria = '$categoria', valor_compra = :valor_compra, valor_venda = :valor_venda, descricao = :descricao, foto = '$foto', nivel_estoque = '$nivel_estoque' WHERE id = '$id'");
 }
