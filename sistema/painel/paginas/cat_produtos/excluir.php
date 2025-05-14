@@ -4,7 +4,7 @@ $tabela = 'cat_produtos';
 
 $id = $_POST['id'];
 
-$query2 = $pdo->query("SELECT * FROM produtos where categoria = '$id'");
+$query2 = $pdo->query("SELECT * FROM produtos where categoria = '$id' and barbearia_id = $barbershop_id");
 $res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
 $total_reg2 = @count($res2);
 if($total_reg2 > 0){

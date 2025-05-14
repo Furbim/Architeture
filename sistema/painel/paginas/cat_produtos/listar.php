@@ -2,7 +2,7 @@
 require_once("../../../conexao.php");
 $tabela = 'cat_produtos';
 
-$query = $pdo->query("SELECT * FROM $tabela ORDER BY id desc");
+$query = $pdo->query("SELECT * FROM $tabela WHERE barbearia_id = $barbershop_id ORDER BY id desc");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $total_reg = @count($res);
 if($total_reg > 0){
