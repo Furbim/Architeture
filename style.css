@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body{
+    margin: 0;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    background-color: #0b0016;
+}
+
+#imagem{
+    padding-top: 5vh;
+    width: 100%;
+    height: 85vh;
+    background-color: #f5f5f5;
+    background-image: url("https://preview.colorlib.com/theme/belara/assets/img/hero/h1_hero1.jpg.webp");
+    background-size: cover;
+}
+
+#cabecalho{
+
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;    
+}
+#menu{
+    width: 50px;
+    height: 50px;
+
+}
+
+.btn_1{
+    width: 150px;
+    height: 40px;
+    background-color: #D6A04C;
+    color: #fff;
+    font-size: 16px;
+    margin-right: 15px;
+    margin-left: 15px;
+    border: none;
+}
+
+#opcoes{
+    display: flex;
+    height: 100%;
+    align-items: center;
+}
+
+#texto{
+    width: 100%;
+    max-width: 1100px;
+    margin: 16.81vh auto;
+
+    display: flex;
+    flex-direction: column;
+}
+
+#texto h3{
+    font-weight: 400;
+}
+#texto h1{
+    margin: 0;
+    width: 500px;
+    font-weight: 400;
+    font-size: 56px;
+}
+
+#mouse{
+    width: 40px;
+    height: 50px;
+    position: absolute;
+    top: 80vh;
+    left: 30vw;
+}
+
+#textoAmarelo{
+    width: 50%;
+    margin-left: 50%;
+    height: 15vh;
+    display: flex;
+    align-items: center;
+    background-color: #D6A04C;
+}
+
+#textoAmarelo h3{
+    font-weight: 400;
+    font-size: 24px;
+    margin-right: 30px;
+    margin-left: 20px;
+}
+
+#sobre{
+    width: 100%;
+}
+
+#sobre h1{
+
+    font-size: 48px;
+    margin: 100px 0 50px 0;
+    margin-left: 10vw;
+    font-weight: 400;
+}
+
+#dois{
+    display: flex;
+    justify-content: space-between;
+    width: 80vw;
+    margin: 0 auto;
+    margin-bottom: 50px;
+
+}
+
+.lados{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 50%;
+    padding: 0 90px;
+}   
+.lados img{
+    width: 100%;
+    margin-top: 20px;
+}
+
+#grande{
+    font-size: 36px;
+    margin: 0;
+}
+
+#pequeno{
+    font-size: 24px;
+    margin: 0;
+}
+
+.btn_2{
+
+    border: 2px solid #D6A04C;
+    background-color: transparent;
+    color: #fff;
+    font-size: 16px;
+    padding: 20px 40px;
+    margin-right: 15px;
+    margin-left: 15px;
+
+}
+
+.tres{
+     display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 50%;
+    padding: 20px;
+}
+
+.tres img{
+    width: 100%;
+}
+
+#projetos{
+    width: 100%;
+    height: 85vh;
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    background-color: #1E1E1E;
+}
