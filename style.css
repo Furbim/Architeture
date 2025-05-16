@@ -263,4 +263,40 @@ body{
     background-color: #D6A04C;
     font-size: 36px;
     border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.projeto{
+    display: flex;
+    justify-content: space-between;
+    width: 70vw;
+    margin: 50px auto;
+    border: 1px solid #4b4b4b;
+    padding: 50px;
+    align-items: center;
+}
+
+.prjeto img{
+    width: 150px;
+    height: 150px;
+}
+
+.textoAmarelo2{
+    width: 70%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.textoAmarelo2 h3{
+    margin: 0;
+    font-size: 30px;
+    font-weight: 400;
+    max-width: 70%;
+    
 }
