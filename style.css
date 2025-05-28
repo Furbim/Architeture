@@ -7,39 +7,7 @@ body{
     background-color: #0b0016;
 }
 
-#imagem{
-    padding-top: 5vh;
-    width: 100%;
-    height: 85vh;
-    background-color: #f5f5f5;
-    background-image: url("https://preview.colorlib.com/theme/belara/assets/img/hero/h1_hero1.jpg.webp");
-    background-size: cover;
-}
 
-#cabecalho{
-
-    width: 100%;
-    height: 70px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;    
-}
-#menu{
-    width: 50px;
-    height: 50px;
-
-}
-
-.btn_1{
-    width: 150px;
-    height: 40px;
-    background-color: #D6A04C;
-    color: #fff;
-    font-size: 16px;
-    margin-right: 15px;
-    margin-left: 15px;
-    border: none;
-}
 
 #opcoes{
     display: flex;
@@ -124,6 +92,40 @@ body{
     margin-top: 20px;
 }
 
+#imagem{
+    padding-top: 5vh;
+    width: 100%;
+    height: 85vh;
+    background-color: #f5f5f5;
+    background-image: url("https://preview.colorlib.com/theme/belara/assets/img/hero/h1_hero1.jpg.webp");
+    background-size: cover;
+}
+
+#cabecalho{
+
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;    
+}
+#menu{
+    width: 50px;
+    height: 50px;
+
+}
+
+.btn_1{
+    width: 150px;
+    height: 40px;
+    background-color: #D6A04C;
+    color: #fff;
+    font-size: 16px;
+    margin-right: 15px;
+    margin-left: 15px;
+    border: none;
+}
+
 #grande{
     font-size: 36px;
     margin: 0;
@@ -181,57 +183,6 @@ body{
     background-color: #D6A04C;
 }
 
-#textoAmarelo2 h3{
-    margin: 0;
-    margin-left: 40px;
-    font-size: 30px;
-    font-weight: 400;
-    max-width: 70%;
-    
-}
-
-#textoAmarelo2 p{
-    margin-left: 40px;
-}
-
-#seta{
-    position: absolute;
-    top: 378vh;
-    left: 46vw;
-}
-
-#dois1{
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
-    width: 80vw;
-    margin: 0 auto;
-}
-
-#nos{
-    height: 85vh;
-    display: flex;
-    align-items: end;
-    justify-content: center;
-}
-
-#dois1 img{
-    margin: 0 50px;
-    width: 60%;
-    height: 50vh;
-}
-
-#texto p{
-    font-size: 30px;
-}
-
-#dois1 #texto button{
-    width: 30%;
-}
-
-#dois1 #texto{
-    margin-top: 50px;
-}
 
 
 #testemunho{
@@ -324,6 +275,79 @@ body{
     text-decoration: none;
 }
 
+#textoAmarelo2 h3{
+    margin: 0;
+    margin-left: 40px;
+    font-size: 30px;
+    font-weight: 400;
+    max-width: 70%;
+    
+}
+
+#textoAmarelo2 p{
+    margin-left: 40px;
+}
+
+#seta{
+    position: absolute;
+    top: 378vh;
+    left: 46vw;
+}
+
+#dois1{
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    width: 80vw;
+    margin: 0 auto;
+}
+
+#nos{
+    height: 85vh;
+    display: flex;
+    align-items: end;
+    justify-content: center;
+}
+
+.close-menu {
+    position: absolute;
+    top: 25px;
+    right: 30px;
+    font-size: 2.5rem;
+    color: #fff;
+    cursor: pointer;
+    z-index: 2002;
+}
+
+.menu-toggle-checkbox:checked ~ .menu-flutuante {
+    right: 0;
+}
+
+.menu-toggle-checkbox:checked ~ .menu-toggle-label {
+    display: none;
+}
+
+
+
+#dois1 img{
+    margin: 0 50px;
+    width: 60%;
+    height: 50vh;
+}
+
+#texto p{
+    font-size: 30px;
+}
+
+#dois1 #texto button{
+    width: 30%;
+}
+
+#dois1 #texto{
+    margin-top: 50px;
+}
+
+
 #rodape{
     width: 100%;
     height: 80vh;
@@ -334,37 +358,7 @@ body{
     background-color: #1e1e1e;
 }
 
-#colunas{
-    display: flex;
-    justify-content: space-between;
-    width: 80vw;
-    margin: 0 auto;
-    margin-top: 50px;
-}
 
-#emailCaixa{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    
-}
-#emailCaixa input{
-    width: 80%;
-    height: 50px;
-    border: none;
-    outline: none;
-    font-size: 16px;
-    padding: 0 20px;
-
-}
-#emailCaixa div{
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #D6A04C;
-}
 #email{
     display: flex;
     align-items: flex-start;
@@ -439,6 +433,38 @@ hr{
     margin: 30px 0;
 }
 
+#colunas{
+    display: flex;
+    justify-content: space-between;
+    width: 80vw;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+#emailCaixa{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+#emailCaixa input{
+    width: 80%;
+    height: 50px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    padding: 0 20px;
+
+}
+#emailCaixa div{
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #D6A04C;
+}
+
 .menu-flutuante ul li a {
     color: #fff;
     text-decoration: none;
@@ -447,7 +473,7 @@ hr{
 }
 
 .menu-flutuante ul li a:hover {
-    color: #D4A574;
+    color: #c49a6d;
 }
 
 .icones-menu {
@@ -456,23 +482,5 @@ hr{
     display: flex;
     gap: 20px;
     justify-content: center;
-}
-
-.close-menu {
-    position: absolute;
-    top: 25px;
-    right: 30px;
-    font-size: 2.5rem;
-    color: #fff;
-    cursor: pointer;
-    z-index: 2002;
-}
-
-.menu-toggle-checkbox:checked ~ .menu-flutuante {
-    right: 0;
-}
-
-.menu-toggle-checkbox:checked ~ .menu-toggle-label {
-    display: none;
 }
 

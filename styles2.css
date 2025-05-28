@@ -30,50 +30,12 @@
         }
 
         .logo {
-            color: #D4A574;
+            color: #c49a6d;
             font-size: 24px;
             font-weight: bold;
         }
 
-        .direita-cabecalho {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
 
-        .telefone {
-            color: white;
-            font-size: 14px;
-        }
-
-        .botao-orcamento {
-            background: #D4A574;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-
-        .menu-toggle {
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
-        }
-
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://preview.colorlib.com/theme/belara/assets/img/hero/h2_hero1.jpg.webp');
-            background-size: cover;
-            background-position: center;
-            height: 400px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            margin-top: 70px;
-        }
 
         .migalhas {
             color: white;
@@ -130,7 +92,7 @@
             position: absolute;
             top: 20px;
             left: 20px;
-            background: #D4A574;
+            background: #c49a6d;
             color: white;
             padding: 10px 15px;
             border-radius: 5px;
@@ -172,7 +134,7 @@
         }
 
         .meta-post span {
-            color: #D4A574;
+            color: #c49a6d;
             display: flex;
             align-items: center;
             gap: 5px;
@@ -193,13 +155,53 @@
             margin-bottom: 20px;
             font-size: 20px;
             color: #333;
-            border-bottom: 2px solid #D4A574;
+            border-bottom: 2px solid #c49a6d;
             padding-bottom: 10px;
         }
 
         .formulario-busca {
             display: flex;
             gap: 10px;
+        }
+
+        .direita-cabecalho {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .telefone {
+            color: white;
+            font-size: 14px;
+        }
+
+        .botao-orcamento {
+            background: #c49a6d;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .menu-toggle {
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://preview.colorlib.com/theme/belara/assets/img/hero/h2_hero1.jpg.webp');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin-top: 70px;
         }
 
         .entrada-busca {
@@ -210,7 +212,7 @@
         }
 
         .botao-busca {
-            background: #D4A574;
+            background: #c49a6d;
             color: white;
             border: none;
             padding: 12px 20px;
@@ -277,46 +279,7 @@
             font-size: 12px;
         }
 
-        .grade-instagram {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-        }
 
-        .imagem-instagram {
-            width: 100%;
-            height: 80px;
-            object-fit: cover;
-        }
-
-        .formulario-newsletter {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .entrada-newsletter {
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        .botao-newsletter {
-            background: transparent;
-            border: #D4A574 1px solid;
-            color: #D4A574;
-            padding: 12px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        .paginacao {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 40px;
-        }
 
         .paginacao a {
             background: white;
@@ -327,7 +290,7 @@
         }
 
         .paginacao a.ativo {
-            background: #D4A574;
+            background: #c49a6d;
             color: white;
         }
 
@@ -347,7 +310,7 @@
         }
 
         .secao-rodape h3 {
-            color: #D4A574;
+            color: #c49a6d;
             margin-bottom: 20px;
         }
 
@@ -378,7 +341,7 @@
         }
 
         .newsletter-rodape button {
-            background: #D4A574;
+            background: #c49a6d;
             color: white;
             border: none;
             padding: 10px 15px;
@@ -396,6 +359,47 @@
             color: white;
             font-size: 20px;
             text-decoration: none;
+        }
+
+        .grade-instagram {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .imagem-instagram {
+            width: 100%;
+            height: 80px;
+            object-fit: cover;
+        }
+
+        .formulario-newsletter {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .entrada-newsletter {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .botao-newsletter {
+            background: transparent;
+            border: #c49a6d 1px solid;
+            color: #c49a6d;
+            padding: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .paginacao {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 40px;
         }
 
         .rodape-inferior {
@@ -460,7 +464,7 @@
         }
         
         .menu-flutuante ul li a:hover {
-            color: #D4A574;
+            color: #c49a6d;
         }
         
         .icones-menu {
