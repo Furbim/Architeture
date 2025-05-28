@@ -394,3 +394,85 @@ hr{
     width: 90%;
     margin-top: 50px;
 }
+
+.menu-toggle-label {
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    margin-left: 10px; 
+}
+
+.menu-toggle-checkbox {
+    display: none;
+}
+
+.menu-flutuante {
+    position: fixed;
+    top: 0;
+    right: -100vw;
+    width: 350px;
+    height: 100vh;
+    background: #111;
+    color: #fff;
+    z-index: 2000;
+    transition: right 0.4s cubic-bezier(.77,0,.18,1);
+    box-shadow: -2px 0 10px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 60px;
+}
+
+.menu-flutuante ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.menu-flutuante ul li {
+    margin: 30px 0;
+}
+
+.menu-flutuante ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.3rem;
+    transition: color 0.2s;
+}
+
+.menu-flutuante ul li a:hover {
+    color: #D4A574;
+}
+
+.icones-menu {
+    margin-top: auto;
+    margin-bottom: 40px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.close-menu {
+    position: absolute;
+    top: 25px;
+    right: 30px;
+    font-size: 2.5rem;
+    color: #fff;
+    cursor: pointer;
+    z-index: 2002;
+}
+
+.menu-toggle-checkbox:checked ~ .menu-flutuante {
+    right: 0;
+}
+
+.menu-toggle-checkbox:checked ~ .menu-toggle-label {
+    display: none;
+}
+
