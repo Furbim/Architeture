@@ -441,13 +441,23 @@ hr{
     cursor: pointer;
     background: none;
     border: none;
+    position: absolute;
+    top: 60px;
+    right: 500px;
     font-size: 2rem;
     color: #fff;
     margin-left: 10px; 
 }
 
+#menu{
+    height: 0;
+}
+
 .menu-toggle-checkbox {
     display: none;
+    position: absolute;
+    top: 60px;
+    right: 400px;
 }
 
 .menu-flutuante {
@@ -455,7 +465,7 @@ hr{
     display: none;
     top: 0;
     z-index: 2000;
-    right: -100vw;
+    right: -350px;
     width: 350px;
     height: 100vh;
     background: #111;

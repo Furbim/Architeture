@@ -55,11 +55,12 @@ body {
     z-index: 2002;
 }
 
-.checkbox-menu:checked ~ .menu-flutuante {
+.menu-toggle-checkbox:checked ~ .menu-flutuante {
     right: 0;
+    display: block;
 }
 
-.checkbox-menu:checked ~ .rotulo-menu {
+.menu-toggle-checkbox:checked ~ .menu-toggle-label {
     display: none;
 }
 
@@ -69,7 +70,7 @@ body {
     background-position: center;
     height: 400px;
     position: relative;
-    margin-top: 70px;
+
 }
 
 .destaque > * {
@@ -89,7 +90,6 @@ body {
 .cabecalho {
     background: rgba(0, 0, 0, 0.9);
     padding: 15px 0;
-    position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
@@ -199,14 +199,36 @@ body {
     margin-left: 10px; 
 }
 
-.checkbox-menu {
+.menu-toggle-label {
+    cursor: pointer;
+    background: none;
+    border: none;
+    position: absolute;
+    top: 15px;
+    right: 200px;
+    font-size: 2rem;
+    color: #fff;
+    margin-left: 10px; 
+    z-index: 10000;
+}
+
+#menu{
+    height: 0;
+}
+
+.menu-toggle-checkbox {
     display: none;
+    position: absolute;
+    top: 15px;
+    right: 200px;
 }
 
 .menu-flutuante {
     position: fixed;
+    display: none;
     top: 0;
-    right: -100vw;
+    z-index: 2000;
+    right: -350px;
     width: 350px;
     height: 100vh;
     background: #111;
@@ -217,7 +239,6 @@ body {
     text-align: center;
     padding-top: 60px;
 }
-
 .migalhas a {
     color: white;
     text-decoration: none;
