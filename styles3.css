@@ -34,11 +34,15 @@ body {
 }
 
 .icones-flutuantes {
-    margin-top: auto;
-    margin-bottom: 40px;
-    display: flex;
-    gap: 20px;
-    justify-content: center;
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.icones-flutuantes a {
+    display: inline-block;
+    margin: 0 10px;
 }
 
 .fechar-menu {
@@ -64,12 +68,16 @@ body {
     background-size: cover;
     background-position: center;
     height: 400px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    position: relative;
     margin-top: 70px;
+}
+
+.destaque > * {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
 }
 
 .migalhas {
@@ -90,16 +98,19 @@ body {
 .conteiner-cabecalho {
     max-width: 1200px;
     margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     padding: 0 20px;
+    position: relative;
+    height: 50px;
 }
 
 .logo {
     color: #c49a6d;
     font-size: 24px;
     font-weight: bold;
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .formulario-contato input,
@@ -122,6 +133,11 @@ body {
     resize: vertical;
 }
 
+.icones-menu a{
+    text-decoration: none;
+    color: #fff;
+}
+
 .botao-enviar {
     background: #c49a6d;
     color: white;
@@ -139,15 +155,24 @@ body {
 }
 
 .info-contato {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
+    display: block;
+}
+
+.info-contato > * {
+    margin-bottom: 40px;
 }
 
 .direita-cabecalho {
-    display: flex;
-    align-items: center;
-    gap: 20px;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.direita-cabecalho > * {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 20px;
 }
 
 .telefone {
@@ -171,8 +196,6 @@ body {
     border: none;
     font-size: 2rem;
     color: #fff;
-    display: flex;
-    align-items: center;
     margin-left: 10px; 
 }
 
@@ -191,9 +214,7 @@ body {
     z-index: 2000;
     transition: right 0.4s cubic-bezier(.77,0,.18,1);
     box-shadow: -2px 0 10px rgba(0,0,0,0.5);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    text-align: center;
     padding-top: 60px;
 }
 
@@ -202,19 +223,25 @@ body {
     text-decoration: none;
 }
 
+
 .destaque h1 {
     color: white;
     font-size: 48px;
     font-weight: bold;
+    margin-top: 50px;
 }
 
 .secao-mapa {
     height: 600px;
     background: #f5f5f5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     position: relative;
+}
+
+.secao-mapa iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .secao-contato {
@@ -232,15 +259,16 @@ body {
 }
 
 .icones-sociais {
-    display: flex;
-    gap: 15px;
     margin-top: 20px;
+    overflow: hidden;
 }
 
 .icones-sociais a {
     color: white;
     font-size: 20px;
     text-decoration: none;
+    float: left;
+    margin-right: 15px;
 }
 
 .rodape-inferior {
@@ -269,20 +297,23 @@ body {
 }
 
 .formulario-contato {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+    display: block;
 }
 
-.linha-formulario {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+.formulario-contato > * {
+    margin-bottom: 20px;
+}
+
+input{
+    width: 100%;
+}
+
+textarea{
+    width: 100%;
 }
 
 .grupo-formulario {
-    display: flex;
-    flex-direction: column;
+    display: block;
 }
 
 .grupo-formulario.completo {
@@ -290,9 +321,7 @@ body {
 }
 
 .item-contato {
-    display: flex;
-    align-items: flex-start;
-    gap: 15px;
+    overflow: hidden;
 }
 
 .icone-contato {
@@ -301,11 +330,14 @@ body {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    text-align: center;
+    line-height: 50px;
     font-size: 20px;
-    flex-shrink: 0;
+    float: left;
+}
+
+.detalhes-contato {
+    margin-left: 65px;
 }
 
 .detalhes-contato h3 {
@@ -354,15 +386,14 @@ body {
 }
 
 .newsletter-rodape {
-    display: flex;
-    gap: 10px;
+    overflow: hidden;
     margin-top: 15px;
 }
 
 .newsletter-rodape input {
-    flex: 1;
+    width: 70%;
     padding: 10px;
     border: none;
     border-radius: 5px;
+    float: left;
 }
-
